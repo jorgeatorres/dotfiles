@@ -50,7 +50,7 @@ PS1="${GREEN}(${LIGHT_GRAY}\w${GREEN}) ${PS_S}${PS_CLEAR} "
 unset PROMPT_COMMAND
 
 if [ $TERM = "dumb" ]; then
-    PS1="$ "
+    PS1="\$ "
 fi
 
 export PS1

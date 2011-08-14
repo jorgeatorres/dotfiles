@@ -14,12 +14,13 @@ export PATH
 # aliases
 # -------------------------------
 alias mysql=/usr/local/mysql/bin/mysql
+alias v="mvim"
 alias dir=ls
 alias gits="git status"
 alias gita="git add"
 alias gitc="git commit"
 alias gitp="git push"
-
+alias django="python manage.py"
 
 # -------------------------------
 # prompt

@@ -10,39 +10,39 @@ set noswapfile
 set backupdir=~/.vim/backup
 
 " visual stuff
-syntax on           " syntax hl
-set number          " line numbers
-set showmatch           " show matching brackets
-set ruler           " show cursor position
-set wildmenu            " use wild menu for tab-completion
+syntax on                       " syntax hl
+set number                      " line numbers
+set showmatch                   " show matching brackets
+set ruler                       " show cursor position
+set wildmenu                    " use wild menu for tab-completion
 
 set backspace=indent,eol,start  " backspacing over everything
-set whichwrap+=<,>,[,]      " cursor keys move to prev/next lines too
+set whichwrap+=<,>,[,]          " cursor keys move to prev/next lines too
 
-set shortmess=aAI       " use all the abbreviations, hide intro msg, etc.
+set shortmess=aAI               " use all the abbreviations, hide intro msg, etc.
 set report=0
-set nostartofline       " don't move the cursor to the start of lines
-set incsearch           " incremental search
-set nohlsearch          " don't highlight matches
+set nostartofline               " don't move the cursor to the start of lines
+set incsearch                   " incremental search
+set nohlsearch                  " don't highlight matches
 
-set ignorecase          " ignore case when searching
-set smartcase           " don't ignore case when pattern is not lowercase
-set list listchars=tab:»·,trail:·   " show trailing whitespace
+set ignorecase                  " ignore case when searching
+set smartcase                   " don't ignore case when pattern is not lowercase
+                                " show trailing whitespace
+set list listchars=tab:»·,trail:·
+
+set title                       " set filename as terminal title
+set titleold=
 
 " formatting
-set autoindent          " automatic indentation
+set autoindent                  " automatic indentation
 set smartindent
-set nowrap          " don't wrap lines
+set nowrap                      " don't wrap lines
 set tabstop=4
 set softtabstop=4
-set expandtab           " expand tabs to spaces
-set shiftwidth=4        " autoindent step
-set formatoptions+=n        " recognize numbered lists
+set expandtab                   " expand tabs to spaces
+set shiftwidth=4                " autoindent step
+set formatoptions+=n            " recognize numbered lists
 
-"
-"set titleold=
-"set title
-"
 "set enc=utf-8
 "set fenc=utf-8
 "
@@ -53,9 +53,10 @@ au BufRead,BufNewFile *.install setf php    " drupal modules
 
 " gvim config.
 if has("gui_running")
-    set guifont=Monaco:h11
+    set guifont=Monaco:h12
     set guioptions-=T
     set lines=40
     set columns=100
     set mousemodel=popup
+    colorscheme molokai
 endif

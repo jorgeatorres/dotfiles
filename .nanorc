@@ -1,0 +1,28 @@
+set autoindent
+set nowrap
+unset backup
+
+set tabsize 4
+set tabstospaces
+
+
+# syntax highlighting
+syntax "c-file" "\.(c|h)$"
+color red "\<[A-Z_]{2,}\>" 
+color green "\<(float|char|int|void|static|const|struct)\>" 
+color brightyellow "\<(if|while|do|else|case|switch)\>"
+color brightcyan "^#(     )*(define|include|ifn?def|endif|elif|else|if)" 
+color brightyellow "<[^=  ]*>" ""(\\.|[^\"])*""
+color brightyellow start=""(\\.|[^\"])*\\( |  )*$" end="^(\\.|[^\"])*""
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
+
+syntax "nanorc" "[\.]*nanorc$"
+color white "^ *(set|unset).*$"
+color cyan "^ *(set|unset) (autoindent|backup|const|cut|fill|keypad|multibuffer|noconvert|nofollow|nohelp|nowrap|operatingdir|preserve|quotestr|regexp|smooth|speller|suspend|tabsize|tempfile|historylog|view)"
+color brightwhite "^ *syntax [^ ]*"
+color brightblue "^ *set\>" "^ *unset\>" "^ *syntax\>"
+color white "^ *color\>.*"
+color yellow "^ *color (bright)?(white|black|red|blue|green|yellow|magenta|cyan)\>"
+color magenta "^ *color\>"
+color green "^#.*$"

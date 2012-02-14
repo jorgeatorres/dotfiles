@@ -2,7 +2,8 @@
 # paths
 # -------------------------------
 # setting PATH for Python 2.7
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+#PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+
 
 # add ~/bin to path
 test -d "$HOME/bin" && PATH="$HOME/bin:$PATH"
@@ -15,11 +16,13 @@ export PATH
 # -------------------------------
 alias mysql=/usr/local/mysql/bin/mysql
 alias v="mvim"
+alias n="nano"
 alias dir=ls
 alias gits="git status"
 alias gita="git add"
 alias gitc="git commit"
 alias gitp="git push"
+alias gitd="git diff"
 alias django="python manage.py"
 
 # -------------------------------

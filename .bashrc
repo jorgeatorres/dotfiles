@@ -51,7 +51,7 @@ else
     PS_S="${RED}\$"
 fi
 
-PS1="${CYAN}\w ${PS_S}${PS_CLEAR} "
+PS1="${GREEN}\w ${PS_S}${PS_CLEAR} "
 export PS1
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

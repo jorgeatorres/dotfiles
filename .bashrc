@@ -48,10 +48,10 @@ PS_CLEAR="\[\033[0m\]"
 if [ "$USER" = "root" ]; then
     PS_S="${RED}#"
 else
-    PS_S="${RED}\$"
+    PS_S="${GREEN}\$"
 fi
 
-PS1="${GREEN}\w ${PS_S}${PS_CLEAR} "
+PS1="${YELLOW}\w ${PS_S}${PS_CLEAR} "
 export PS1
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

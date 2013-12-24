@@ -1,6 +1,5 @@
 {
-	/* Look & Feel. */
-	"color_scheme": "Packages/Monokai Gray/MonokaiGray.tmTheme",
+	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow.tmTheme",
 	"default_line_ending": "unix",
 	"detect_indentation": true,
 	"draw_indent_guides": true,

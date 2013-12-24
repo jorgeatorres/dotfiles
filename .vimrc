@@ -53,8 +53,8 @@ au BufRead,BufNewFile *.install setf php    " drupal modules
 
 " gvim config.
 if has("gui_running")
-"    set guifont=Monaco:h12
-    set guifont=Consolas:h13
+    set guifont=Monaco:h11
+"    set guifont=Consolas:h13
     set guioptions-=T
     set lines=40
     set columns=100

@@ -4,6 +4,7 @@
 
 # add ~/bin to path
 test -d "$HOME/bin" && PATH="$HOME/bin:$PATH"
+PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 export PATH
 
@@ -11,7 +12,7 @@ export PATH
 # -------------------------------
 # aliases
 # -------------------------------
-alias mysql=/usr/local/mysql/bin/mysql
+#alias mysql=/usr/local/mysql/bin/mysql
 alias v="vim"
 alias n="nano"
 alias dir=ls
@@ -29,6 +30,8 @@ alias latex="texdist pdflatex"
 
 # i haz colors
 export CLICOLOR=1
+export GREP_OPTIONS='--color=auto'
+export LSCOLORS=Exfxcxdxbxegedabagacad
 
 # bash colors
 RED="\[\033[0;31m\]"
@@ -44,15 +47,10 @@ PS_CLEAR="\[\033[0m\]"
 if [ "$USER" = "root" ]; then
     PS_S="${RED}#"
 else
-    PS_S="${YELLOW}\$"
+    PS_S="${RED}\$"
 fi
 
-PS1="${GREEN}(${LIGHT_GRAY}\w${GREEN}) ${PS_S}${PS_CLEAR} "
-
-unset PROMPT_COMMAND
-
-if [ $TERM = "dumb" ]; then
-    PS1="\$ "
-fi
-
+PS1="${GREEN}\w ${PS_S}${PS_CLEAR} "
 export PS1
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

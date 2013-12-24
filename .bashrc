@@ -36,11 +36,12 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 # bash colors
 RED="\[\033[0;31m\]"
 BLUE="\[\033[0;34m\]"
-LIGHT_BLUE="\[\033[1;34m\]"
+LIGHT_BLUE="\[\033[0;94m\]"
 GREEN="\[\033[0;32m\]"
-LIGHT_GREEN="\[\033[1;32m\]"
+LIGHT_GREEN="\[\033[0;92m\]"
 YELLOW="\[\033[0;33m\]"
 LIGHT_GRAY="\[\033[0;37m\]"
+CYAN="\[\033[0;36m\]"
 
 PS_CLEAR="\[\033[0m\]"
 
@@ -50,7 +51,7 @@ else
     PS_S="${RED}\$"
 fi
 
-PS1="${GREEN}\w ${PS_S}${PS_CLEAR} "
+PS1="${CYAN}\w ${PS_S}${PS_CLEAR} "
 export PS1
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

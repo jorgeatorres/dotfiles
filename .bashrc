@@ -12,9 +12,10 @@ export PATH
 # -------------------------------
 # aliases
 # -------------------------------
-#alias mysql=/usr/local/mysql/bin/mysql
 alias v="vim"
 alias n="nano"
+alias s="subl"
+alias t="tmate"
 alias dir=ls
 alias gits="git status"
 alias gita="git add"
@@ -33,25 +34,42 @@ export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
-# bash colors
-RED="\[\033[0;31m\]"
-BLUE="\[\033[0;34m\]"
-LIGHT_BLUE="\[\033[0;94m\]"
-GREEN="\[\033[0;32m\]"
-LIGHT_GREEN="\[\033[0;92m\]"
-YELLOW="\[\033[0;33m\]"
-LIGHT_GRAY="\[\033[0;37m\]"
-CYAN="\[\033[0;36m\]"
+bash_prompt_command() {
+    # How many characters of the $PWD should be kept
+    local pwdmaxlen=25
+    # Indicate that there has been dir truncation
+    local trunc_symbol=".."
+    local dir=${PWD##*/}
+    pwdmaxlen=$(( ( pwdmaxlen < ${#dir} ) ? ${#dir} : pwdmaxlen ))
+    NEW_PWD=${PWD/#$HOME/\~}
+    local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
+    if [ ${pwdoffset} -gt "0" ]
+    then
+        NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
+        NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
+    fi
+}
 
-PS_CLEAR="\[\033[0m\]"
+bash_prompt() {
+    # Run colortest.sh for full list of colors.
+    local PS_CLEAR="\[\033[0m\]"    
+    local COLOR_NICE_BLUE='\e[38;5;111m'
+    local COLOR_NICE_GREEN='\e[38;5;148m'
+    local COLOR_NICE_YELLOW='\e[38;5;179m'
+    local COLOR_NICE_RED='\e[38;5;198m'
 
-if [ "$USER" = "root" ]; then
-    PS_S="${RED}#"
-else
-    PS_S="${GREEN}\$"
-fi
+    if [ "$USER" = "root" ]; then
+        local PS_S="${COLOR_NICE_RED}#"
+    else
+        local PS_S="${COLOR_NICE_GREEN}\$"
+    fi    
 
-PS1="${YELLOW}\w ${PS_S}${PS_CLEAR} "
-export PS1
+    PS1="${COLOR_NICE_BLUE}\${NEW_PWD} ${PS_S}${PS_CLEAR} "
+}
+
+PROMPT_COMMAND=bash_prompt_command
+bash_prompt
+unset bash_prompt
+
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

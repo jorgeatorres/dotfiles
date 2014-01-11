@@ -1,11 +1,11 @@
 {
-	"color_scheme": "Packages/Monokai Gray/MonokaiGray.tmTheme",
+	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow.tmTheme",
 	"default_line_ending": "unix",
 	"detect_indentation": true,
 	"draw_indent_guides": true,
 	"draw_minimap_border": false,
 	"draw_white_space": "selection",
-	"ensure_newline_at_eof_on_save": true,
+	"ensure_newline_at_eof_on_save": false,
 	"fade_fold_buttons": false,
 	"find_selected_text": true,
 	"folder_exclude_patterns":

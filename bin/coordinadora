@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+function lookupStatus($guide) {
+    libxml_use_internal_errors(true);
+
+    $doc = new DOMXPath(DOMDocument::loadHTML(file_get_contents('http://www.coordinadorausa.com/web/rastreo.php?guia=' . $guide)));
+    $table = $doc->query('//table[@width="385"]')->item(0);
+    
+    // We need the second <td> for the second <tr> after <tbody>.
+    $status = trim($table->childNodes->item(1)->childNodes->item(2)->textContent);
+    return $status;
+}
+
+if (count($argv) < 2) {
+    print 'coordinadora: Missing guide number!';
+    print "\n";
+    exit(1);
+}
+
+$guideNumber = intval($argv[1]);
+print lookupStatus($guideNumber);
+print "\n";
+
+exit(0);

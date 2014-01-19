@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+#
+#
+# Installs configuration files and binaries into their correct locations.
+# Author:   J. Torres <j@jorgetorres.co>
+#
+#
+
+import os
+import shutil
+import sys
+
+# Our own "ln -s" command based on https://github.com/tejr/dotfiles/blob/master/install.
+# If the symlink is already there asks for confirmation before removing it.
+def ln(src_, dest_):
+    src = os.path.join(dotfiles, src_)
+    dest = os.path.join(home, dest_)
+
+    if os.path.lexists(dest):
+        replace = True if assume_yes or raw_input('"%s" aready exists; remove? [y/N]: ' % dest) in ['y', 'Y'] else False
+
+        if replace:
+            if os.path.isdir(dest) and not os.path.islink(dest):
+                shutil.rmtree(dest)
+            else:
+                os.remove(dest)
+        else:
+            return
+
+    os.symlink(src, dest)
+
+#
+# Actual install routine.
+#
+home = os.environ['HOME']
+dotfiles = os.path.join(home, '.dotfiles')
+bin = os.path.join(home, 'bin')
+
+if not os.path.isdir(dotfiles):
+    print 'install: Could not find %s' % dotfiles
+    sys.exit(1)
+
+# Create ~/bin directory (if needed).
+if not os.path.isdir(bin):
+    os.path.mkdir(bin)
+
+assume_yes = True if len(sys.argv) > 1 and sys.argv[1] in ['-y', '-Y'] else False    
+
+# Link binaries.
+for b in os.listdir(os.path.join(dotfiles, 'bin')):
+    ln('bin/%s' % b, 'bin/%s' % b)
+
+# Link config files.
+ln('bash/profile', '.profile')
+ln('bash/bashrc', '.bashrc')
+ln('nano/nanorc', '.nanorc')
+ln('vim/vimrc', '.vimrc')
+ln('vim/', '.vim')
+ln('sublime-text-3/Preferences.sublime-settings', 'Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings')

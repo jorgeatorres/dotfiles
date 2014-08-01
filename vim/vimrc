@@ -1,63 +1,198 @@
+set nocompatible                " Fuck vi.
+filetype off                    " Required for Vundle.
 
-set nocompatible        " fuck vi
-set autoread            " reload changed files
+" {{{ Vundle.
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'mileszs/ack.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'bling/vim-airline'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'henrik/vim-reveal-in-finder'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tacahiroy/ctrlp-funky'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+
+Plugin 'ervandew/supertab'
+Plugin 'shawncplus/phpcomplete.vim'
+
+call vundle#end()
+" }}}
+
+
+" {{{ Basic config.
+set autoread                    " Reload changed files.
 set fileformats=unix,dos,mac
-set modeline
+set modeline                    " Support modelines.
 
-set nobackup            " backup is for pussies
-set nowritebackup       " (idem)
+set nobackup                    " Backup is for pussies.
+set nowritebackup               " (idem)
 set noswapfile
-set backupdir=~/.vim/backup
 
-" visual stuff
-syntax on                       " syntax hl
-set number                      " line numbers
-set showmatch                   " show matching brackets
-set ruler                       " show cursor position
-set wildmenu                    " use wild menu for tab-completion
+set hidden                      " Allow unsaved buffers.
 
-set backspace=indent,eol,start  " backspacing over everything
-set whichwrap+=<,>,[,]          " cursor keys move to prev/next lines too
+syntax on                       " Enable syntax highlighting.
+filetype plugin on              " Enable automatic loading of language-specific files.
 
-set shortmess=aAI               " use all the abbreviations, hide intro msg, etc.
+set wildmenu                    " Use wild menu for tab-completion.
+set wildmode=longest:full
+
+set backspace=indent,eol,start  " Backspace over everything.
+set whichwrap+=<,>,[,]          " Cursor keys move to prev/next lines too.
+
+set shortmess=aAI               " Use all the abbreviations, hide intro msg, etc.
 set report=0
-set nostartofline               " don't move the cursor to the start of lines
-set incsearch                   " incremental search
-set nohlsearch                  " don't highlight matches
+set nostartofline               " Don't move the cursor to the start of lines.
+
+set incsearch                   " Incremental search.
+set hlsearch                    " Highlight search matches.
+set nohlsearch                  " Do not highlight search matches.
+set wrapscan                    " Wrap when searching.
+set gdefault                    " Default to replacing all ocurrences when searching & replacing.
 
 set ignorecase                  " ignore case when searching
 set smartcase                   " don't ignore case when pattern is not lowercase
+
                                 " show trailing whitespace
 set list listchars=tab:»·,trail:·
 
-set title                       " set filename as terminal title
-set titleold=
+set number                      " Show line numbers.
+set showmatch                   " Show matching brackets.
+set ruler                       " Show cursor position.
+"set relativenumber              " Use relative line numbers.
+"set cursorline                  " Highlight the current line.
 
-" formatting
-set autoindent                  " automatic indentation
+set title                       " Set filename as terminal title.
+set titleold=
+set laststatus=2                " Always show the status bar.
+set scrolloff=3                 " Always show 3 lines of context around the cursor.
+set nowrap                      " Do not wrap long lines.
+
+set textwidth=120                " Set text width at 80 chars.
+set colorcolumn=+1               " Show column width indicator.
+set linespace=2                  " 2px line spacing
+
+"set foldmethod=syntax            " Folding is controlled by syntax files.
+
+set vb                           " Use visual bells instead of sound.
+"set v_vb=                       " Turn off sound.
+
+
+" }}}
+
+" {{{ Formatting
+set autoindent                  " Automatic indentation.
 set smartindent
-set nowrap                      " don't wrap lines
+"set cindent
+set copyindent                  " Preserve identation whe copy/pasting.
+
 set tabstop=4
 set softtabstop=4
-set expandtab                   " expand tabs to spaces
-set shiftwidth=4                " autoindent step
-set formatoptions+=n            " recognize numbered lists
+set expandtab                   " Expand tabs to spaces.
+set shiftwidth=4                " Autoindent step.
+set smarttab
+set formatoptions+=n            " Recognize numbered lists.
+set formatoptions-=t            " Do not break lines at textwidth col.
 
-"set enc=utf-8
-"set fenc=utf-8
-"
+set enc=utf-8
+set fenc=utf-8
 
-" file-type specific config.
-au BufRead,BufNewFile *.module setf php     " drupal modules
-au BufRead,BufNewFile *.install setf php    " drupal modules
+" }}}
 
-" gvim config.
-if has("gui_running")
-    set guifont=Monaco:h11
-"    set guifont=Consolas:h13
-    set guioptions-=T
-    set lines=40
-    set columns=100
-    set mousemodel=popup
-    colorscheme molokai
-endif
+" {{{ Key bindings.
+
+" A more clever navigation
+nnoremap j gj
+nnoremap k gk
+nnoremap <down> gj
+nnoremap <up> gk
+
+" Yank to the end of the line.
+nnoremap Y y$
+
+" Remap <leader> key.
+let mapleader = ","
+
+" Map ESC to jj
+imap jj <ESC>
+
+" Remap space bar to search.
+:nmap <Space> /
+
+" For myself to use the 'VIM way' for navigating.
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+
+" Navigate through buffers using Ctrl-Tab and Ctrl-Shift-Tab and also Cmd-1, Cmd-2 for buffers.
+map <C-Tab> :bn<CR>
+map <C-S-Tab> :bp<CR>
+
+" Wipe out buffer with Cmd+W.
+map <D-w> :bw<CR>
+
+" Ctrl + Space for omnifunc automcplete.
+imap <C-Space> <C-X><C-O>
+" }}}
+
+" {{{ Plugins
+
+" CTRL-P Plugin (https://github.com/kien/ctrlp.vim)
+let g:ctrlp_map = '<D-t>'
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\v[\/](\.git|\.hg|\.svn|www|wordpress\-i18n)$',
+    \ 'file': '\v\.(exe|so|dll|pyc|gif|png|jpg|mo)$'
+\}
+let g:ctrlp_extensions = ['funky']
+"let g:ctrlp_funky_syntax_highlight = 1
+
+"map <Leader>of :CtrlP<CR>
+"map <Leader>ob :CtrlPBuffer<CR>
+map <D-o> :CtrlPBuffer<CR>
+map <D-r> :CtrlPFunky<CR>
+
+" Ack.
+map <Leader>fs :Ack!<Space>
+"}}}
+
+" {{{ Custom commands.
+
+" Command to reload VIM config.
+command! ReloadConfig source ~/.vimrc
+
+" Remove trailing spaces.
+command! RemoveTrailingSpaces :%s/\s\+$//e
+map <Leader>ws :RemoveTrailingSpaces<CR>0gg
+
+" }}}
+
+" {{{ Autocomplete.
+
+set completeopt=menu,longest,menuone
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" }}}
+
+" {{{ File Types.
+
+" PHP.
+au FileType php setl cindent omnifunc=phpcomplete#CompletePHP
+"let php_folding=1
+
+" }}}
+
+
+" Fixes some bug with ftplugin (see http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting).
+let g:ruby_path="/usr/bin/ruby"

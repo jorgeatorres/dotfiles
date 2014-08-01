@@ -1,25 +1,18 @@
 " Vim color file
-" Maintainer: Henry So, Jr. <henryso@panix.com>
+" Maintainer: Martin Baeuml <baeuml@gmail.com>
+" Last Change: 2008-02-09
+"
+" This color file is a modification of the "summerfruit" color scheme by Armin Ronacher
+" so that it can be used on 88- and 256-color xterms. The colors are translated
+" using Henry So's programmatic approximation of gui colors from his "desert256"
+" color scheme.
+"
+" I removed the "italic" option and the background color from
+" comment-coloring because that looks odd on my console.
+"
+" The original "summerfruit" color scheme and "desert256" are available from vim.org.
 
-" These are the colors of the "desert" theme by Hans Fugal with a few small
-" modifications (namely that I lowered the intensity of the normal white and
-" made the normal and nontext backgrounds black), modified to work with 88-
-" and 256-color xterms.
-"
-" The original "desert" theme is available as part of the vim distribution or
-" at http://hans.fugal.net/vim/colors/.
-"
-" The real feature of this color scheme, with a wink to the "inkpot" theme, is
-" the programmatic approximation of the gui colors to the palettes of 88- and
-" 256- color xterms.  The functions that do this (folded away, for
-" readability) are calibrated to the colors used for Thomas E. Dickey's xterm
-" (version 200), which is available at http://dickey.his.com/xterm/xterm.html.
-"
-" I struggled with trying to parse the rgb.txt file to avoid the necessity of
-" converting color names to #rrggbb form, but decided it was just not worth
-" the effort.  Maybe someone seeing this may decide otherwise...
-
-set background=dark
+set background=light
 if version > 580
     " no guarantees for version 5.8 and below, but this makes it stop
     " complaining
@@ -28,7 +21,7 @@ if version > 580
         syntax reset
     endif
 endif
-let g:colors_name="desert256"
+let g:colors_name="summerfruit256"
 
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
     " functions {{{
@@ -240,51 +233,77 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     endfun
     " }}}
 
-    call <SID>X("Normal", "cccccc", "000000", "")
+    " Global
+    call <SID>X("Normal", "000000", "ffffff", "")
+    call <SID>X("NonText", "438ec3", "b7dce8", "")
 
-    " highlight groups
-    call <SID>X("Cursor", "708090", "f0e68c", "")
-    "CursorIM
-    "Directory
-    "DiffAdd
-    "DiffChange
-    "DiffDelete
-    "DiffText
-    "ErrorMsg
-    call <SID>X("VertSplit", "c2bfa5", "7f7f7f", "reverse")
-    call <SID>X("Folded", "ffd700", "4d4d4d", "")
-    call <SID>X("FoldColumn", "d2b48c", "4d4d4d", "")
+    " Search
+    call <SID>X("Search", "800000", "ffae00", "")
+    call <SID>X("IncSearch", "800000", "ffae00", "")
+
+    " Interface Elements
+    call <SID>X("StatusLine", "ffffff", "43c464", "bold")
+    call <SID>X("StatusLineNC", "9bd4a9", "51b069", "")
+    call <SID>X("VertSplit", "3687a2", "3687a2", "")
+    call <SID>X("Folded", "3c78a2", "c3daea", "")
     call <SID>X("IncSearch", "708090", "f0e68c", "")
-    "LineNr
-    call <SID>X("ModeMsg", "daa520", "", "")
-    call <SID>X("MoreMsg", "2e8b57", "", "")
-    call <SID>X("NonText", "addbe7", "000000", "bold")
-    call <SID>X("Question", "00ff7f", "", "")
-    call <SID>X("Search", "f5deb3", "cd853f", "")
-    call <SID>X("SpecialKey", "9acd32", "", "")
-    call <SID>X("StatusLine", "c2bfa5", "000000", "reverse")
-    call <SID>X("StatusLineNC", "c2bfa5", "7f7f7f", "reverse")
-    call <SID>X("Title", "cd5c5c", "", "")
-    call <SID>X("Visual", "6b8e23", "f0e68c", "reverse")
-    "VisualNOS
-    call <SID>X("WarningMsg", "fa8072", "", "")
-    "WildMenu
-    "Menu
-    "Scrollbar
-    "Tooltip
+    call <SID>X("Pmenu", "ffffff", "cb2f27", "")
+    call <SID>X("SignColumn", "", "", "")
+    call <SID>X("CursorLine", "", "c0d9eb", "")
+    call <SID>X("LineNr", "eeeeee", "438ec3", "bold")
+    call <SID>X("MatchParen", "", "", "")
 
-    " syntax highlighting groups
-    call <SID>X("Comment", "87ceeb", "", "")
-    call <SID>X("Constant", "ffa0a0", "", "")
-    call <SID>X("Identifier", "98fb98", "", "none")
-    call <SID>X("Statement", "f0e68c", "", "bold")
-    call <SID>X("PreProc", "cd5c5c", "", "")
-    call <SID>X("Type", "bdb76b", "", "bold")
-    call <SID>X("Special", "ffdead", "", "")
-    "Underlined
-    call <SID>X("Ignore", "666666", "", "")
-    "Error
-    call <SID>X("Todo", "ff4500", "eeee00", "")
+    " Specials
+    call <SID>X("Todo", "e50808", "dbf3cd", "bold")
+    call <SID>X("Title", "000000", "", "")
+    call <SID>X("Special", "fd8900", "", "")
+
+    " Syntax Elements
+    call <SID>X("String", "0086d2", "", "")
+    call <SID>X("Constant", "0086d2", "", "")
+    call <SID>X("Number", "0086f7", "", "")
+    call <SID>X("Statement", "fb660a", "", "")
+    call <SID>X("Function", "ff0086", "", "")
+    call <SID>X("PreProc", "ff0007", "", "")
+    call <SID>X("Comment", "22a21f", "", "bold")
+    call <SID>X("Type", "70796b", "", "")
+    call <SID>X("Error", "ffffff", "d40000", "")
+    call <SID>X("Identifier", "ff0086", "", "")
+    call <SID>X("Label", "ff0086", "", "")
+
+    " Python Highlighting
+    call <SID>X("pythonCoding", "ff0086", "", "")
+    call <SID>X("pythonRun", "ff0086", "", "")
+    call <SID>X("pythonBuiltinObj", "2b6ba2", "", "")
+    call <SID>X("pythonBuiltinFunc", "2b6ba2", "", "")
+    call <SID>X("pythonException", "ee0000", "", "")
+    call <SID>X("pythonExClass", "66cd66", "", "")
+    call <SID>X("pythonSpaceError", "", "", "")
+    call <SID>X("pythonDocTest", "2f5f49", "", "")
+    call <SID>X("pythonDocTest2", "3b916a", "", "")
+    call <SID>X("pythonFunction", "ee0000", "", "")
+    call <SID>X("pythonClass", "ff0086", "", "")
+
+    " HTML Highlighting
+    call <SID>X("htmlTag", "00bdec", "", "")
+    call <SID>X("htmlEndTag", "00bdec", "", "")
+    call <SID>X("htmlSpecialTagName", "4aa04a", "", "")
+    call <SID>X("htmlTagName", "4aa04a", "", "")
+    call <SID>X("htmlTagN", "4aa04a", "", "")
+
+    " Jinja Highlighting
+    call <SID>X("jinjaTagBlock", "ff0007", "fbf4c7", "bold")
+    call <SID>X("jinjaVarBlock", "ff0007", "fbf4c7", "")
+    call <SID>X("jinjaString", "0086d2", "fbf4c7", "")
+    call <SID>X("jinjaNumber", "bf0945", "fbf4c7", "bold")
+    call <SID>X("jinjaStatement", "fb660a", "fbf4c7", "bold")
+    call <SID>X("jinjaComment", "008800", "002300", "italic")
+    call <SID>X("jinjaFilter", "ff0086", "fbf4c7", "")
+    call <SID>X("jinjaRaw", "aaaaaa", "fbf4c7", "")
+    call <SID>X("jinjaOperator", "ffffff", "fbf4c7", "")
+    call <SID>X("jinjaVariable", "92cd35", "fbf4c7", "")
+    call <SID>X("jinjaAttribute", "dd7700", "fbf4c7", "")
+    call <SID>X("jinjaSpecial", "008ffd", "fbf4c7", "")
 
     " delete functions {{{
     delf <SID>X
@@ -297,42 +316,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     delf <SID>grey_level
     delf <SID>grey_number
     " }}}
-else
-    " color terminal definitions
-    hi SpecialKey    ctermfg=darkgreen
-    hi NonText       cterm=bold ctermfg=darkblue
-    hi Directory     ctermfg=darkcyan
-    hi ErrorMsg      cterm=bold ctermfg=7 ctermbg=1
-    hi IncSearch     cterm=NONE ctermfg=yellow ctermbg=green
-    hi Search        cterm=NONE ctermfg=grey ctermbg=blue
-    hi MoreMsg       ctermfg=darkgreen
-    hi ModeMsg       cterm=NONE ctermfg=brown
-    hi LineNr        ctermfg=3
-    hi Question      ctermfg=green
-    hi StatusLine    cterm=bold,reverse
-    hi StatusLineNC  cterm=reverse
-    hi VertSplit     cterm=reverse
-    hi Title         ctermfg=5
-    hi Visual        cterm=reverse
-    hi VisualNOS     cterm=bold,underline
-    hi WarningMsg    ctermfg=1
-    hi WildMenu      ctermfg=0 ctermbg=3
-    hi Folded        ctermfg=darkgrey ctermbg=NONE
-    hi FoldColumn    ctermfg=darkgrey ctermbg=NONE
-    hi DiffAdd       ctermbg=4
-    hi DiffChange    ctermbg=5
-    hi DiffDelete    cterm=bold ctermfg=4 ctermbg=6
-    hi DiffText      cterm=bold ctermbg=1
-    hi Comment       ctermfg=darkcyan
-    hi Constant      ctermfg=brown
-    hi Special       ctermfg=5
-    hi Identifier    ctermfg=6
-    hi Statement     ctermfg=3
-    hi PreProc       ctermfg=5
-    hi Type          ctermfg=2
-    hi Underlined    cterm=underline ctermfg=5
-    hi Ignore        ctermfg=darkgrey
-    hi Error         cterm=bold ctermfg=7 ctermbg=1
 endif
 
 " vim: set fdl=0 fdm=marker:
+

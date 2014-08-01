@@ -51,6 +51,12 @@ bash_prompt_command() {
 }
 
 bash_prompt() {
+    # Play nice with MacVim's crappy shell support.
+    if [ -n "$VIM" ]; then
+        PS1="$ "
+        return
+    fi
+
     # Run colortest.sh for full list of colors.
     local PS_CLEAR="\[\033[0m\]"    
     local COLOR_NICE_BLUE='\e[38;5;111m'
@@ -64,10 +70,11 @@ bash_prompt() {
         local PS_S="${COLOR_NICE_GREEN}\$"
     fi    
 
-    PS1="${COLOR_NICE_BLUE}\${NEW_PWD} ${PS_S}${PS_CLEAR} "
+#    PS1="${COLOR_NICE_BLUE}\${NEW_PWD} ${PS_S}${PS_CLEAR} "
+    PS1="${PS_S}${PS_CLEAR} "
 }
 
-PROMPT_COMMAND=bash_prompt_command
+#PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
 

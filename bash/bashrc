@@ -71,7 +71,7 @@ bash_prompt() {
     fi    
 
 #    PS1="${COLOR_NICE_BLUE}\${NEW_PWD} ${PS_S}${PS_CLEAR} "
-    PS1="${PS_S}${PS_CLEAR} "
+    PS1="\[${PS_S}${PS_CLEAR}\] "
 }
 
 #PROMPT_COMMAND=bash_prompt_command

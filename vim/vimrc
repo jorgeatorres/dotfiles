@@ -19,9 +19,10 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tacahiroy/ctrlp-funky'
 "Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
-
-Plugin 'ervandew/supertab'
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'mtth/scratch.vim'
+Plugin 'junegunn/goyo.vim'
 
 call vundle#end()
 " }}}

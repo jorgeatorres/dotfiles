@@ -11,7 +11,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 Plugin 'henrik/vim-reveal-in-finder'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-fugitive'
@@ -23,6 +23,9 @@ Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'mtth/scratch.vim'
 Plugin 'junegunn/goyo.vim'
+Plugin 'tpope/vim-surround' "ds, cs, yss
+
+Plugin 'christophermca/meta5'
 
 call vundle#end()
 " }}}
@@ -194,6 +197,12 @@ au FileType php setl cindent omnifunc=phpcomplete#CompletePHP
 
 " }}}
 
+" Cursor line only in active window. (taken from http://codeyarns.com/2013/02/07/how-to-show-cursorline-only-in-active-window-of-vim/).
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
 
 " Fixes some bug with ftplugin (see http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting).
 let g:ruby_path="/usr/bin/ruby"

@@ -33,7 +33,8 @@ def ln(src_, dest_):
 # Actual install routine.
 #
 home = os.environ['HOME']
-dotfiles = os.path.join(home, '.dotfiles')
+#dotfiles = os.path.join(home, '.dotfiles')
+dotfiles = os.path.dirname(os.path.abspath(__file__))
 bin = os.path.join(home, 'bin')
 
 if not os.path.isdir(dotfiles):

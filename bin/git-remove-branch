@@ -1,0 +1,12 @@
+#!/bin/bash
+
+branchname=$1
+
+if [ -z "$branchname" ]; then
+    echo "Usage: $0 <tag>"
+    exit 1
+fi;
+
+eval "git branch -d $branchname"
+eval "git push origin :$branchname"
+

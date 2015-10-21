@@ -24,8 +24,13 @@ Plugin 'vim-scripts/matchit.zip'
 Plugin 'mtth/scratch.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-surround' "ds, cs, yss
-
+Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'christophermca/meta5'
+
+" Colorschemes
+Plugin 'itchyny/landscape.vim'
+Plugin 'NLKNguyen/papercolor-theme'
+
 
 call vundle#end()
 " }}}
@@ -187,6 +192,13 @@ map <Leader>ws :RemoveTrailingSpaces<CR>0gg
 set completeopt=menu,longest,menuone
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
+" }}}
+
+" {{{ vim-indent-guides.
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size=1
+let g:indent_guides_color_change_percent=4
+let g:indent_guides_start_level=3
 " }}}
 
 " {{{ File Types.

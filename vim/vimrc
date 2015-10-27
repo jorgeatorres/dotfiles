@@ -93,6 +93,7 @@ set linespace=2                  " 2px line spacing
 set vb                           " Use visual bells instead of sound.
 "set v_vb=                       " Turn off sound.
 
+colorscheme default
 
 " }}}
 
@@ -177,6 +178,9 @@ map <Leader>fs :Ack!<Space>
 "}}}
 
 " {{{ Custom commands.
+
+" Automatically create directories when saving (if needed).
+autocmd BufWritePre * :silent! call mkdir(expand('%:p:h'), 'p')
 
 " Command to reload VIM config.
 command! ReloadConfig source ~/.vimrc

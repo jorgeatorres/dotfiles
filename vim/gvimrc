@@ -4,9 +4,11 @@ set guioptions=ceig
 " Font.
 "set guifont=Monaco:h11
 set guifont=Menlo:h11 linespace=2
+"set guifont=Menlo:h12 linespace=1
 
 " Color scheme.
-colo Tomorrow
+"colo Tomorrow
+colo PaperColor
 
 " Copy to system clipboard by default
 set clipboard=unnamed

@@ -160,6 +160,12 @@ imap <C-Space> <C-X><C-O>
 " {{{ Plugins
 
 " CTRL-P Plugin (https://github.com/kien/ctrlp.vim)
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_max_height = 15
+let g:ctrlp_show_hidden = 0
+"let g:ctrlp_working_path_mode = 0
+
 let g:ctrlp_map = '<D-t>'
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/](\.git|\.hg|\.svn|www|wordpress\-i18n)$',
@@ -207,8 +213,8 @@ let g:indent_guides_start_level=3
 
 " {{{ File Types.
 
-" PHP.
 au FileType php setl cindent omnifunc=phpcomplete#CompletePHP
+"au FileType python setl cindent
 "let php_folding=1
 
 " }}}

@@ -1,0 +1,348 @@
+#!/usr/bin/python
+# encoding: utf-8
+#
+# An quick and ugly script to keep a list of my list of seen movies that outputs HTML.
+# Requires python-imdb and an SQLite database.
+
+import sys
+import datetime
+import sqlite3
+import os
+import imdb
+import urllib2
+
+
+class SeenScript(object):
+
+    def __init__(self):
+        self.imdb = imdb.IMDb()
+
+    def add_movie(self, title, seen_date, rating=0):
+        results = self.imdb.search_movie(title)
+        movie = None
+
+        if not results:
+            print '! No results found.'
+            return False
+        elif len(results) == 1:
+            movie = results[0]
+        else:
+            movie = self._choose_movie(results, title)
+
+        # Gather movie details.
+        title = movie.get('title')
+        year = movie.get('year')
+        url = 'http://www.imdb.com/title/tt%s' % movie.movieID
+        cover = ''
+
+        self.imdb.update(movie)
+        plot = movie.get('plot summary', [])
+
+        if plot:
+            plot = plot[0]
+        else:
+            plot = ''
+
+        people = []
+
+        for x in movie.get('director', []):
+            people.append((x.personID, x['name'], 'director'))
+
+        for x in movie.get('actors', []):
+            people.append((x.personID, x['name'], 'actor'))
+
+        # Download cover (if available)
+        if movie.get('cover url', ''):
+            cover_h = urllib2.urlopen(movie.get('cover url'))
+            cover = cover_h.read()
+            cover_h.close()
+
+        db = self._db()
+        c = db.cursor()
+
+        c.execute('DELETE FROM movies WHERE id=?', (movie.movieID,))
+        c.execute('DELETE FROM movies_people WHERE movie_id=?', (movie.movieID,))
+
+        if cover:
+            cover = sqlite3.Binary(cover)
+
+        c.execute('INSERT INTO movies(id, title, year, url, seen_on, rating, cover, plot) VALUES(?,?,?,?,?,?,?,?)',
+                  (movie.movieID, title, year, url, seen_date, rating, cover, plot))
+
+        for p in people:
+            c.execute('INSERT INTO movies_people(movie_id, person_id, name, role) VALUES(?,?,?,?)',
+                      (movie.movieID, p[0], p[1], p[2] ) )
+
+        db.commit()
+        db.close()
+
+        print '* Added.'
+        return True
+
+
+    def _choose_movie(self, results, title=''):
+        # First check if there is an exact match.
+        if title:
+            for r in results:
+                t = r['long imdb canonical title'].lower().strip()
+                if t == title.lower():
+                    return r
+
+        print '* Choose title:'
+
+        results_enumerated = enumerate(results)
+
+        for i, m in results_enumerated:
+#            self.imdb.update(m)
+#
+            dir = '?'
+#            if m.get('director'):
+#                dir = ', '.join([x['name'] for x in m.get('director')])
+            print ' [%d] %s -- by %s' % (i, m['long imdb canonical title'], dir)
+            #print ' [%d] %s -- by %s' % (i, m['long imdb canonical title'], dir)
+
+        choice = ''
+        while ( choice == '' ):
+            choice = raw_input( 'Choice: ' )
+            choice = choice.strip()
+
+        return results[int(choice)]
+
+    def _db(self, query=''):
+        homedir = os.path.expanduser('~')
+        dbfile = os.path.join(homedir, '.seen.db')
+
+        conn = sqlite3.connect(dbfile)
+        c = conn.cursor()
+
+        # Create tables if needed.
+        r = c.execute('SELECT name FROM sqlite_master WHERE type = ? AND name = ?', ('table', 'movies'))
+        res = c.fetchone()
+
+        if res is None:
+            c.execute('''CREATE TABLE movies(id text, title text, year text, url text, seen_on text, rating integer, cover blob, plot text)''')
+            c.execute('''CREATE TABLE people(id text, name text)''')
+            c.execute('''CREATE TABLE movies_people(movie_id text, person_id text, name text, role text)''')
+
+        conn.commit()
+
+        return conn
+
+    def import_(self, filename):
+        f = open(filename, 'r')
+        lines = [x.strip() for x in f.readlines()]
+        f.close()
+
+        print '* Importing %s...' % filename
+
+        for l in lines:
+            l = l.replace('\t', ' ')
+            parts = l.split(' ')
+            seen_date = parts[0]
+            rating = 0
+
+            if parts[-1][0:3] == '\xe2\x98\x85':
+                title = ' '.join(parts[1:]).replace('\xe2\x98\x85', '').strip()
+                rating = len(parts[-1]) / 3
+            else:
+                title = ' '.join(parts[1:])
+
+            if self.add_movie(title, seen_date, rating):
+                print '-> Added "%s".' % title
+            else:
+                print '! Missed "%s".' % title
+
+    def maintenance(self):
+        # Fix movie info.
+        db = self._db()
+        c = db.cursor()
+
+        i = 1
+        for id in c.execute('SELECT id, title FROM movies WHERE (LOWER(title)=?) OR (cover = ? OR cover IS NULL) OR (id NOT IN (SELECT DISTINCT movie_id FROM movies_people WHERE role=?))', ('how did you get here?','', 'director')).fetchall():
+            print '* (Maybe) fixing %s - "%s"... [%d]' % (id[0], id[1], i)
+            movie = self.imdb.get_movie(id[0])
+            self.imdb.update(movie)
+
+            c.execute('UPDATE movies SET title = ? WHERE id = ?', (movie.get('title'), movie.movieID))
+            c.execute('DELETE FROM movies_people WHERE movie_id = ?', (movie.movieID,))
+
+            # Download cover (if available)
+            cover = None
+            if movie.get('cover url', ''):
+                cover_h = urllib2.urlopen(movie.get('cover url'))
+                cover = cover_h.read()
+                cover_h.close()
+
+            if cover is not None:
+                c.execute('UPDATE movies SET cover = ? WHERE id = ?', (sqlite3.Binary(cover), movie.movieID))
+
+            people = []
+
+            for x in movie.get('director', []):
+                people.append((x.personID, x['name'], 'director'))
+
+            for x in movie.get('actors', []):
+                people.append((x.personID, x['name'], 'actor'))
+
+            for p in people:
+                c.execute('INSERT INTO movies_people(movie_id, person_id, name, role) VALUES(?,?,?,?)',
+                          (movie.movieID, p[0], p[1], p[2] ) )
+
+            i = i+1
+
+        db.commit()
+        db.close()
+
+    def output_txt(self):
+        list = self._get_full_list()
+
+        for x in list:
+            print '%s\t%s (%s)' % (x['seen_on'], x['title'], x['year'])
+
+    def output_html(self):
+        cwd = os.getcwd()
+        imgdir = os.path.join(cwd, 'covers')
+        if not os.path.exists(imgdir):
+            os.mkdir(imgdir)
+
+        print '* Obtaining movie list...'
+        list = self._get_full_list()
+
+        print '* Generating HTML output...'
+
+        html = ''
+        html = html + '<!DOCTYPE html>'
+        html = html + '<html>'
+        html = html + '<head>'
+
+        if os.path.exists(os.path.join(cwd, 'seen.css')):
+            html = html + '<link rel="stylesheet" href="seen.css" />'
+
+        if os.path.exists(os.path.join(cwd, 'seen.js')):
+            html = html + '<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>'
+            html = html + '<script type="text/javascript" src="seen.js"></script>'
+
+        html = html + '</head>'
+        html = html + '<body>'
+        html = html + '<div class="movie-list">'
+
+        for movie in list:
+            # Generate cover file
+            if movie['cover']:
+                coverpath = os.path.join(imgdir, '%s.jpg' % movie['id'])
+
+                if not os.path.exists(coverpath):
+                    cover_h = open(coverpath, 'wb')
+                    cover_h.write(movie['cover'])
+                    cover_h.close()
+
+            # Generate item's HTML
+            item_html = self._item_html(movie)
+            html = html + item_html
+
+        html = html + '</div>'
+        html = html + '</body>'
+        html = html + '</html>'
+
+        h = open(os.path.join(cwd, 'seen.html'), 'w')
+        h.write(html.encode('UTF-8'))
+        h.close()
+
+        print '* DONE.'
+
+    def _item_html(self, movie):
+
+        html = ''
+
+        url = movie['url']
+        directors = list(movie['directors'])
+
+        html = html + '<div class="movie %s" id="%s" data-rating="%s" data-url="%s" data-directors="%s" data-year="%s" data-seen-on="%s">' % ( 'no-cover' if not movie['cover'] else '', movie['id'], movie['rating'] if movie['rating'] else '', url, ','.join([x['person_id'] for x in directors]) if directors else '', movie['year'], movie['seen_on'])
+        html = html + '<h3><span class="title"><a href="%s">%s</a></span> <span class="year">%s</span></h3>' % (url, movie['title'], movie['year'])
+
+        html = html + '<div class="meta">'
+        html = html + '<span class="seen-on">%s</span>' % movie['seen_on']
+
+        if movie['rating']:
+            html = html + '<span class="rating">%s</span>' % movie['rating']
+        html = html + '</div>'
+
+        if movie['cover']:
+            html = html + '<div class="cover"><a href="%s"><img src="covers/%s.jpg"></a></div>' % (url, movie['id'])
+
+        html = html + '<div class="details">'
+        html = html + '<dt class="year">Year</dt><dd class="year">%s</dd>' % movie['year']
+
+        if directors:
+            html = html + '<dt class="directors">Director(s)</dt><dd class="directors">%s</dd>' % ', '.join(['<span data-person-id="%s">%s</span>' % (x['person_id'], x['name']) for x in directors])
+
+        if movie['plot']:
+            html = html + '<dt class="plot">Plot</dt><dd class="plot">%s</dd>' % movie['plot']
+
+#        if movie['actors']:
+#            html = html + '<dt class="cast">Cast</dt><dd class="cast"><ul class="cast-list">'
+#            for x in movie['actors']:
+#                html = html + '<li class="actor"><span class="name">%s</span> <span class="role">%s</span></li>' % (x['name'], '')
+#            html = html + '</ul></dd>'
+
+        html = html + '</div>'
+
+        html = html + '</div>'
+        
+        return html
+
+    def _get_full_list(self):
+        res = []
+        db = self._db()
+
+        prev_factory = db.row_factory
+        db.row_factory = sqlite3.Row
+
+        for m in db.execute('SELECT * FROM movies ORDER BY seen_on DESC'):
+            directors = db.execute('SELECT * FROM movies_people WHERE movie_id=? AND role=?', (m['id'], 'director'))
+            actors = db.execute('SELECT * FROM movies_people WHERE movie_id=? AND role=?', (m['id'], 'actor'))
+
+            item = dict(m)
+            item['directors'] = directors
+            item['actors'] = actors
+
+            res.append(item)
+
+        db.row_factory = prev_factory
+
+        return res
+
+    def run(self):
+        command = sys.argv[1] if len(sys.argv) > 1 else '--help'
+
+        if '--help' == command:
+            print 'seen [--<command>] <movie or arg1> [<date or arg2>]'
+            print '\tAvailable commands: add import list html help'
+            sys.exit(0)
+        elif '--maintenance' == command:
+            self.maintenance()
+        elif '--list' == command:
+            self.output_txt()
+        elif '--html' == command:
+            self.output_html()
+        elif '--add' == command:
+            movie = sys.argv[2] if len(sys.argv) > 2 else ''
+            date = sys.argv[3] if len(sys.argv) > 3 else datetime.date.today().strftime('%Y-%m-%d')
+            self.add_movie(movie, date)
+        elif '--import' == command:
+            filename = sys.argv[2] if len(sys.argv) > 2 else ''
+
+            if not filename:
+                print '* Filename not provided!'
+                sys.exit(1)
+
+            self.import_(filename)
+        else:
+            movie = command
+            date = sys.argv[2] if len(sys.argv) > 2 else datetime.date.today().strftime('%Y-%m-%d')
+            self.add_movie(movie, date)
+
+
+if __name__ == '__main__':
+    SeenScript().run()
+

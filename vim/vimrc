@@ -9,6 +9,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'JazzCore/ctrlp-cmatcher'
 Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
 "Plugin 'terryma/vim-multiple-cursors'
@@ -26,9 +27,9 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-surround' "ds, cs, yss
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'christophermca/meta5'
+"Plugin 'wincent/Command-T'
 
 " Colorschemes
-Plugin 'itchyny/landscape.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 
 
@@ -48,7 +49,7 @@ set noswapfile
 set hidden                      " Allow unsaved buffers.
 
 syntax on                       " Enable syntax highlighting.
-filetype plugin on              " Enable automatic loading of language-specific files.
+filetype plugin indent on       " Enable automatic loading of language-specific files.
 
 set wildmenu                    " Use wild menu for tab-completion.
 set wildmode=longest:full
@@ -160,11 +161,12 @@ imap <C-Space> <C-X><C-O>
 " {{{ Plugins
 
 " CTRL-P Plugin (https://github.com/kien/ctrlp.vim)
-let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 15
 let g:ctrlp_show_hidden = 0
-"let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+let g:ctrlp_max_files = 0
 
 let g:ctrlp_map = '<D-t>'
 let g:ctrlp_custom_ignore = {
@@ -214,7 +216,8 @@ let g:indent_guides_start_level=3
 " {{{ File Types.
 
 au FileType php setl cindent omnifunc=phpcomplete#CompletePHP
-"au FileType python setl cindent
+au FileType python setl omnifunc=pythoncomplete#Complete
+"au FileType python setl nosmartindent
 "let php_folding=1
 
 " }}}

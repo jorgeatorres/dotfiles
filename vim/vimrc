@@ -27,10 +27,10 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-surround' "ds, cs, yss
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'christophermca/meta5'
-"Plugin 'wincent/Command-T'
 
 " Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'chriskempson/base16-vim'
 
 
 call vundle#end()
@@ -217,7 +217,8 @@ let g:indent_guides_start_level=3
 
 au FileType php setl cindent omnifunc=phpcomplete#CompletePHP
 au FileType python setl omnifunc=pythoncomplete#Complete
-"au FileType python setl nosmartindent
+"au Filetype python setl makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+au Filetype python setl makeprg=python\ %
 "let php_folding=1
 
 " }}}

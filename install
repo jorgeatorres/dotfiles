@@ -9,6 +9,16 @@
 import os
 import shutil
 import sys
+import hashlib
+
+
+def filehash(filename):
+    f = open(filename, 'rb')
+    s = hashlib.sha1(f.read())
+    f.close()
+
+    return s.hexdigest()
+
 
 # Our own "ln -s" command based on https://github.com/tejr/dotfiles/blob/master/install.
 # If the symlink is already there asks for confirmation before removing it.
@@ -17,6 +27,10 @@ def ln(src_, dest_):
     dest = os.path.join(home, dest_)
 
     if os.path.lexists(dest):
+        # Do not say anything if the file is identical to the source.
+        if os.path.isfile(dest) and filehash(src) == filehash(dest):
+            return
+
         replace = True if assume_yes or raw_input('"%s" aready exists; remove? [y/N]: ' % dest) in ['y', 'Y'] else False
 
         if replace:
@@ -45,7 +59,7 @@ if not os.path.isdir(dotfiles):
 if not os.path.isdir(bin):
     os.mkdir(bin)
 
-assume_yes = True if len(sys.argv) > 1 and sys.argv[1] in ['-y', '-Y'] else False    
+assume_yes = True if len(sys.argv) > 1 and sys.argv[1] in ['-y', '-Y'] else False
 
 # Link binaries.
 for b in os.listdir(os.path.join(dotfiles, 'bin')):
@@ -58,4 +72,9 @@ ln('nano/nanorc', '.nanorc')
 ln('vim/vimrc', '.vimrc')
 ln('vim/gvimrc', '.gvimrc')
 ln('vim/', '.vim')
-#ln('sublime-text-3/Preferences.sublime-settings', 'Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings')
+
+# Sublime Text
+stdir = os.path.join(home, 'Library/Application Support/Sublime Text 3')
+if os.path.exists(stdir):
+    ln('sublime-text-3/Preferences.sublime-settings', os.path.join(stdir, 'Packages/User/Preferences.sublime-settings'))
+    ln('sublime-text-3/Package Control.sublime-settings', os.path.join(stdir, 'Packages/User/Package Control.sublime-settings'))

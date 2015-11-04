@@ -1,0 +1,16 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Base16 Color Schemes",
+		"Monokai Gray",
+		"Package Control",
+		"Schemr",
+		"Theme - El Capitan",
+		"Theme - Spacegray",
+		"Tomorrow Color Schemes"
+	]
+}

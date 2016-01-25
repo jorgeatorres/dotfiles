@@ -7,7 +7,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'JazzCore/ctrlp-cmatcher'
 Plugin 'Raimondi/delimitMate'
@@ -27,6 +27,8 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-surround' "ds, cs, yss
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'christophermca/meta5'
+Plugin 'skwp/greplace.vim'
+Plugin 'tomtom/tcomment_vim'
 
 " Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
@@ -135,6 +137,8 @@ let mapleader = ","
 imap jj <ESC>
 
 " Remap space bar to search.
+"nnoremap / /\v
+"vnoremap / /\v
 :nmap <Space> /
 
 " For myself to use the 'VIM way' for navigating.
@@ -157,11 +161,15 @@ map <D-w> :bw<CR>
 " Ctrl + Space for omnifunc automcplete.
 imap <C-Space> <C-X><C-O>
 " }}}
+"
+" Use Silver Searcher instead of grep
+set grepprg=ag
+let g:grep_cmd_opts = '--line-numbers --noheading'
 
 " {{{ Plugins
 
 " CTRL-P Plugin (https://github.com/kien/ctrlp.vim)
-let g:ctrlp_match_window_bottom = 1
+let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 15
 let g:ctrlp_show_hidden = 0
@@ -181,8 +189,7 @@ let g:ctrlp_extensions = ['funky']
 map <D-o> :CtrlPBuffer<CR>
 map <D-r> :CtrlPFunky<CR>
 
-" Ack.
-map <Leader>fs :Ack!<Space>
+map <Leader>fs :Ag!<Space>
 "}}}
 
 " {{{ Custom commands.

@@ -1,57 +1,23 @@
-set nocompatible                " Fuck vi.
-filetype off                    " Required for Vundle.
+" vim:set ts=2 sts=2 sw=2 expandtab:
 
-" {{{ Vundle.
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+source ~/.vim/config/plugins.vim
 
-Plugin 'gmarik/Vundle.vim'
+set nocompatible
+set autoread                  " Reload changed files.
+set ffs=unix,dos,mac
+set enc=utf-8
+set fenc=utf-8
+set modeline                  " Support modelines
 
-Plugin 'rking/ag.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'JazzCore/ctrlp-cmatcher'
-Plugin 'Raimondi/delimitMate'
-Plugin 'bling/vim-airline'
-"Plugin 'terryma/vim-multiple-cursors'
-Plugin 'henrik/vim-reveal-in-finder'
-Plugin 'myusuf3/numbers.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tacahiroy/ctrlp-funky'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
-Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'vim-scripts/matchit.zip'
-Plugin 'mtth/scratch.vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'tpope/vim-surround' "ds, cs, yss
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'christophermca/meta5'
-Plugin 'skwp/greplace.vim'
-Plugin 'tomtom/tcomment_vim'
-
-" Colorschemes
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'chriskempson/base16-vim'
-
-
-call vundle#end()
-" }}}
-
-
-" {{{ Basic config.
-set autoread                    " Reload changed files.
-set fileformats=unix,dos,mac
-set modeline                    " Support modelines.
-
-set nobackup                    " Backup is for pussies.
-set nowritebackup               " (idem)
+set nobackup
+set nowritebackup
 set noswapfile
+set history=1000
+set hidden                    " Allow unsaved buffers.
 
-set hidden                      " Allow unsaved buffers.
-
-syntax on                       " Enable syntax highlighting.
-filetype plugin indent on       " Enable automatic loading of language-specific files.
+set shortmess=aAI               " Use all the abbreviations, hide intro msg, etc.
+set report=0
+set nostartofline               " Don't move the cursor to the start of lines.
 
 set wildmenu                    " Use wild menu for tab-completion.
 set wildmode=longest:full
@@ -59,9 +25,6 @@ set wildmode=longest:full
 set backspace=indent,eol,start  " Backspace over everything.
 set whichwrap+=<,>,[,]          " Cursor keys move to prev/next lines too.
 
-set shortmess=aAI               " Use all the abbreviations, hide intro msg, etc.
-set report=0
-set nostartofline               " Don't move the cursor to the start of lines.
 
 set incsearch                   " Incremental search.
 set hlsearch                    " Highlight search matches.
@@ -78,7 +41,7 @@ set list listchars=tab:»·,trail:·
 set number                      " Show line numbers.
 set showmatch                   " Show matching brackets.
 set ruler                       " Show cursor position.
-"set relativenumber              " Use relative line numbers.
+
 "set cursorline                  " Highlight the current line.
 
 set title                       " Set filename as terminal title.
@@ -87,20 +50,13 @@ set laststatus=2                " Always show the status bar.
 set scrolloff=3                 " Always show 3 lines of context around the cursor.
 set nowrap                      " Do not wrap long lines.
 
-set textwidth=120                " Set text width at 80 chars.
-set colorcolumn=+1               " Show column width indicator.
-set linespace=2                  " 2px line spacing
-
-"set foldmethod=syntax            " Folding is controlled by syntax files.
+colorscheme default
+set textwidth=120                " Set text width at 120 chars.
+set colorcolumn=80               " Show column width indicator.
 
 set vb                           " Use visual bells instead of sound.
 "set v_vb=                       " Turn off sound.
 
-colorscheme default
-
-" }}}
-
-" {{{ Formatting
 set autoindent                  " Automatic indentation.
 set smartindent
 "set cindent
@@ -114,128 +70,18 @@ set smarttab
 set formatoptions+=n            " Recognize numbered lists.
 set formatoptions-=t            " Do not break lines at textwidth col.
 
-set enc=utf-8
-set fenc=utf-8
-
-" }}}
-
-" {{{ Key bindings.
-
-" A more clever navigation
-nnoremap j gj
-nnoremap k gk
-nnoremap <down> gj
-nnoremap <up> gk
-
-" Yank to the end of the line.
-nnoremap Y y$
-
-" Remap <leader> key.
-let mapleader = ","
-
-" Map ESC to jj
-imap jj <ESC>
-
-" Remap space bar to search.
-"nnoremap / /\v
-"vnoremap / /\v
-:nmap <Space> /
-
-" For myself to use the 'VIM way' for navigating.
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
-
-" Navigate through buffers using Ctrl-Tab and Ctrl-Shift-Tab and also Cmd-1, Cmd-2 for buffers.
-map <C-Tab> :bn<CR>
-map <C-S-Tab> :bp<CR>
-
-" Wipe out buffer with Cmd+W.
-map <D-w> :bw<CR>
-
-" Ctrl + Space for omnifunc automcplete.
-imap <C-Space> <C-X><C-O>
-" }}}
-"
-" Use Silver Searcher instead of grep
-set grepprg=ag
-let g:grep_cmd_opts = '--line-numbers --noheading'
-
-" {{{ Plugins
-
-" CTRL-P Plugin (https://github.com/kien/ctrlp.vim)
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_max_height = 15
-let g:ctrlp_show_hidden = 0
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
-let g:ctrlp_max_files = 0
-
-let g:ctrlp_map = '<D-t>'
-let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.git|\.hg|\.svn|www|wordpress\-i18n)$',
-    \ 'file': '\v\.(exe|so|dll|pyc|gif|png|jpg|mo)$'
-\}
-let g:ctrlp_extensions = ['funky']
-"let g:ctrlp_funky_syntax_highlight = 1
-
-"map <Leader>of :CtrlP<CR>
-"map <Leader>ob :CtrlPBuffer<CR>
-map <D-o> :CtrlPBuffer<CR>
-map <D-r> :CtrlPFunky<CR>
-
-map <Leader>fs :Ag!<Space>
-"}}}
-
-" {{{ Custom commands.
-
-" Automatically create directories when saving (if needed).
-autocmd BufWritePre * :silent! call mkdir(expand('%:p:h'), 'p')
-
-" Command to reload VIM config.
-command! ReloadConfig source ~/.vimrc
-
-" Remove trailing spaces.
-command! RemoveTrailingSpaces :%s/\s\+$//e
-map <Leader>ws :RemoveTrailingSpaces<CR>0gg
-
-" }}}
-
-" {{{ Autocomplete.
-
+" Autocomplete.
 set completeopt=menu,longest,menuone
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
-" }}}
+syntax on                       " Enable syntax highlighting.
+filetype plugin indent on       " Enable automatic loading of language-specific files.
 
-" {{{ vim-indent-guides.
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size=1
-let g:indent_guides_color_change_percent=4
-let g:indent_guides_start_level=3
-" }}}
 
-" {{{ File Types.
+source ~/.vim/config/filetypes.vim
+source ~/.vim/config/mappings.vim
+source ~/.vim/config/commands.vim
 
-au FileType php setl cindent omnifunc=phpcomplete#CompletePHP
-au FileType python setl omnifunc=pythoncomplete#Complete
-"au Filetype python setl makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-au Filetype python setl makeprg=python\ %
-"let php_folding=1
 
-" }}}
-
-" Cursor line only in active window. (taken from http://codeyarns.com/2013/02/07/how-to-show-cursorline-only-in-active-window-of-vim/).
-augroup CursorLineOnlyInActiveWindow
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-augroup END
 
 " Fixes some bug with ftplugin (see http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting).
-let g:ruby_path="/usr/bin/ruby"
+"let g:ruby_path="/usr/bin/ruby"

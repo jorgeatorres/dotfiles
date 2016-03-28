@@ -1,6 +1,45 @@
 " vim:set ts=2 sts=2 sw=2 expandtab:
 
-source ~/.vim/config/plugins.vim
+
+" Plugins
+" =======
+filetype off                        " Required for Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'JazzCore/ctrlp-cmatcher'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'Raimondi/delimitMate'
+Plugin 'henrik/vim-reveal-in-finder'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-eunuch'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'mtth/scratch.vim'
+Plugin 'junegunn/goyo.vim'
+Plugin 'tpope/vim-surround' "ds, cs, yss
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'christophermca/meta5'
+Plugin 'skwp/greplace.vim'
+Plugin 'tomtom/tcomment_vim' "gcc, gc{motion}
+"Plugin 'wincent/command-t'
+"Plugin 'torbiak/probe'
+
+" Colorschemes
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'chriskempson/base16-vim'
+
+call vundle#end()
+
+
+" Basic config
+" ============
 
 set nocompatible
 set autoread                  " Reload changed files.
@@ -25,6 +64,7 @@ set wildmode=longest:full
 set backspace=indent,eol,start  " Backspace over everything.
 set whichwrap+=<,>,[,]          " Cursor keys move to prev/next lines too.
 
+set noshowmode
 
 set incsearch                   " Incremental search.
 set hlsearch                    " Highlight search matches.
@@ -37,10 +77,13 @@ set smartcase                   " don't ignore case when pattern is not lowercas
 
                                 " show trailing whitespace
 set list listchars=tab:»·,trail:·
+set wildignore+=.DS_Store
+
 
 set number                      " Show line numbers.
 set showmatch                   " Show matching brackets.
-set ruler                       " Show cursor position.
+"set ruler                       " Show cursor position.
+set showcmd                     " Show incomplete commands at the bottom
 
 "set cursorline                  " Highlight the current line.
 
@@ -52,7 +95,7 @@ set nowrap                      " Do not wrap long lines.
 
 colorscheme default
 set textwidth=120                " Set text width at 120 chars.
-set colorcolumn=80               " Show column width indicator.
+set colorcolumn=+1               " Show column width indicator.
 
 set vb                           " Use visual bells instead of sound.
 "set v_vb=                       " Turn off sound.
@@ -70,18 +113,138 @@ set smarttab
 set formatoptions+=n            " Recognize numbered lists.
 set formatoptions-=t            " Do not break lines at textwidth col.
 
+" Status line.
+set statusline=
+set statusline+=\ [%{mode()}]
+set statusline+=\ %.60f     " filename
+set statusline+=%(\ (%{fugitive#head()})%)
+set statusline+=\ %h%m%r%w  " flags
+set statusline+=%=
+set statusline+=\|\ 
+set statusline+=%{strlen(&ft)?&ft:'?'}\ \|\     " filetype
+set statusline+=%{strlen(&fenc)?&fenc:&enc}\ (%{&fileformat})   " encoding
+set statusline+=\|\ 
+set statusline+=%-8(%l:%c%)
+set statusline+=\ 
+
+
 " Autocomplete.
 set completeopt=menu,longest,menuone
 
 syntax on                       " Enable syntax highlighting.
 filetype plugin indent on       " Enable automatic loading of language-specific files.
 
+" Filetypes
+" =========
+au FileType php setl cindent omnifunc=phpcomplete#CompletePHP
+au FileType python setl omnifunc=pythoncomplete#Complete
+"au Filetype python setl makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+au Filetype python setl makeprg=python\ %
+au FileType ruby setl ts=2 sts=0 sw=2 makeprg=ruby\ %
 
-source ~/.vim/config/filetypes.vim
-source ~/.vim/config/mappings.vim
-source ~/.vim/config/commands.vim
+" Commands
+" ========
+" Command to reload VIM config.
+command! ReloadConfig source ~/.vimrc
+
+" Remove trailing spaces.
+command! RemoveTrailingSpaces :%s/\s\+$//e
+
+" Cursor line only in active window. (taken from http://codeyarns.com/2013/02/07/how-to-show-cursorline-only-in-active-window-of-vim/).
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
+" Automatically create directories when saving (if needed).
+autocmd BufWritePre * :silent! call mkdir(expand('%:p:h'), 'p')
+
+" When editing a file, always jump to the last cursor position
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
+" Plugin Options
+" ==============
 
-" Fixes some bug with ftplugin (see http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting).
-"let g:ruby_path="/usr/bin/ruby"
+" Command-T
+"let g:CommandTMatchWindowReverse=0
+
+" Ctrl-P
+let g:ctrlp_match_window_bottom = 1
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_max_height = 15
+let g:ctrlp_show_hidden = 0
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+let g:ctrlp_max_files = 0
+let g:ctrlp_map = ''
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\v[\/](\.git|\.hg|\.svn|www|wordpress\-i18n|vendors)$',
+    \ 'file': '\v\.(exe|so|dll|pyc|gif|png|jpg|mo)$'
+\}
+let g:ctrlp_extensions = ['funky']
+
+" vim-indent-guides.
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size=1
+let g:indent_guides_color_change_percent=4
+let g:indent_guides_start_level=3
+
+" Use Silver Searcher instead of grep
+set grepprg=ag
+let g:grep_cmd_opts = '--line-numbers --noheading'
+
+
+" Mappings
+" ========
+
+let mapleader = ","               " Remap <leader> key
+noremap Q <nop>
+
+" Yank to the end of the line.
+nnoremap Y y$
+
+" A more clever navigation
+nnoremap j gj
+nnoremap k gk
+nnoremap <down> gj
+nnoremap <up> gk
+
+" Navigate through buffers using Ctrl-Tab and Ctrl-Shift-Tab and also Cmd-1, Cmd-2 for buffers.
+map <C-Tab> :bn<CR>
+map <C-S-Tab> :bp<CR>
+
+" Window navigation
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-L> <C-W>l<C-W>_
+map <C-H> <C-W>h<C-W>_
+map <C-J> <C-W>j<C-W>_
+
+" Visual shifting
+vnoremap < <gv
+vnoremap > >gv
+
+" Map ESC to jj
+imap jj <ESC>
+
+" Remap space bar to search.
+:nmap <Space> /
+
+" Ctrl + Space for omnifunc automcplete.
+imap <C-Space> <C-X><C-O>
+
+" File search (AG Silver Searcher).
+map <Leader>fs :Ag!<Space>
+
+cmap %% <C-R>=expand("%:h") . "/" <CR>
+
+" GVIM/MacVIM
+" ===========
+if has('gui_running')
+  set guioptions=ceig
+  set guifont=Menlo:h12 linespace=0
+  "set guifont=Consolas:h13 linespace=0
+  colo PaperColor
+  set clipboard=unnamed
+endif

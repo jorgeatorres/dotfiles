@@ -10,7 +10,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'rking/ag.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'JazzCore/ctrlp-cmatcher'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'Raimondi/delimitMate'
@@ -29,6 +29,7 @@ Plugin 'skwp/greplace.vim'
 Plugin 'tomtom/tcomment_vim' "gcc, gc{motion}
 "Plugin 'wincent/command-t'
 "Plugin 'torbiak/probe'
+
 
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
@@ -134,6 +135,11 @@ set completeopt=menu,longest,menuone
 syntax on                       " Enable syntax highlighting.
 filetype plugin indent on       " Enable automatic loading of language-specific files.
 
+" Folding
+set foldmethod=indent
+set foldlevel=99
+set foldnestmax=4
+
 " Filetypes
 " =========
 au FileType php setl cindent omnifunc=phpcomplete#CompletePHP
@@ -141,6 +147,9 @@ au FileType python setl omnifunc=pythoncomplete#Complete
 "au Filetype python setl makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 au Filetype python setl makeprg=python\ %
 au FileType ruby setl ts=2 sts=0 sw=2 makeprg=ruby\ %
+au FileType eruby setl ts=2 sts=0 sw=2
+
+" let php_folding=1
 
 " Commands
 " ========
@@ -179,10 +188,11 @@ let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 let g:ctrlp_max_files = 0
 let g:ctrlp_map = ''
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.git|\.hg|\.svn|www|wordpress\-i18n|vendors)$',
-    \ 'file': '\v\.(exe|so|dll|pyc|gif|png|jpg|mo)$'
+    \ 'dir': '\v[\/](\.git|\.hg|\.svn|wordpress\-i18n|vendors|_files|_dropbox)$',
+    \ 'file': '\v\.(exe|so|dll|pyc|gif|png|jpg|mo|cache|pid)$'
 \}
 let g:ctrlp_extensions = ['funky']
+let g:ctrlp_open_multiple_files = 'ij'
 
 " vim-indent-guides.
 let g:indent_guides_enable_on_vim_startup=1
@@ -244,6 +254,7 @@ cmap %% <C-R>=expand("%:h") . "/" <CR>
 if has('gui_running')
   set guioptions=ceig
   set guifont=Menlo:h12 linespace=0
+  " set guifont=Monaco:h12 linespace=-1
   "set guifont=Consolas:h13 linespace=0
   colo PaperColor
   set clipboard=unnamed

@@ -12,11 +12,9 @@ export PATH
 # -------------------------------
 # aliases
 # -------------------------------
-alias v="vim"
+alias v="mvim"
+alias vg="vagrant"
 alias n="nano"
-alias s="subl"
-alias t="tmate"
-alias dir=ls
 alias gits="git status"
 alias gita="git add"
 alias gitc="git commit"

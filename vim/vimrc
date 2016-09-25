@@ -20,21 +20,15 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'vim-scripts/matchit.zip'
-Plugin 'mtth/scratch.vim'
-Plugin 'junegunn/goyo.vim'
+" Plugin 'mtth/scratch.vim'
+" Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-surround' "ds, cs, yss
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'christophermca/meta5'
+" Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'skwp/greplace.vim'
 Plugin 'tomtom/tcomment_vim' "gcc, gc{motion}
-"Plugin 'wincent/command-t'
-"Plugin 'torbiak/probe'
-
 
 " Colorschemes
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'chriskempson/base16-vim'
 
 call vundle#end()
 
@@ -172,12 +166,17 @@ autocmd BufWritePre * :silent! call mkdir(expand('%:p:h'), 'p')
 " When editing a file, always jump to the last cursor position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" Keep me sane from NetRW + hidden strange behavior
+autocmd FileType netrw
+  \ autocmd BufUnload * silent! exe 'bw! ' . (bufnr('%') - 1) . ' | bd'
+
 
 " Plugin Options
 " ==============
 
-" Command-T
-"let g:CommandTMatchWindowReverse=0
+" Use treeview for NetRW by default.
+let g:netrw_liststyle=3
+
 
 " Ctrl-P
 let g:ctrlp_match_window_bottom = 1
@@ -247,15 +246,18 @@ imap <C-Space> <C-X><C-O>
 " File search (AG Silver Searcher).
 map <Leader>fs :Ag!<Space>
 
+" Typing %% expands to the path of the current file.
 cmap %% <C-R>=expand("%:h") . "/" <CR>
+
 
 " GVIM/MacVIM
 " ===========
 if has('gui_running')
   set guioptions=ceig
-  set guifont=Menlo:h12 linespace=0
+  set guifont=Menlo:h13 linespace=0
   " set guifont=Monaco:h12 linespace=-1
   "set guifont=Consolas:h13 linespace=0
   colo PaperColor
   set clipboard=unnamed
 endif
+

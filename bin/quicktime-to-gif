@@ -1,0 +1,7 @@
+#!/bin/bash
+# Taken from https://gist.github.com/dergachev/4627207
+
+IN_FILE="$1"
+OUT_FILE="`basename $1 .mov`.gif"
+
+ffmpeg -i $IN_FILE -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $OUT_FILE

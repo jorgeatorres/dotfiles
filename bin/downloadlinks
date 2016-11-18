@@ -1,0 +1,80 @@
+#!/usr/bin/php
+<?php
+@ini_set( 'memory_limit', '1G' );
+set_time_limit( 0 );
+
+if ( $argc < 3 ) {
+    die( 'Usage: downloadlinks <url of file> <destination dir> <tags>' . PHP_EOL );
+}
+
+$url_or_file = $argv[1];
+$dest_dir = false;
+$tags = isset( $argv[3] ) ? explode( ',', $argv[3] ) : array( 'a' );
+
+if ( is_dir( $argv[2] ) ) {
+    $dest_dir = realpath( $argv[2] );
+} else {
+    mkdir( $argv[2] );
+    $dest_dir = realpath( $argv[2] );
+}
+
+$html = file_get_contents( $url_or_file );
+
+if ( ! $html )
+    die( '! Could not read file contents.' );
+
+
+$doc = new DOMDocument();
+@$doc->loadHTML( $html );
+
+$elements = array();
+
+foreach ( $tags as $t ) {
+    foreach ( $doc->getElementsByTagName( $t ) as $e )
+        $elements[] = $e;
+}
+
+$i = 1;
+$total = count( $elements );
+
+foreach ( $elements as $de ) {
+    printf( '-> Processing element %s of %s... ', $i, $total );
+
+    $what_to_download = false;
+
+    switch ( $de->tagName ) {
+        case 'img':
+            if ( $de->hasAttribute( 'src' ) ) {
+                $what_to_download = $de->attributes->getNamedItem( 'src' )->value;
+            }
+
+            break;
+        case 'a':
+            break;
+        default:
+            break;
+    }
+
+
+    if ( $what_to_download && ( false === strstr( strtolower( $what_to_download ), 'http://' ) ) && ( false === strstr( strtolower( $what_to_download ), 'https://' ) ) ) {
+        if ( ! file_exists( $url_or_file ) )
+            $what_to_download = $url_or_file . ltrim( $what_to_download, '/' );
+        else
+            $what_to_download = false;
+    }
+
+    if ( ! $what_to_download  ) {
+        echo 'PASSED.';
+        echo PHP_EOL;
+
+        $i++;
+        continue;
+    }
+
+    $destpath = $dest_dir . '/' . basename( $what_to_download );
+    file_put_contents( $destpath, file_get_contents( $what_to_download ) );
+    echo 'OK';
+    echo PHP_EOL;
+
+    $i++;
+}

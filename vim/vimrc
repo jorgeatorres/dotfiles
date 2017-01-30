@@ -16,7 +16,7 @@ Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'Raimondi/delimitMate'
 Plugin 'henrik/vim-reveal-in-finder'
 Plugin 'myusuf3/numbers.vim'
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-eunuch'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'vim-scripts/matchit.zip'
@@ -112,8 +112,8 @@ set formatoptions-=t            " Do not break lines at textwidth col.
 " Status line.
 set statusline=
 set statusline+=\ [%{mode()}]
-set statusline+=\ %.60f     " filename
-set statusline+=%(\ (%{fugitive#head()})%)
+set statusline+=\ %.80f     " filename
+" set statusline+=%(\ (%{fugitive#head()})%)
 set statusline+=\ %h%m%r%w  " flags
 set statusline+=%=
 set statusline+=\|\ 
@@ -137,7 +137,7 @@ set foldnestmax=4
 
 " Filetypes
 " =========
-au FileType php setl cindent omnifunc=phpcomplete#CompletePHP
+au FileType php setl cindent omnifunc=phpcomplete#CompletePHP makeprg=php\ %
 au FileType python setl omnifunc=pythoncomplete#Complete
 "au Filetype python setl makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 au Filetype python setl makeprg=python\ %
@@ -168,8 +168,8 @@ autocmd BufWritePre * :silent! call mkdir(expand('%:p:h'), 'p')
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Keep me sane from NetRW + hidden strange behavior
-autocmd FileType netrw
-  \ autocmd BufUnload * silent! exe 'bw! ' . (bufnr('%') - 1) . ' | bd'
+" autocmd FileType netrw
+"   \ autocmd BufUnload * silent! exe 'bw! ' . (bufnr('%') - 1) . ' | bd'
 
 
 " Plugin Options
@@ -190,7 +190,7 @@ let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 let g:ctrlp_max_files = 0
 let g:ctrlp_map = ''
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.git|\.hg|\.svn|wordpress\-i18n|vendors|_files|_dropbox|node_modules)$',
+    \ 'dir': '\v[\/](\.git|\.hg|\.svn|wordpress\-i18n|vendors|_files|_dropbox|node_modules|_site)$',
     \ 'file': '\v\.(exe|so|dll|pyc|gif|png|jpg|mo|cache|pid|min\.js|min\.css)$'
 \}
 let g:ctrlp_extensions = ['funky']
@@ -258,7 +258,7 @@ cmap %% <C-R>=expand("%:h") . "/" <CR>
 if has('gui_running')
   set guioptions=ceig
   set guifont=Menlo:h12 linespace=1
-  " set guifont=Monaco:h11 linespace=0
+  " set guifont=Andale\Mono\MT\Std:h12 linespace=1
   colo PaperColor
   set clipboard=unnamed
 endif

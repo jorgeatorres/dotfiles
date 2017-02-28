@@ -25,8 +25,9 @@ function ps1_prompt_symbol_for_user {
 }
 
 function ps1_abbrev_path {
-    sed "s:\([^/]\)[^/]*/:\1/:g" <<<$(sed s:$HOME:\~:g <<<$PWD)
+	sed "s:\([^/]\)[^/]*/:\1/:g" <<<$(sed s:$HOME:\~:g <<<$PWD)
 }
 
-ps1_prompt_symbol_for_user
-export PS1="\[\033[38;5;248m\]`ps1_abbrev_path` $ps1_prompt_symbol_for_user\[\033[0m\] "
+ps1_prompt_symbol_for_user;
+export PS1='\[\e[38;5;248m\]`ps1_abbrev_path`'
+export PS1="$PS1 $ps1_prompt_symbol_for_user\[\e[0m\] "

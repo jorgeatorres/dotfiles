@@ -1,0 +1,23 @@
+[user]
+    name = Jorge A. Torres
+    email = j@jorgetorres.co
+[core]
+    editor = /usr/bin/vim
+    excludesfile = ~/.gitignore
+[credential]
+    helper = osxkeychain
+[push]
+    default = current
+[pull]
+    default = current
+[diff]
+    compactionHeuristic = true
+[alias]
+    co = checkout
+    s = status
+    br = branch
+    c = commit
+    p = push
+    a = add
+[github]
+    user = jorgeatorres

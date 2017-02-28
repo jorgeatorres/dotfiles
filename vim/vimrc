@@ -206,6 +206,7 @@ let g:ctrlp_open_multiple_files = 'ij'
 set grepprg=ag
 let g:grep_cmd_opts = '--line-numbers --noheading'
 
+let g:tcommentGuessFileType_php=1
 
 " Mappings
 " ========

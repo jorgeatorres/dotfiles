@@ -13,6 +13,7 @@ brew 'ruby'
 brew 'ack'
 brew 'the_silver_searcher'
 brew 'vim'
+brew 'macvim'
 
 cask 'transmission'
 cask 'google-chrome'

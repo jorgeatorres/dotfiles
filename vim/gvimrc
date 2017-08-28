@@ -1,0 +1,38 @@
+" Disable some default shortcuts for use with other plugins.
+macmenu File.Print key=<nop>
+macmenu File.New\ Tab key=<nop>
+macmenu File.Open\.\.\. key=<nop>
+macmenu File.Open\ Tab\.\.\. key=<nop>
+macmenu File.Close key=<nop>
+" macmenu Window.Show\ Previous\ Tab key=<nop>
+" macmenu Window.Show\ Next\ Tab key=<nop>
+
+"nmap <D-t> <Plug>(CommandT)
+"imap <D-t> <C-o><D-t>
+"nmap <D-e> <Plug>(CommandTBuffer)
+"imap <D-e> <C-o><D-e>
+
+" Wipe out buffer with Cmd+W.
+map <D-w> :e!<bar>bd<CR>
+
+" Ctrl-P
+nmap <D-t> :CtrlP<CR>
+nmap <D-e> :CtrlPBuffer<CR>
+nmap <D-r> :CtrlPFunky<CR>
+imap <D-t> <Esc><D-t>
+imap <D-e> <Esc><D-e>
+imap <D-r> <Esc><D-r>
+
+" Navigate through buffers using Ctrl-Tab and Ctrl-Shift-Tab
+map <C-Tab> :bn<CR>
+map <C-S-Tab> :bp<CR>
+
+set guioptions=ceig
+" set guifont=SF\ Mono:h12 linespace=0
+set guifont=Menlo:h12 linespace=1
+" set bg=dark
+"colo PaperColor
+colo default
+
+" hi StatusLine gui=bold guifg=#ffffff guibg=#000000
+" hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0

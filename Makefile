@@ -26,7 +26,7 @@ nano:
 	ln -sf $(DOTFILES)/nano/nanorc ${HOME}/.nanorc
 
 vim:
-	$(call install-if-missing, "vim")	
+	$(call install-if-missing, "vim")
 	[ ! -L ${HOME}/.vim ] && ln -Ffs $(DOTFILES)/vim/ ${HOME}/.vim || true
 	ln -sf $(DOTFILES)/vim/vimrc ${HOME}/.vimrc
 	ln -sf $(DOTFILES)/vim/gvimrc ${HOME}/.gvimrc

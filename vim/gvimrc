@@ -30,9 +30,8 @@ map <C-S-Tab> :bp<CR>
 set guioptions=ceig
 " set guifont=SF\ Mono:h12 linespace=0
 set guifont=Menlo:h12 linespace=1
-" set bg=dark
-"colo PaperColor
-colo default
+colo PaperColor
+set bg=dark
 
 " hi StatusLine gui=bold guifg=#ffffff guibg=#000000
 " hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0

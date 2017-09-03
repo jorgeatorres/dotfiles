@@ -23,15 +23,11 @@ imap <D-t> <Esc><D-t>
 imap <D-e> <Esc><D-e>
 imap <D-r> <Esc><D-r>
 
-" Navigate through buffers using Ctrl-Tab and Ctrl-Shift-Tab
-map <C-Tab> :bn<CR>
-map <C-S-Tab> :bp<CR>
-
 set guioptions=ceig
 " set guifont=SF\ Mono:h12 linespace=0
 set guifont=Menlo:h12 linespace=1
 colo PaperColor
-set bg=dark
+" set bg=dark
 
-" hi StatusLine gui=bold guifg=#ffffff guibg=#000000
-" hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0
+hi StatusLine gui=bold guifg=#ffffff guibg=#000000
+hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0

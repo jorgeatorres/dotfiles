@@ -27,7 +27,7 @@ call vundle#end()
 
 filetype plugin on
 syntax on
-
+"set omnifunc=syntaxcomplete#Complete
 
 " ----------------------
 " 1) General Preferences
@@ -38,8 +38,12 @@ set ffs=unix,dos,mac enc=utf-8 fenc=utf-8
 set clipboard=unnamed
 set report=0
 set shortmess=aAI
-set hlsearch incsearch
+set incsearch
 set relativenumber number
+
+" Use visual bells instead of sound.
+set vb
+"set v_vb=                       " Turn off sound.
 
 " Cursor keys move to prev/next lines too.
 set whichwrap+=<,>,[,]
@@ -106,7 +110,7 @@ set wildmenu
 set wildmode=longest:full
 
 set wildignore+=.DS_Store,*/node_modules/*,*/vendors/*,*/.site/*,*.min.css,*.min.js,*.mo
-
+set wildignore+=*/_vvv/*
 
 " ---------------------------
 " 3) Filetype-specific config
@@ -116,41 +120,12 @@ au FileType php setl omnifunc=phpcomplete#CompletePHP makeprg=php\ %
 au FileType python setl omnifunc=pythoncomplete#Complete makeprg=python\ %
 au FileType ruby setl makeprg=ruby\ %
 
-
-"-----------
-" 4) Plugins
-"-----------
-
-let g:tcommentGuessFileType_php=1
-let delimitMate_expand_space=1
-
-" Use treeview for NetRW by default.
-let g:netrw_liststyle=3
-
-" Use Silver Searcher instead of grep.
-set grepprg=ag
-let g:grep_cmd_opts = '--line-numbers --noheading'
-
-" ctrlp.vim.
-let g:ctrlp_match_window_bottom = 1
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_max_height = 15
-let g:ctrlp_show_hidden = 0
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
-let g:ctrlp_max_files = 0
-let g:ctrlp_map = ''
-let g:ctrlp_extensions = ['funky']
-let g:ctrlp_open_multiple_files = 'ij'
-
 "----------------
-" 5) Key bindings
+" 4) Key bindings
 "----------------
 
 let mapleader = ","
 noremap Q <nop>
-
-" Esc-Esc to remove search highlight.
-nnoremap <silent> <Esc><Esc> <Esc>:nohl<CR><Esc>
 
 " A more clever navigation.
 nnoremap j gj
@@ -165,11 +140,48 @@ vnoremap > >gv
 
 imap jj <Esc>
 
-" File search (AG Silver Searcher).
-map <Leader>fs :Ag!<Space>
+" Navigate through buffers using Ctrl-Tab and Ctrl-Shift-Tab
+map <C-Tab> :bn<CR>
+map <C-S-Tab> :bp<CR>
+
+" Ctrl + Space for omnifunc automcplete.
+imap <C-Space> <C-X><C-O>
+
 
 " Typing %% expands to the path of the current file.
 cmap %% <C-R>=expand("%:h") . "/" <CR>
+
+"-----------
+" 5) Plugins
+"-----------
+
+let g:tcommentGuessFileType_php=1
+
+let delimitMate_expand_space=1
+
+" Use treeview for NetRW by default.
+let g:netrw_liststyle=3
+
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+
+  " File search (AG Silver Searcher).
+  map <Leader>fs :Ag!<Space>''<Left>
+endif
+
+" ctrlp.vim.
+let g:ctrlp_match_window_bottom = 1
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_max_height = 15
+let g:ctrlp_show_hidden = 0
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+let g:ctrlp_max_files = 0
+let g:ctrlp_map = ''
+let g:ctrlp_extensions = ['funky']
+let g:ctrlp_open_multiple_files = 'ij'
+let g:ctrlp_use_caching = 0
 
 " --------
 " 6) Misc.

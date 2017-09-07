@@ -7,7 +7,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
   Plugin 'gmarik/Vundle.vim'
-  Plugin 'rking/ag.vim'
+  Plugin 'mileszs/ack.vim'
   Plugin 'ctrlpvim/ctrlp.vim'
   Plugin 'JazzCore/ctrlp-cmatcher'
   Plugin 'tacahiroy/ctrlp-funky'
@@ -15,6 +15,7 @@ call vundle#begin()
   Plugin 'henrik/vim-reveal-in-finder'
   Plugin 'tpope/vim-eunuch'
   Plugin 'shawncplus/phpcomplete.vim'
+  " Plugin '2072/PHP-Indenting-for-VIm'
   Plugin 'vim-scripts/matchit.zip'
   Plugin 'tpope/vim-surround' "ds, cs, yss
   Plugin 'skwp/greplace.vim'
@@ -25,7 +26,7 @@ call vundle#begin()
   Plugin 'NLKNguyen/papercolor-theme'
 call vundle#end()
 
-filetype plugin on
+filetype plugin indent on
 syntax on
 "set omnifunc=syntaxcomplete#Complete
 
@@ -163,12 +164,13 @@ let delimitMate_expand_space=1
 let g:netrw_liststyle=3
 
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ackprg = 'ag --vimgrep'
+
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
   let g:ctrlp_use_caching = 0
 
   " File search (AG Silver Searcher).
-  map <Leader>fs :Ag!<Space>''<Left>
+  map <Leader>fs :Ack!<Space>''<Left>
 endif
 
 " ctrlp.vim.
@@ -181,7 +183,6 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_map = ''
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_open_multiple_files = 'ij'
-let g:ctrlp_use_caching = 0
 
 " --------
 " 6) Misc.
@@ -189,4 +190,3 @@ let g:ctrlp_use_caching = 0
 
 " Command to remove trailing spaces.
 command! RemoveTrailingSpaces :%s/\s\+$//e
-

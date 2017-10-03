@@ -24,8 +24,8 @@ imap <D-e> <Esc><D-e>
 imap <D-r> <Esc><D-r>
 
 set guioptions=ceig
-" set guifont=SF\ Mono:h12 linespace=0
-set guifont=Menlo:h12 linespace=1
+set guifont=SF\ Mono:h11 linespace=2
+" set guifont=Menlo:h12 linespace=1
 colo PaperColor
 " set bg=dark
 

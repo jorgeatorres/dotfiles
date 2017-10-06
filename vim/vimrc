@@ -25,13 +25,11 @@ call vundle#begin()
   Plugin 'tpope/vim-fugitive'
 
   Plugin 'ntpeters/vim-better-whitespace'
-  Plugin 'Yggdroot/indentLine'
+  " Plugin 'Yggdroot/indentLine'
   Plugin 'dyng/ctrlsf.vim'
 
   Plugin 'NLKNguyen/papercolor-theme'
-  Plugin 'chriskempson/vim-tomorrow-theme'
-  Plugin 'joshdick/onedark.vim'
-  Plugin 'dikiaap/minimalist'
+  Plugin 'rakr/vim-one'
 call vundle#end()
 
 filetype plugin indent on

@@ -24,10 +24,12 @@ imap <D-e> <Esc><D-e>
 imap <D-r> <Esc><D-r>
 
 set guioptions=ceig
+" set guifont=Menlo:h12 linespace=2
 set guifont=SF\ Mono:h11 linespace=2
-" set guifont=Menlo:h12 linespace=1
-colo PaperColor
-" set bg=dark
 
-hi StatusLine gui=bold guifg=#ffffff guibg=#000000
-hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0
+let g:one_allow_italics=1
+colo one
+set bg=dark
+
+" hi StatusLine gui=bold guifg=#ffffff guibg=#000000
+" hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0

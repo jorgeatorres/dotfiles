@@ -24,10 +24,10 @@ imap <D-e> <Esc><D-e>
 imap <D-r> <Esc><D-r>
 
 set guioptions=ceig
-" set guifont=Menlo:h12 linespace=2
-set guifont=SF\ Mono:h11 linespace=2
+" set guifont=SF\ Mono:h12 linespace=2
+set guifont=Fira\ Code:h12 linespace=2
 
-let g:one_allow_italics=1
+" let g:one_allow_italics=1
 colo one
 set bg=dark
 

@@ -4,6 +4,7 @@ alias v="$EDITOR"
 export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/local/sbin"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 alias g="git"
 alias ls="ls -G"
@@ -28,6 +29,10 @@ function ps1_abbrev_path {
 	sed "s:\([^/]\)[^/]*/:\1/:g" <<<$(sed s:$HOME:\~:g <<<$PWD)
 }
 
-ps1_prompt_symbol_for_user;
-export PS1='\[\e[38;5;248m\]`ps1_abbrev_path`'
-export PS1="$PS1 $ps1_prompt_symbol_for_user\[\e[0m\] "
+if [ "$TERM" = "dumb" ]; then
+    export PS1='$ '
+else
+    ps1_prompt_symbol_for_user;
+    export PS1='\[\e[38;5;248m\]`ps1_abbrev_path`'
+    export PS1="$PS1 $ps1_prompt_symbol_for_user\[\e[0m\] "
+fi

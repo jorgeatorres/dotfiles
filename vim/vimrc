@@ -12,6 +12,7 @@ call vundle#begin()
   Plugin 'JazzCore/ctrlp-cmatcher'
   Plugin 'tacahiroy/ctrlp-funky'
   Plugin 'Raimondi/delimitMate'
+  Plugin 'tpope/vim-sleuth'
   Plugin 'henrik/vim-reveal-in-finder'
   Plugin 'tpope/vim-eunuch'
   Plugin 'shawncplus/phpcomplete.vim'
@@ -30,6 +31,7 @@ call vundle#begin()
 
   Plugin 'NLKNguyen/papercolor-theme'
   Plugin 'rakr/vim-one'
+  Plugin 'dracula/vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -80,6 +82,10 @@ set foldmethod=indent foldlevel=99 foldnestmax=4
 " Always show 3 lines of context around the cursor.
 set scrolloff=3
 
+" set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set listchars=tab:»·,trail:·,space:␣
+" set list
+
 
 "-----------
 " 2) Editing
@@ -91,7 +97,7 @@ set nowrap
 set textwidth=120
 
 set autoindent smartindent copyindent
-set tabstop=4 softtabstop=4 shiftwidth=4
+set tabstop=4 softtabstop=0 shiftwidth=4
 set expandtab smarttab
 
 " Recognize numbered lists.
@@ -167,9 +173,9 @@ let delimitMate_expand_space=1
 let g:netrw_liststyle=3
 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep --skip-vcs-ignores --ignore nodule_modules --ignore .git --ignore .DS_Store --ignore vendor/ --ignore _vvv/'
 
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --skip-vcs-ignores --ignore node_modules --ignore .git --ignore .DS_Store --ignore vendor/ --ignore _vvv/ -g ""'
   let g:ctrlp_use_caching = 0
 
   " File search (AG Silver Searcher).
@@ -186,6 +192,7 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_map = ''
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_open_multiple_files = 'ij'
+let g:ctrlp_working_path_mode = ''
 
 let g:ctrlsf_auto_close = 0
 let g:ctrlsf_position = 'bottom'

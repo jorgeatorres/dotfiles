@@ -96,6 +96,7 @@ set scrolloff=3
 set listchars=tab:»·,trail:·,space:␣
 " set list
 
+" set noeol nofixeol
 
 "-----------
 " 2) Editing
@@ -130,7 +131,7 @@ set wildmenu
 set wildmode=longest:full
 
 set wildignore+=.DS_Store,*/node_modules/*,*/vendors/*,*/.site/*,*.min.css,*.min.js,*.mo
-set wildignore+=*/_vvv/*
+" set wildignore+=*/_vvv/*
 
 " ---------------------------
 " 3) Filetype-specific config
@@ -183,9 +184,9 @@ let delimitMate_expand_space=1
 let g:netrw_liststyle=3
 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep --skip-vcs-ignores --ignore nodule_modules --ignore .git --ignore .DS_Store --ignore vendor/ --ignore _vvv/'
+  let g:ackprg = 'ag --vimgrep --skip-vcs-ignores --ignore node_modules/ --ignore .git --ignore .DS_Store --ignore vendor/ --ignore tmp/'
 
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --skip-vcs-ignores --ignore node_modules --ignore .git --ignore .DS_Store --ignore vendor/ --ignore _vvv/ -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --skip-vcs-ignores --ignore node_modules --ignore .git --ignore .DS_Store --ignore vendor/ --ignore tmp/ -g ""'
   let g:ctrlp_use_caching = 0
 
   " File search (AG Silver Searcher).
@@ -197,7 +198,7 @@ let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 15
 let g:ctrlp_show_hidden = 0
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_max_files = 0
 let g:ctrlp_map = ''
 let g:ctrlp_extensions = ['funky']
@@ -213,4 +214,4 @@ let g:ctrlsf_position = 'bottom'
 " --------
 
 " Command to remove trailing spaces.
-command! RemoveTrailingSpaces :%s/\s\+$//e
+" command! RemoveTrailingSpaces :%s/\s\+$//e

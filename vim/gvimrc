@@ -24,10 +24,30 @@ imap <D-e> <Esc><D-e>
 imap <D-r> <Esc><D-r>
 
 set guioptions=ceig
-" set guifont=SF\ Mono:h12 linespace=2
-set guifont=Fira\ Code:h12 linespace=2
+set guifont=SF\ Mono:h12 linespace=3
 
-" let g:one_allow_italics=1
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': { 
+  \       'allow_italic': 0,
+  \       'allow_bold': 1,
+  \     },
+  \     'default.light': { 
+  \       'allow_italic': 0,
+  \       'allow_bold': 1,
+  \       'override' : {
+  \         'color00' : ['#ffffff', ''],
+  \         'linenumber_bg' : ['#ffffff', ''],
+  \         'statusline_active_fg': ['#ffffff', ''],
+  \         'statusline_active_bg': ['#000000', ''],
+  \         'statusline_inactive_fg': ['#999999', ''],
+  \         'statusline_inactive_bg': ['#d0d0d0', '']
+  \       }
+  \     }
+  \   }
+  \ }
+
+" colo PaperColor
 colo one
 set bg=dark
 

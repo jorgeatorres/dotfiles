@@ -3,36 +3,46 @@
 set nocompatible
 filetype off
 
+if !filereadable(expand('~/.vim/autoload/plug.vim'))
+  exec 'silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs '.
+        \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'  
+endif
+
 " Plugins
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-  Plugin 'gmarik/Vundle.vim'
-  Plugin 'mileszs/ack.vim'
-  Plugin 'ctrlpvim/ctrlp.vim'
-  Plugin 'JazzCore/ctrlp-cmatcher'
-  Plugin 'tacahiroy/ctrlp-funky'
-  Plugin 'Raimondi/delimitMate'
-  Plugin 'tpope/vim-sleuth'
-  Plugin 'henrik/vim-reveal-in-finder'
-  Plugin 'tpope/vim-eunuch'
-  Plugin 'shawncplus/phpcomplete.vim'
-  " Plugin '2072/PHP-Indenting-for-VIm'
-  Plugin 'vim-scripts/matchit.zip'
-  Plugin 'tpope/vim-surround' "ds, cs, yss
-  Plugin 'skwp/greplace.vim'
-  Plugin 'tomtom/tcomment_vim' "gcc, gc{motion}
-  Plugin 'groenewege/vim-less'
-  Plugin 'pbrisbin/vim-mkdir' "Automatically create non-existent directories when saving.
-  Plugin 'tpope/vim-fugitive'
+call plug#begin('~/.vim/plugged')
+  Plug 'gmarik/Vundle.vim'
+  Plug 'mileszs/ack.vim'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'FelikZ/ctrlp-py-matcher'
+  Plug 'tacahiroy/ctrlp-funky'
+  Plug 'Raimondi/delimitMate'
+  Plug 'tpope/vim-sleuth'
+  Plug 'henrik/vim-reveal-in-finder'
+  Plug 'tpope/vim-eunuch'
+  Plug 'shawncplus/phpcomplete.vim'
+  " Plug '2072/PHP-Indenting-for-VIm'
+  Plug 'vim-scripts/matchit.zip'
+  Plug 'tpope/vim-surround' "ds, cs, yss
+  Plug 'skwp/greplace.vim'
+  Plug 'tomtom/tcomment_vim' "gcc, gc{motion}
+  Plug 'groenewege/vim-less'
+  Plug 'pbrisbin/vim-mkdir' "Automatically create non-existent directories when saving.
+  Plug 'tpope/vim-fugitive'
 
-  Plugin 'ntpeters/vim-better-whitespace'
-  " Plugin 'Yggdroot/indentLine'
-  Plugin 'dyng/ctrlsf.vim'
+  Plug 'ntpeters/vim-better-whitespace'
+  " Plug 'Yggdroot/indentLine'
+  Plug 'dyng/ctrlsf.vim'
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'tpope/vim-repeat'
+  Plug 'sjl/gundo.vim'
+  Plug 'thinca/vim-quickrun'
 
-  Plugin 'NLKNguyen/papercolor-theme'
-  Plugin 'rakr/vim-one'
-  Plugin 'dracula/vim'
-call vundle#end()
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'rakr/vim-one'
+  Plug 'dim13/xedit.vim'
+  Plug 'jalvesaq/southernlights'
+call plug#end()
 
 filetype plugin indent on
 syntax on

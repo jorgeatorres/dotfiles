@@ -4,3 +4,4 @@
 *.pyo
 node_modules/
 vim/plugged/
+vim/autoload/plug.vim*

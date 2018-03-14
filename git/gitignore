@@ -3,3 +3,4 @@
 *.pyc
 *.pyo
 node_modules/
+vim/plugged/

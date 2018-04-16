@@ -10,7 +10,6 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/plugged')
-  Plug 'gmarik/Vundle.vim'
   Plug 'mileszs/ack.vim'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'FelikZ/ctrlp-py-matcher'
@@ -30,7 +29,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
 
   Plug 'ntpeters/vim-better-whitespace'
-  " Plug 'Yggdroot/indentLine'
   Plug 'dyng/ctrlsf.vim'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'terryma/vim-multiple-cursors'
@@ -40,17 +38,17 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'rakr/vim-one'
-  Plug 'dim13/xedit.vim'
   Plug 'jalvesaq/southernlights'
+  Plug 'colepeters/spacemacs-theme.vim'
 call plug#end()
-
-filetype plugin indent on
-syntax on
-"set omnifunc=syntaxcomplete#Complete
 
 " ----------------------
 " 1) General Preferences
 " ----------------------
+
+filetype plugin indent on
+syntax on
+"set omnifunc=syntaxcomplete#Complete
 
 set autoread hidden nobackup nowritebackup noswapfile modeline
 set ffs=unix,dos,mac enc=utf-8 fenc=utf-8
@@ -59,10 +57,12 @@ set report=0
 set shortmess=aAI
 set incsearch
 set relativenumber number
+set viminfo='100,<100,s10,h
+
 
 " Use visual bells instead of sound.
-set vb
-"set v_vb=                       " Turn off sound.
+set noerrorbells
+set vb t_vb=
 
 " Cursor keys move to prev/next lines too.
 set whichwrap+=<,>,[,]
@@ -76,6 +76,7 @@ set ignorecase smartcase
 " Show matching brackets.
 set showmatch
 
+" Custom status line
 set statusline=\ [%{mode()}]\ %.80f\ %h%m%r%w%=\|\%{strlen(&ft)?&ft:'?'}\ \|\%{strlen(&fenc)?&fenc:&enc}\ (%{&fileformat})\|\ %-8(%l:%c%)
 
 " Last line: don't show current mode + show incomplete commands.
@@ -89,12 +90,11 @@ set colorcolumn=0
 
 set foldmethod=indent foldlevel=99 foldnestmax=4
 
-" Always show 3 lines of context around the cursor.
-set scrolloff=3
+" Always show some lines of context around the cursor.
+set scrolloff=5
 
-" set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
-set listchars=tab:»·,trail:·,space:␣
-" set list
+set listchars=tab:\›\ ,trail:·
+set list
 
 " set noeol nofixeol
 
@@ -129,8 +129,8 @@ set completeopt=menu,longest,menuone
 " Use wild menu for tab-completion.
 set wildmenu
 set wildmode=longest:full
-
 set wildignore+=.DS_Store,*/node_modules/*,*/vendors/*,*/.site/*,*.min.css,*.min.js,*.mo
+
 " set wildignore+=*/_vvv/*
 
 " ---------------------------
@@ -172,6 +172,15 @@ imap <C-Space> <C-X><C-O>
 " Typing %% expands to the path of the current file.
 cmap %% <C-R>=expand("%:h") . "/" <CR>
 
+" Quicker window switching
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Fugitive git status
+nnoremap <silent> gss :Gstatus<CR>
+
 "-----------
 " 5) Plugins
 "-----------
@@ -190,17 +199,19 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 
   " File search (AG Silver Searcher).
-  map <Leader>fs :Ack!<Space>''<Left>
+  nnoremap <Leader>a :Ack!<Space>''<Left>
+  nnoremap <Leader>A :Ack! <cword><CR>
 endif
 
 " ctrlp.vim.
-let g:ctrlp_match_window_bottom = 1
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_max_height = 15
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20'
+" let g:ctrlp_match_window_bottom = 1
+" let g:ctrlp_match_window_reversed = 0
+" let g:ctrlp_max_height = 15
 let g:ctrlp_show_hidden = 0
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_max_files = 0
-let g:ctrlp_map = ''
+let g:ctrlp_map = '<Leader>o'
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_open_multiple_files = 'ij'
 let g:ctrlp_working_path_mode = ''
@@ -215,3 +226,10 @@ let g:ctrlsf_position = 'bottom'
 
 " Command to remove trailing spaces.
 " command! RemoveTrailingSpaces :%s/\s\+$//e
+"
+
+if has("gui_running")
+  set linespace=2
+  set guicursor=a:blinkon0
+  set guioptions=ceig
+endif

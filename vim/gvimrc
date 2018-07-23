@@ -20,11 +20,11 @@ imap <D-r> <Esc><D-r>
 let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default.dark': { 
-  \       'allow_italic': 0,
+  \       'allow_italic': 1,
   \       'allow_bold': 1,
   \     },
   \     'default.light': { 
-  \       'allow_italic': 0,
+  \       'allow_italic': 1,
   \       'allow_bold': 1,
   \       'override' : {
   \         'color00' : ['#ffffff', ''],
@@ -38,9 +38,12 @@ let g:PaperColor_Theme_Options = {
   \   }
   \ }
 
-set guifont=SF\ Mono:h12
-set bg=dark
-colo one
+set guifont=Menlo\:h12 linespace=3
+set guifont=IBM\ Plex\ Mono:h12 linespace=2
+" set guifont=Input\ Mono\ Narrow:h12 linespace=3
+
+colo base16-onedark
+
 " hi StatusLine gui=bold guifg=#ffffff guibg=#000000
 " hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0
 

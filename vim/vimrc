@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sleuth'
   Plug 'henrik/vim-reveal-in-finder'
   Plug 'tpope/vim-eunuch'
-  Plug 'shawncplus/phpcomplete.vim'
+  " Plug 'shawncplus/phpcomplete.vim'
   " Plug '2072/PHP-Indenting-for-VIm'
   Plug 'vim-scripts/matchit.zip'
   Plug 'tpope/vim-surround' "ds, cs, yss
@@ -30,7 +30,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'dyng/ctrlsf.vim'
-  Plug 'ludovicchabant/vim-gutentags'
+  " Plug 'ludovicchabant/vim-gutentags'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'tpope/vim-repeat'
   Plug 'sjl/gundo.vim'
@@ -39,7 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'rakr/vim-one'
   Plug 'jalvesaq/southernlights'
-  Plug 'colepeters/spacemacs-theme.vim'
+  Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " ----------------------
@@ -86,7 +86,7 @@ set noshowmode showcmd
 set laststatus=2
 
 set cursorline
-set colorcolumn=0
+" set colorcolumn=+1
 
 set foldmethod=indent foldlevel=99 foldnestmax=4
 
@@ -137,7 +137,8 @@ set wildignore+=.DS_Store,*/node_modules/*,*/vendors/*,*/.site/*,*.min.css,*.min
 " 3) Filetype-specific config
 " ---------------------------
 "
-au FileType php setl omnifunc=phpcomplete#CompletePHP makeprg=php\ %
+" au FileType php setl omnifunc=phpcomplete#CompletePHP makeprg=php\ %
+au FileType php setl makeprg=php\ %
 au FileType python setl omnifunc=pythoncomplete#Complete makeprg=python\ %
 au FileType ruby setl makeprg=ruby\ %
 
@@ -185,7 +186,7 @@ nnoremap <silent> gss :Gstatus<CR>
 " 5) Plugins
 "-----------
 
-let g:tcommentGuessFileType_php=1
+let g:tcomment#filetype#guess_php=1
 
 let delimitMate_expand_space=1
 
@@ -219,6 +220,13 @@ let g:ctrlp_working_path_mode = ''
 let g:ctrlsf_auto_close = 0
 let g:ctrlsf_position = 'bottom'
 " let g:ctrlsf_winsize = '200'
+
+let g:phpcomplete_mappings = {
+   \ 'jump_to_def': '<C-]>',
+   \ 'jump_to_def_split': '',
+   \ 'jump_to_def_vsplit': '',
+   \ 'jump_to_def_tabnew': '',
+   \}
 
 " --------
 " 6) Misc.

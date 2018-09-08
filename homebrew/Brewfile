@@ -12,6 +12,8 @@ brew 'python'
 brew 'ruby'
 brew 'ack'
 brew 'the_silver_searcher'
+
+brew 'hub'
 brew 'vim'
 brew 'macvim'
 
@@ -21,3 +23,7 @@ cask 'vlc'
 cask 'mactex'
 cask 'whatsapp'
 cask 'github-desktop'
+cask 'atom'
+
+cask 'vagrant'
+cask 'virtualbox'

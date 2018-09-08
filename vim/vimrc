@@ -5,41 +5,46 @@ filetype off
 
 if !filereadable(expand('~/.vim/autoload/plug.vim'))
   exec 'silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs '.
-        \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'  
+        \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
 " Plugins
 call plug#begin('~/.vim/plugged')
   Plug 'mileszs/ack.vim'
+  Plug 'dyng/ctrlsf.vim'
+
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'FelikZ/ctrlp-py-matcher'
   Plug 'tacahiroy/ctrlp-funky'
-  Plug 'Raimondi/delimitMate'
-  Plug 'tpope/vim-sleuth'
-  Plug 'henrik/vim-reveal-in-finder'
-  Plug 'tpope/vim-eunuch'
-  " Plug 'shawncplus/phpcomplete.vim'
-  " Plug '2072/PHP-Indenting-for-VIm'
-  Plug 'vim-scripts/matchit.zip'
-  Plug 'tpope/vim-surround' "ds, cs, yss
-  Plug 'skwp/greplace.vim'
-  Plug 'tomtom/tcomment_vim' "gcc, gc{motion}
-  Plug 'groenewege/vim-less'
-  Plug 'pbrisbin/vim-mkdir' "Automatically create non-existent directories when saving.
-  Plug 'tpope/vim-fugitive'
 
-  Plug 'ntpeters/vim-better-whitespace'
-  Plug 'dyng/ctrlsf.vim'
-  " Plug 'ludovicchabant/vim-gutentags'
+  Plug 'Raimondi/delimitMate' " Provides insert mode auto-completion for quotes, parens, brackets, etc.
+  "Plug 'ntpeters/vim-better-whitespace' "Causes all trailing whitespace characters to be highlighted. Also provides :StripWhitespace.
+  Plug 'tpope/vim-surround' "ds, cs, yss
+  Plug 'tomtom/tcomment_vim' "gcc, gc{motion}
+
+  Plug 'tpope/vim-sleuth' "Heuristically set buffer options (shiftwidth, expandtab, etc.).
+  Plug 'henrik/vim-reveal-in-finder' "Reveal the current file in the OS X Finder. Use with :Reveal.
+  Plug 'tpope/vim-eunuch'
+  Plug 'shawncplus/phpcomplete.vim' "Improved PHP omnicompletion
+  Plug 'vim-scripts/matchit.zip' "Extended % matching for HTML, LaTeX, and many other languages.
+  Plug 'groenewege/vim-less' "Syntax support for LESS.
+  Plug 'pbrisbin/vim-mkdir' "Automatically create non-existent directories when saving.
+  Plug 'tpope/vim-fugitive' "Git support.
+  Plug 'moll/vim-bbye' "Delete buffers and close files in Vim without closing your windows. Use with :Bdelete and :Bwipeout.
+
+  Plug 'ludovicchabant/vim-gutentags' " A Vim plugin that manages your tag files
+  Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window, ordered by scope. Use with :TagbarToggle.
+
   Plug 'terryma/vim-multiple-cursors'
+  Plug 'skwp/greplace.vim'
+
   Plug 'tpope/vim-repeat'
   Plug 'sjl/gundo.vim'
   Plug 'thinca/vim-quickrun'
 
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'rakr/vim-one'
-  Plug 'jalvesaq/southernlights'
   Plug 'chriskempson/base16-vim'
+  Plug 'croaker/mustang-vim'
+  Plug 'shawncplus/skittles_berry'
 call plug#end()
 
 " ----------------------
@@ -137,7 +142,7 @@ set wildignore+=.DS_Store,*/node_modules/*,*/vendors/*,*/.site/*,*.min.css,*.min
 " 3) Filetype-specific config
 " ---------------------------
 "
-" au FileType php setl omnifunc=phpcomplete#CompletePHP makeprg=php\ %
+au FileType php setl omnifunc=phpcomplete#CompletePHP makeprg=php\ %
 au FileType php setl makeprg=php\ %
 au FileType python setl omnifunc=pythoncomplete#Complete makeprg=python\ %
 au FileType ruby setl makeprg=ruby\ %
@@ -193,22 +198,25 @@ let delimitMate_expand_space=1
 " Use treeview for NetRW by default.
 let g:netrw_liststyle=3
 
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --skip-vcs-ignores --ignore node_modules/ --ignore .git --ignore .DS_Store --ignore vendor/ --ignore tmp/'
 
+" Project-wide search.
+nnoremap <Leader>a :Ack!<Space>''<Left>
+nnoremap <Leader>A :Ack! <cword><CR>
+
+
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  let g:ackprg = 'rg --vimgrep --ignore-vcs --no-heading --smart-case --iglob !node_modules/ --iglob !.git/ --iglob !.DS_Store --iglob !vendor/ --iglob !tmp/'
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob "" --no-ignore-vcs --iglob !.git/ --iglob !node_modules/ --iglob !.DS_Store --iglob !vendor/ --iglob !tmp/'
+elseif executable('ag')
+  let g:ackprg = 'ag --vimgrep --skip-vcs-ignores --ignore node_modules/ --ignore .git --ignore .DS_Store --ignore vendor/ --ignore tmp/'
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --skip-vcs-ignores --ignore node_modules --ignore .git --ignore .DS_Store --ignore vendor/ --ignore tmp/ -g ""'
   let g:ctrlp_use_caching = 0
-
-  " File search (AG Silver Searcher).
-  nnoremap <Leader>a :Ack!<Space>''<Left>
-  nnoremap <Leader>A :Ack! <cword><CR>
 endif
 
 " ctrlp.vim.
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20'
-" let g:ctrlp_match_window_bottom = 1
-" let g:ctrlp_match_window_reversed = 0
-" let g:ctrlp_max_height = 15
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:15'
 let g:ctrlp_show_hidden = 0
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_max_files = 0
@@ -237,7 +245,6 @@ let g:phpcomplete_mappings = {
 "
 
 if has("gui_running")
-  set linespace=2
   set guicursor=a:blinkon0
   set guioptions=ceig
 endif

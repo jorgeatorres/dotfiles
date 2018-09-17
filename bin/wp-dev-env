@@ -7,6 +7,7 @@ fi
 CWD=$(pwd)
 ACTION=$1
 PROJ_NAME=`basename "$CWD"`
+DB_NAME=${PROJ_NAME//-/_}
 
 if [ -z "$2" ]; then
     DEST_DIR="$CWD/"
@@ -30,7 +31,7 @@ valet link "$PROJ_NAME"
 
 # Create MySQL db
 echo "Creating MySQL database $PROJ_NAME..."
-mysql -uroot -e "CREATE DATABASE $PROJ_NAME"
+mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME}"
 
 # Install WP
 WP_CONF_FILE="$DEST_DIR/wp-config.php"
@@ -39,7 +40,7 @@ if [ ! -e "$WP_CONF_FILE" ]; then
     wp core download
 
     echo "Configuring and installing WP..."
-    wp core config --dbname=$PROJ_NAME --dbuser=root --dbpass='' --extra-php <<PHP
+    wp core config --dbname=$DB_NAME --dbuser=root --dbpass='' --extra-php <<PHP
 define( 'WP_DEBUG', true );
 
 if ( WP_DEBUG ) {

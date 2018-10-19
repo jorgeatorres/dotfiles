@@ -13,6 +13,7 @@ brew 'ruby'
 brew 'ack'
 brew 'the_silver_searcher'
 
+brew 'wp-cli'
 brew 'hub'
 brew 'vim'
 brew 'macvim'

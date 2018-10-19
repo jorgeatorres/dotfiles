@@ -23,7 +23,7 @@ cask 'vlc'
 cask 'mactex'
 cask 'whatsapp'
 cask 'github-desktop'
-cask 'atom'
+cask 'sublime-text'
 
 cask 'vagrant'
 cask 'virtualbox'

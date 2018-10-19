@@ -43,8 +43,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'thinca/vim-quickrun'
 
   Plug 'chriskempson/base16-vim'
-  Plug 'croaker/mustang-vim'
-  Plug 'shawncplus/skittles_berry'
 call plug#end()
 
 " ----------------------

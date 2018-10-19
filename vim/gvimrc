@@ -18,7 +18,6 @@ imap <D-e> <Esc><D-e>
 imap <D-r> <Esc><D-r>
 
 " set guifont=Menlo:h12 linespace=3
-" set guifont=IBM\ Plex\ Mono:h12 linespace=2
 set guifont=Input\ Mono\ Narrow:h12 linespace=3
 
 " Comments in italics.

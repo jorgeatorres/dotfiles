@@ -27,3 +27,6 @@ cask 'sublime-text'
 
 cask 'vagrant'
 cask 'virtualbox'
+
+cask 'font-input'
+cask 'font-fira-code'

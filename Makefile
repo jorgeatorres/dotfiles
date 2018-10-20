@@ -1,5 +1,6 @@
 # Inspired by https://github.com/ttaylorr/dotfiles/blob/work-gh/Makefile
 DOTFILES := $(shell pwd)
+BIN_FILES := $(wildcard $(DOTFILES)/bin/*)
 
 all: bash bin editorconfig git homebrew nano vim
 .PHONY: bash bin editorconfig git homebrew nano vim
@@ -9,7 +10,8 @@ bash:
 	ln -sf $(DOTFILES)/bash/profile ${HOME}/.profile
 
 bin:
-	[ ! -h ${HOME}/.bin ] && ln -sf $(DOTFILES)/bin ${HOME}/.bin || true
+	mkdir -p ${HOME}/.bin
+	$(foreach x,$(BIN_FILES),ln -sf $(x) ${HOME}/.bin/;)
 
 editorconfig:
 	ln -sf $(DOTFILES)/editorconfig/editorconfig ${HOME}/.editorconfig

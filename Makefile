@@ -12,6 +12,7 @@ bash:
 bin:
 	mkdir -p ${HOME}/.bin
 	$(foreach x,$(BIN_FILES),ln -sf $(x) ${HOME}/.bin/;)
+	curl https://raw.githubusercontent.com/smilingrobots/wpv/master/wpv.sh > ${HOME}/.bin/wpv && chmod +x ${HOME}/.bin/wpv
 
 editorconfig:
 	ln -sf $(DOTFILES)/editorconfig/editorconfig ${HOME}/.editorconfig

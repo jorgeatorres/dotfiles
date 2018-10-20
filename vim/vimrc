@@ -189,6 +189,8 @@ nnoremap <silent> gss :Gstatus<CR>
 " 5) Plugins
 "-----------
 
+let g:gutentags_cache_dir = $HOME .'/.cache/vim-gutentags'
+
 let g:tcomment#filetype#guess_php=1
 
 let delimitMate_expand_space=1

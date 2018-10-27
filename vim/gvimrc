@@ -1,15 +1,18 @@
-" Disable some default shortcuts for use with other plugins.
+" macOS-specific config. {
+
+" Remove unwanted menus.
 aunmenu Syntax
 aunmenu Window
 aunmenu Help
 
+" Free up some standard keybindings.
 macmenu File.Print key=<nop>
 macmenu File.New\ Tab key=<nop>
 macmenu File.Open\.\.\. key=<nop>
 macmenu File.Open\ Tab\.\.\. key=<nop>
 macmenu File.Close key=<nop>
 
-" Ctrl-P
+" Ctrl-P with Cmd-T, Cmd-E, Cmd-R.
 nmap <D-t> :CtrlP<CR>
 nmap <D-e> :CtrlPBuffer<CR>
 nmap <D-r> :CtrlPFunky<CR>
@@ -17,16 +20,12 @@ imap <D-t> <Esc><D-t>
 imap <D-e> <Esc><D-e>
 imap <D-r> <Esc><D-r>
 
-" set guifont=Menlo:h12 linespace=3
-set guifont=Input\ Mono\ Narrow:h12 linespace=3
+" Change buffers with Cmd-1, ..., Cmd-5.
+nmap <D-1> <Plug>BufTabLine.Go(1)
+nmap <D-2> <Plug>BufTabLine.Go(2)
+nmap <D-3> <Plug>BufTabLine.Go(3)
+nmap <D-4> <Plug>BufTabLine.Go(4)
+nmap <D-5> <Plug>BufTabLine.Go(5)
 
-" Comments in italics.
-augroup on_change_colorschema
-  autocmd!
-  autocmd ColorScheme * call Base16hi("Comment", "", "", "", "", "italic", "")
-augroup END
+" }
 
-colo base16-onedark
-
-" hi StatusLine gui=bold guifg=#ffffff guibg=#000000
-" hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0

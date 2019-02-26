@@ -1,4 +1,6 @@
-tap 'caskroom/cask'
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
 tap 'homebrew/gui'
@@ -10,24 +12,66 @@ brew 'wget'
 brew 'node'
 brew 'python'
 brew 'ruby'
+brew 'php'
+brew 'composer'
 brew 'ack'
 brew 'the_silver_searcher'
+brew 'ripgrep'
+brew 'mplayer'
+brew 'rmtrash'
+brew 'unrar'
 
+brew 'php-code-sniffer'
 brew 'wp-cli'
-brew 'hub'
+
 brew 'vim'
 brew 'macvim'
 
 cask 'transmission'
 cask 'google-chrome'
+cask 'firefox'
+cask '1password-cli'
 cask 'vlc'
 cask 'mactex'
 cask 'whatsapp'
-cask 'github-desktop'
+
+cask 'github'
 cask 'sublime-text'
+cask 'visual-studio-code'
 
 cask 'vagrant'
 cask 'virtualbox'
 
 cask 'font-input'
 cask 'font-fira-code'
+
+cask 'adobe-acrobat-reader'
+cask 'poedit'
+cask 'dash'
+cask 'ngrok'
+cask 'steam'
+cask 'gimp'
+
+cask 'sequel-pro'
+
+cask 'keka'
+cask 'rar'
+cask 'transmit4'
+cask 'subtitles'
+
+mas "1Password 7", id: 1333542190
+mas "Kindle", id: 405399194
+mas "Reeder", id: 880001334
+mas "Latexian", id: 413939335
+mas "Xcode", id: 497799835
+
+mas "Keynote", id: 409183694
+mas "Slack", id: 803453959
+
+mas "Pages", id: 409201541
+mas "Numbers", id: 409203825
+mas "Keynote", id: 409183694
+
+mas "Day One", id: 1055511498
+
+mas "Tweetbot", id: 1384080005

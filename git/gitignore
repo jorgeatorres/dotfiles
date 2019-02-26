@@ -1,7 +1,22 @@
+# macOS metadata.
 .DS_Store
+
+# Text editors
 *.sublime-workspace
+.tm_properties
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Ignore output from compilers.
 *.pyc
 *.pyo
+*.o
+
 node_modules/
+package-lock.json
+
 vim/plugged/
 vim/autoload/plug.vim*
+
+# Temp files.
+*.swp

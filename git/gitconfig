@@ -1,6 +1,10 @@
 [user]
-    name = Jorge A. Torres
-    email = j@jorgetorres.co
+	name = Jorge A. Torres
+	email = j@jorgetorres.co
+[github]
+    user = jorgeatorres
+[color]
+    ui = auto
 [core]
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore
@@ -19,8 +23,6 @@
     c = commit
     p = push
     a = add
-[github]
-    user = jorgeatorres
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

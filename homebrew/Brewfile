@@ -3,7 +3,6 @@ tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
-tap 'homebrew/gui'
 
 brew 'fabric'
 brew 'sqlite'
@@ -35,7 +34,6 @@ cask 'google-chrome'
 cask 'firefox'
 cask '1password-cli'
 cask 'vlc'
-cask 'mactex'
 cask 'whatsapp'
 
 cask 'github'
@@ -68,7 +66,6 @@ mas "Reeder", id: 880001334
 mas "Latexian", id: 413939335
 mas "Xcode", id: 497799835
 
-mas "Keynote", id: 409183694
 mas "Slack", id: 803453959
 
 mas "Pages", id: 409201541

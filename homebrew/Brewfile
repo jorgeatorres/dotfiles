@@ -20,10 +20,13 @@ brew 'ripgrep'
 brew 'mplayer'
 brew 'rmtrash'
 brew 'unrar'
+brew 'mas'
+brew 'curl'
 
 brew 'php-code-sniffer'
 brew 'wp-cli'
 
+brew 'nano'
 brew 'vim'
 brew 'macvim'
 

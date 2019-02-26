@@ -108,8 +108,9 @@ if has("gui_running")
   set guicursor=a:blinkon0
   set guioptions=ceig
 
-  " set guifont=Menlo:h12 linespace=3
-  set guifont=Input\ Mono\ Narrow:h12 linespace=3
+  set guifont=Menlo:h12 linespace=3
+  " set guifont=Input\ Mono\ Narrow:h12 linespace=2
+  " set guifont=IBM\ Plex\ Mono:h12 linespace=1
 
   " Comments in italics.
   augroup on_change_colorschema
@@ -117,8 +118,8 @@ if has("gui_running")
     autocmd ColorScheme * call Base16hi("Comment", "", "", "", "", "italic", "")
   augroup END
 
-  " colo base16-onedark
-  colo base16-one-light
+  colo base16-onedark
+  " colo base16-one-light
 
   " hi StatusLine   gui=bold guifg=#ffffff guibg=#000000
   " hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0
@@ -146,6 +147,8 @@ let mapleader = ","
 noremap Q <nop>
 
 " More clever navigation.
+nnoremap 0 g0
+nnoremap $ g$
 nnoremap j gj
 nnoremap k gk
 
@@ -242,6 +245,7 @@ let g:rooter_silent_chdir = 1
 " completor.vim.
 let g:completor_complete_options = 'menu,menuone,noinsert'
 let g:completor_completion_delay = 500
+let g:completor_blacklist = ['tagbar', 'netrw', 'gitcommit', 'gitrebase']
 let g:completor_php_omni_trigger = '([$\w]+|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'
 
 " }

@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 DOTFILESDIRREL=$(dirname $0)
 cd $DOTFILESDIRREL/
@@ -33,7 +34,7 @@ if [[ ! -e "/usr/local/bin/brew" ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 ln -sfv "$DOTFILESDIR/homebrew/Brewfile" "$HOME/.Brewfile"
-brew bundle --global
+brew bundle --global || true
 
 # Visual Studio Code
 mkdir -p "$HOME/Library/Application Support/Code/User"
@@ -55,7 +56,7 @@ mkdir -p "$HOME/.ssh"
 rm -rfv "$HOME/.ssh/{id_rsa,id_rsa.pub}"
 cp "$DOTFILESDIR/ssh/id_rsa.pub" "$HOME/.ssh/"
 eval $(op signin my.1password.com j@jorgetorres.co)
-op get document "7ukxxbzsincz3bqsx6p6iwl32e" > "$HOME/.ssh/id_rsa.priv"
+op get document "7ukxxbzsincz3bqsx6p6iwl32e" > "$HOME/.ssh/id_rsa"
 ssh-add -K
 
 # Laravel.

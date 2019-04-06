@@ -44,7 +44,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'xolox/vim-session'            " Extended session management. Adds :{Open,Close,Delete}Session cmds.
   Plug 'xolox/vim-misc'               " Required by xolox/vim-session.
 
-  Plug 'chriskempson/base16-vim'      " Some nice color schemes.
+  Plug 'danielwe/base16-vim'
+  "Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " }
@@ -110,12 +111,11 @@ if has("gui_running")
 
   set guifont=Menlo:h12 linespace=3
   " set guifont=Input\ Mono\ Narrow:h12 linespace=2
-  " set guifont=IBM\ Plex\ Mono:h12 linespace=1
 
   " Comments in italics.
   augroup on_change_colorschema
-    autocmd!
-    autocmd ColorScheme * call Base16hi("Comment", "", "", "", "", "italic", "")
+   autocmd!
+   autocmd ColorScheme * call Base16hi("Comment", "", "", "", "", "italic", "")
   augroup END
 
   colo base16-onedark

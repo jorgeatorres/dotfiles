@@ -27,7 +27,7 @@ brew 'wp-cli'
 
 brew 'nano'
 brew 'vim'
-brew 'macvim'
+cask 'macvim'
 
 cask 'transmission'
 cask 'google-chrome'
@@ -37,7 +37,7 @@ cask 'vlc'
 cask 'whatsapp'
 
 cask 'github'
-cask 'sublime-text'
+cask 'textmate'
 cask 'visual-studio-code'
 
 cask 'vagrant'
@@ -59,6 +59,8 @@ cask 'keka'
 cask 'rar'
 cask 'transmit4'
 cask 'subtitles'
+
+cask 'mactex'
 
 mas "1Password 7", id: 1333542190
 mas "Kindle", id: 405399194

@@ -39,6 +39,7 @@ brew bundle --global || true
 # Visual Studio Code
 mkdir -p "$HOME/Library/Application Support/Code/User"
 ln -sfv "$DOTFILESDIR/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+ln -sfv "$DOTFILESDIR/vscode/keybindings.json" "$HOME/Library/Application Support/Code/User/keybindings.json"
 
 INSTALLED_EXTENSIONS="$(code --list-extensions)"
 for EXTENSION in $(cat "$DOTFILESDIR/vscode/extensions-list")

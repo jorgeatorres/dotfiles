@@ -4,7 +4,7 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
 
-brew 'fabric'
+brew 'midnight-commander'
 brew 'sqlite'
 brew 'ssh-copy-id'
 brew 'wget'
@@ -45,6 +45,8 @@ cask 'virtualbox'
 
 cask 'font-input'
 cask 'font-fira-code'
+cask 'font-source-code-pro'
+cask 'font-ibm-plex'
 
 cask 'adobe-acrobat-reader'
 cask 'poedit'
@@ -62,18 +64,19 @@ cask 'subtitles'
 
 cask 'mactex'
 
+mas "Xcode", id: 497799835
+mas "Latexian", id: 413939335
+mas "Slack", id: 803453959
+
 mas "1Password 7", id: 1333542190
 mas "Kindle", id: 405399194
 mas "Reeder", id: 880001334
-mas "Latexian", id: 413939335
-mas "Xcode", id: 497799835
-
-mas "Slack", id: 803453959
+mas "Day One", id: 1055511498s
+mas "Tweetbot", id: 1384080005
 
 mas "Pages", id: 409201541
 mas "Numbers", id: 409203825
 mas "Keynote", id: 409183694
-
-mas "Day One", id: 1055511498
-
-mas "Tweetbot", id: 1384080005
+mas "Excel", id: 462058435
+mas "Word", id: 462054704
+mas "Powerpoint", id: 462062816

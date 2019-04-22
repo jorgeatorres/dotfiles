@@ -1,19 +1,16 @@
 {
-    "files.exclude": {
-        "**/*.sublime-project": true,
-        "**/*.sublime-workspace": true
-    },
     "workbench.statusBar.feedback.visible": false,
     "editor.find.globalFindClipboard": true,
     "editor.fontFamily": "Input Mono Narrow, monospace",
     "editor.minimap.enabled": false,
     "editor.selectionHighlight": true,
     "editor.rulers": [120],
-    "editor.wordWrap": "off",
-    "editor.renderLineHighlight": "line",
+    "editor.wordWrap": "on",
+    "editor.renderLineHighlight": "all",
     "editor.renderIndentGuides": true,
     "editor.multiCursorModifier": "alt",
     "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
     "editor.renderWhitespace": "none",
     "editor.scrollBeyondLastLine": false,
     "editor.showUnused": true,
@@ -35,9 +32,11 @@
     "explorer.confirmDragAndDrop": false,
     "search.smartCase": true,
     "php.suggest.basic": false,
+    "javascript.format.enable": false,
     "git.promptToSaveFilesBeforeCommit": true,
-    "workbench.editor.enablePreview": false,
-    "workbench.sideBar.location": "right",
+    "workbench.editor.enablePreview": true,
+    "workbench.sideBar.location": "left",
     "editor.insertSpaces": false,
-    "editor.fontSize": 13
+    "workbench.colorTheme": "Atom One Dark",
+    "editor.fontWeight": "400"
 }

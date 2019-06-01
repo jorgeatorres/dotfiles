@@ -12,6 +12,9 @@ alias g="git"
 alias ls="ls -G"
 alias django="python manage.py"
 alias latex="texdist pdflatex"
+alias ~="cd ~"
+alias ..="cd .."
+alias brupdate="brew update; brew upgrade; brew cleanup"
 
 # I hate that cat doesn't add a newline after its output... so let's rewrite it :-)
 cat(){ echo "`/bin/cat $@`";}

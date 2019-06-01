@@ -106,6 +106,14 @@ if [[ ! -e "$HOME/.bin/wpv" ]]; then
 	chmod +x "$HOME/.bin/wpv"
 fi
 
+# A8C (personal script for handling Automattic's proxy settings)
+if [[ ! -e "$HOME/.bin/a8c.sh" ]]; then
+	git clone git@github.com:jorgeatorres/a8c.sh.git /tmp/a8c.sh
+	mv /tmp/a8c.sh/a8c.sh "$HOME/.bin"
+	chmod +x "$HOME/.bin/a8c.sh"
+	rm -rf /tmp/a8c.sh
+fi
+
 # PHPCS
 mkdir -p "$HOME/.phpcs"
 

@@ -31,10 +31,11 @@ maybe_link "$DOTFILESDIR/bash/bashrc" "$HOME/.bashrc"
 maybe_link "$DOTFILESDIR/bash/profile" "$HOME/.profile"
 
 # bin/
-if [[ -d "$HOME/.bin" ]]; then
-    rm -rv "$HOME/.bin"
-fi
-ln -sv "$DOTFILESDIR/bin"  "$HOME/.bin"
+mkdir -p "$HOME/.bin"
+for i in "$DOTFILESDIR"/bin/*; do
+	scriptFilename="$(basename "$i")"
+	maybe_link "$DOTFILESDIR/bin/$scriptFilename" "$HOME/.bin/$scriptFilename"
+done
 
 # editorconfig
 maybe_link "$DOTFILESDIR/editorconfig/editorconfig" "$HOME/.editorconfig"

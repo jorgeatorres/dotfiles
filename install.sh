@@ -101,9 +101,9 @@ if [[ ! -e "/usr/local/bin/valet" ]]; then
 fi
 
 # wpv
-if [[ ! -e "/usr/local/bin/wpv" ]]; then
-	curl https://raw.githubusercontent.com/smilingrobots/wpv/master/wpv.sh > /usr/local/bin/wpv
-	chmod +x /usr/local/bin/wpv
+if [[ ! -e "$HOME/.bin/wpv" ]]; then
+	curl https://raw.githubusercontent.com/smilingrobots/wpv/master/wpv.sh > "$HOME/.bin/wpv"
+	chmod +x "$HOME/.bin/wpv"
 fi
 
 # PHPCS

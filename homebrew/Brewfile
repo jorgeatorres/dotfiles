@@ -17,17 +17,12 @@ brew 'ack'
 brew 'the_silver_searcher'
 brew 'ripgrep'
 brew 'mplayer'
-brew 'rmtrash'
 brew 'unrar'
 brew 'mas'
 brew 'curl'
 
 brew 'php-code-sniffer'
 brew 'wp-cli'
-
-brew 'nano'
-brew 'vim'
-cask 'macvim'
 
 cask 'transmission'
 cask 'google-chrome'
@@ -37,8 +32,9 @@ cask 'vlc'
 cask 'whatsapp'
 
 cask 'github'
-cask 'textmate'
+cask 'macvim'
 cask 'visual-studio-code'
+cask 'sublime-text'
 
 cask 'vagrant'
 cask 'virtualbox'
@@ -53,7 +49,6 @@ cask 'poedit'
 cask 'dash'
 cask 'ngrok'
 cask 'steam'
-cask 'gimp'
 
 cask 'sequel-pro'
 
@@ -65,7 +60,7 @@ cask 'subtitles'
 cask 'mactex'
 
 mas "Xcode", id: 497799835
-mas "Latexian", id: 413939335
+#mas "Latexian", id: 413939335
 mas "Slack", id: 803453959
 
 mas "1Password 7", id: 1333542190

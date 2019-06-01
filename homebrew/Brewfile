@@ -60,18 +60,19 @@ cask 'subtitles'
 cask 'mactex'
 
 mas "Xcode", id: 497799835
-#mas "Latexian", id: 413939335
+mas "Latexian", id: 413939335
 mas "Slack", id: 803453959
 
 mas "1Password 7", id: 1333542190
 mas "Kindle", id: 405399194
-mas "Reeder", id: 880001334
-mas "Day One", id: 1055511498s
+mas "Reeder", id: 1449412482
+mas "Day One", id: 1055511498
 mas "Tweetbot", id: 1384080005
+mas "Deliveries", id: 924726344
 
 mas "Pages", id: 409201541
 mas "Numbers", id: 409203825
 mas "Keynote", id: 409183694
-mas "Excel", id: 462058435
-mas "Word", id: 462054704
-mas "Powerpoint", id: 462062816
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft Word", id: 462054704
+mas "Microsoft Powerpoint", id: 462062816

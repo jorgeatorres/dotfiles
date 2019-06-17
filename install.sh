@@ -100,6 +100,19 @@ if [[ ! -e "/usr/local/bin/valet" ]]; then
     valet install
 fi
 
+# Configure Mailhog.
+if ! grep -Eq '^relayhost[ ]*=[ ]*\[localhost\]:1025' /etc/postfix/main.cf; then
+	sudo sed -i -e '$a\
+	relayhost = [localhost]:1025\
+	\
+	' /etc/postfix/main.cf
+	
+	brew services restart mailhog
+	sudo launchctl stop org.postfix.master
+	sudo launchctl start org.postfix.master
+fi
+
+
 # wpv
 if [[ ! -e "$HOME/.bin/wpv" ]]; then
 	curl https://raw.githubusercontent.com/smilingrobots/wpv/master/wpv.sh > "$HOME/.bin/wpv"

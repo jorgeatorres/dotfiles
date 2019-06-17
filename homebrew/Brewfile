@@ -20,6 +20,7 @@ brew 'mplayer'
 brew 'unrar'
 brew 'mas'
 brew 'curl'
+brew 'mailhog'
 
 brew 'php-code-sniffer'
 brew 'wp-cli'

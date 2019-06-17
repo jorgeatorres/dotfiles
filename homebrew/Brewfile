@@ -12,10 +12,12 @@ brew 'node'
 brew 'python'
 brew 'ruby'
 brew 'php'
+brew 'mysql@5.7'
 brew 'composer'
 brew 'ack'
 brew 'the_silver_searcher'
 brew 'ripgrep'
+brew 'ctags'
 brew 'mplayer'
 brew 'unrar'
 brew 'mas'
@@ -33,6 +35,7 @@ cask 'vlc'
 cask 'whatsapp'
 
 cask 'tower'
+cask 'droplr'
 cask 'macvim'
 cask 'visual-studio-code'
 cask 'textmate'
@@ -51,6 +54,7 @@ cask 'dash'
 cask 'ngrok'
 cask 'steam'
 
+cask 'plex-media-server'
 cask 'sequel-pro'
 
 cask 'keka'
@@ -59,6 +63,7 @@ cask 'transmit4'
 cask 'subtitles'
 
 cask 'mactex'
+cask 'zoomus'
 
 mas "Xcode", id: 497799835
 mas "Latexian", id: 413939335

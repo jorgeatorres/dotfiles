@@ -34,7 +34,7 @@ cask 'whatsapp'
 cask 'tower'
 cask 'macvim'
 cask 'visual-studio-code'
-cask 'sublime-text'
+cask 'textmate'
 
 cask 'vagrant'
 cask 'virtualbox'

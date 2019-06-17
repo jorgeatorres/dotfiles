@@ -51,21 +51,21 @@ maybe_link "$DOTFILESDIR/git/gitignore" "$HOME/.gitignore"
 maybe_link "$DOTFILESDIR/vim/vimrc" "$HOME/.vimrc"
 maybe_link "$DOTFILESDIR/vim/gvimrc" "$HOME/.gvimrc"
 
-# Sublime Text Code
-mkdir -p "$HOME/Library/Application Support/Sublime Text 3/Packages/User/"
-maybe_link "$DOTFILESDIR/sublime-text/Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
-if needs_update "$DOTFILESDIR/sublime-text/Sublime Text.icns" "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns"; then
-	cp "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns" "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns.backup"
-	rm "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns"
-	cp "$DOTFILESDIR/sublime-text/Sublime Text.icns" "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns"
-fi
-
 # Homebrew
 if [[ ! -e "/usr/local/bin/brew" ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 ln -sfv "$DOTFILESDIR/homebrew/Brewfile" "$HOME/.Brewfile"
 brew bundle --global || true
+
+# Sublime Text Code
+# mkdir -p "$HOME/Library/Application Support/Sublime Text 3/Packages/User/"
+# maybe_link "$DOTFILESDIR/sublime-text/Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+# if needs_update "$DOTFILESDIR/sublime-text/Sublime Text.icns" "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns"; then
+# 	cp "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns" "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns.backup"
+# 	rm "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns"
+# 	cp "$DOTFILESDIR/sublime-text/Sublime Text.icns" "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns"
+# fi
 
 # Visual Studio Code
 mkdir -p "$HOME/Library/Application Support/Code/User"

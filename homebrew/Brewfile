@@ -4,7 +4,7 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
 
-brew 'midnight-commander'
+#brew 'midnight-commander'
 brew 'sqlite'
 brew 'ssh-copy-id'
 brew 'wget'
@@ -41,11 +41,9 @@ cask 'visual-studio-code'
 cask 'textmate'
 
 cask 'vagrant'
-cask 'virtualbox'
+#cask 'virtualbox'
 
 cask 'font-input'
-cask 'font-fira-code'
-cask 'font-source-code-pro'
 cask 'font-ibm-plex'
 
 cask 'adobe-acrobat-reader'
@@ -53,11 +51,10 @@ cask 'poedit'
 cask 'dash'
 cask 'ngrok'
 cask 'steam'
-
 cask 'plex-media-server'
 cask 'sequel-pro'
 
-cask 'keka'
+#cask 'keka'
 cask 'rar'
 cask 'transmit4'
 cask 'subtitles'
@@ -66,7 +63,7 @@ cask 'mactex'
 cask 'zoomus'
 
 mas "Xcode", id: 497799835
-mas "Latexian", id: 413939335
+#mas "Latexian", id: 413939335
 mas "Slack", id: 803453959
 
 mas "1Password 7", id: 1333542190

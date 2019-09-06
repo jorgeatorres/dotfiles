@@ -7,6 +7,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/local/sbin"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 alias g="git"
 alias ls="ls -G"

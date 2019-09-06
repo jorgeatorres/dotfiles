@@ -153,3 +153,10 @@ PHPCS_INSTALLED_PATHS=$(phpcs --config-show | grep installed_paths)
 if [[ $PHPCS_INSTALLED_PATHS != *"wordpress"* || $PHPCS_INSTALLED_PATHS != *"prospress"* ]]; then
 	phpcs --config-set installed_paths "$HOME/.phpcs/wordpress,$HOME/.phpcs/prospress"
 fi
+
+# phpunit 6.5
+if [[ ! -e "$HOME/.bin/phpunit" ]]; then
+	wget https://phar.phpunit.de/phpunit-6.5.phar -P "$HOME/.bin/"
+	chmod +x "$HOME/.bin/phpunit-6.5.phar"
+	mv "$HOME/.bin/phpunit-6.5.phar" "$HOME/.bin/phpunit"
+fi

@@ -58,7 +58,7 @@ cask 'sequel-pro-nightly'
 
 #cask 'keka'
 cask 'rar'
-cask 'transmit4'
+cask 'transmit'
 cask 'subtitles'
 
 cask 'mactex'

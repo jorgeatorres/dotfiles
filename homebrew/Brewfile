@@ -36,7 +36,7 @@ cask '1password-cli'
 cask 'vlc'
 cask 'whatsapp'
 
-cask 'tower'
+cask 'github'
 cask 'droplr'
 cask 'macvim'
 cask 'visual-studio-code'

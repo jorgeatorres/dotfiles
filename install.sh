@@ -52,11 +52,15 @@ maybe_link "$DOTFILESDIR/vim/vimrc" "$HOME/.vimrc"
 maybe_link "$DOTFILESDIR/vim/gvimrc" "$HOME/.gvimrc"
 
 # Homebrew
-if [[ ! -e "/usr/local/bin/brew" ]]; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [[ ! -e "/usr/local/bin/brew" ]]; then /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; fi
+
+DOTFILES_BREWFILE_HASH=$(md5 -q "$DOTFILESDIR/homebrew/Brewfile")
+if [[ -e "$HOME/.dotfiles-brewfile-hash" ]]; then INSTALLED_BREWFILE_HASH=$(cat "$HOME/.dotfiles-brewfile-hash"); else INSTALLED_BREWFILE_HASH=""; fi
+
+if [[ $INSTALLED_BREWFILE_HASH != $DOTFILES_BREWFILE_HASH ]]; then
+	brew bundle --file="$DOTFILESDIR/homebrew/Brewfile" || true
+	echo "$DOTFILES_BREWFILE_HASH" > "$HOME/.dotfiles-brewfile-hash"
 fi
-ln -sfv "$DOTFILESDIR/homebrew/Brewfile" "$HOME/.Brewfile"
-brew bundle --global || true
 
 # Sublime Text Code
 # mkdir -p "$HOME/Library/Application Support/Sublime Text 3/Packages/User/"
@@ -116,12 +120,11 @@ if ! grep -Eq '^relayhost[ ]*=[ ]*\[localhost\]:1025' /etc/postfix/main.cf; then
 	relayhost = [localhost]:1025\
 	\
 	' /etc/postfix/main.cf
-	
+
 	brew services restart mailhog
 	sudo launchctl stop org.postfix.master
 	sudo launchctl start org.postfix.master
 fi
-
 
 # wpv
 if [[ ! -e "$HOME/.bin/wpv" ]]; then

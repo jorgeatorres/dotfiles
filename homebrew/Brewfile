@@ -23,6 +23,8 @@ brew 'unrar'
 brew 'mas'
 brew 'curl'
 brew 'mailhog'
+brew 'jq'
+brew 'grunt-cli'
 
 brew 'php-code-sniffer'
 brew 'wp-cli'

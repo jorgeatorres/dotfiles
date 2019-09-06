@@ -140,12 +140,10 @@ fi
 # PHPCS
 mkdir -p "$HOME/.phpcs"
 
-if [[ ! -d "$HOME/.phpcs/wordpress" ]]; then
-	git clone git@github.com:WordPress-Coding-Standards/WordPress-Coding-Standards.git "$HOME/.phpcs/wordpress"
-fi
+if [[ ! -d "$HOME/.phpcs/wordpress" ]]; then git clone git@github.com:WordPress-Coding-Standards/WordPress-Coding-Standards.git "$HOME/.phpcs/wordpress"; fi
+if [[ ! -d "$HOME/.phpcs/prospress" ]]; then git clone git@github.com:Prospress/prospress-coding-standards.git "$HOME/.phpcs/prospress"; fi
 
-if [[ ! -d "$HOME/.phpcs/prospress" ]]; then
-	git clone git@github.com:Prospress/prospress-coding-standards.git "$HOME/.phpcs/prospress"
+PHPCS_INSTALLED_PATHS=$(phpcs --config-show | grep installed_paths)
+if [[ $PHPCS_INSTALLED_PATHS != *"wordpress"* || $PHPCS_INSTALLED_PATHS != *"prospress"* ]]; then
+	phpcs --config-set installed_paths "$HOME/.phpcs/wordpress,$HOME/.phpcs/prospress"
 fi
-
-phpcs --config-set installed_paths "$HOME/.phpcs/wordpress,$HOME/.phpcs/prospress"

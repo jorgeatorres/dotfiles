@@ -1,5 +1,4 @@
 " vim:set ts=2 sts=2 sw=2 expandtab:
-
 set nocompatible
 filetype off
 
@@ -11,6 +10,8 @@ if !filereadable(expand('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+  "Plug 'tpope/vim-sensible'
+
   Plug 'mileszs/ack.vim'              " 'Run your favorite search tool from Vim, with an enhanced results list'. Provides :Ack, :AckAdd, :LAck and :LAckAdd.
   Plug 'dyng/ctrlsf.vim'              " 'An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2'.
 
@@ -25,6 +26,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tomtom/tcomment_vim'          " 'tcomment provides easy to use, file-type sensible comments for Vim.' Provides gcc, gc{motion}.
   Plug 'vim-scripts/matchit.zip'      " Extended % matching for HTML, LaTeX, and many other languages.
   Plug 'maralla/completor.vim'        " 'Completor is an asynchronous code completion framework for vim8'.
+  Plug 'machakann/vim-swap'           " Reorder/swap delimited items. Adds g<, g>, gs.
 
   Plug 'shawncplus/phpcomplete.vim'   " Improved PHP omnicompletion.
   Plug 'groenewege/vim-less'          " Syntax support for LESS.
@@ -109,8 +111,8 @@ if has("gui_running")
   set guicursor=a:blinkon0
   set guioptions=ceig
 
-  set guifont=Menlo:h12 linespace=3
-  " set guifont=Input\ Mono\ Narrow:h12 linespace=2
+  " set guifont=Menlo:h12 linespace=3
+  set guifont=Input\ Mono\ Narrow:h12 linespace=2
 
   " Comments in italics.
   augroup on_change_colorschema

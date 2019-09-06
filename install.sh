@@ -62,6 +62,9 @@ if [[ $INSTALLED_BREWFILE_HASH != $DOTFILES_BREWFILE_HASH ]]; then
 	echo "$DOTFILES_BREWFILE_HASH" > "$HOME/.dotfiles-brewfile-hash"
 fi
 
+# Day One CLI
+if [[ ! $(which dayone2) ]]; then sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh; fi
+
 # Sublime Text Code
 # mkdir -p "$HOME/Library/Application Support/Sublime Text 3/Packages/User/"
 # maybe_link "$DOTFILESDIR/sublime-text/Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"

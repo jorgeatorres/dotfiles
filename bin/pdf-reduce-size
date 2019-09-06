@@ -1,7 +1,8 @@
 #!/bin/bash
 
 if [[ -z "$1" || -z "$2" ]]; then
-	echo "Usage: $0 <filename> <output> [<compression level:1-5, default:3>]"
+	echo "Usage: $0 <filename> <output> [<compression level:1-5, default:4>]"
+	exit 1
 fi
 
 # * -dPDFSETTINGS=/screen lower quality, smaller size. (72 dpi)
@@ -16,14 +17,14 @@ case "$3" in
 2)
 	PDFSETTINGS="/printer"
 	;;
-4)
-	PDFSETTINGS="/ebook"
+3)
+	PDFSETTINGS="/prepress"
 	;;
 5)
 	PDFSETTINGS="/screen"
 	;;
 *)
-	PDFSETTINGS="/prepress"
+	PDFSETTINGS="/ebook"
 	;;
 esac
 

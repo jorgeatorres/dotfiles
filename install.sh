@@ -143,6 +143,25 @@ if [[ ! -e "$HOME/.bin/a8c.sh" ]]; then
 	rm -rf /tmp/a8c.sh
 fi
 
+# strava-dayone-sync (personal script for syncing Strava activities with Day One)
+if [[ ! -e "$HOME/.bin/strava-dayone-sync.sh" ]]; then
+	if [[ ! -e "$HOME/src/strava-dayone-sync" ]]; then mkdir -p "$HOME/src"; git clone git@github.com:jorgeatorres/strava-dayone-sync.git "$HOME/src/strava-dayone-sync"; fi
+
+	eval $(op signin my.1password.com j@jorgetorres.co)
+
+	STRAVA_CREDENTIALS=$(op get item bpjbuoxmt5fnhfl4vhio6aq3uu)
+	STRAVA_USER=$(echo "$STRAVA_CREDENTIALS" | jq '.details.fields[] | select(.designation=="password").value' | tr -d '"')
+	STRAVA_PASSWORD=$(echo "$STRAVA_CREDENTIALS" | jq '.details.fields[] | select(.designation=="username").value' | tr -d '"')t
+	STRAVA_ATHLETE_ID=$(echo "$STRAVA_CREDENTIALS" | jq '.details.sections[] | select(.title=="") | .fields[] | select(.t=="athlete id").v' | tr -d '"')
+
+	cat <<EOT > "$HOME/.bin/strava-dayone-sync.sh"
+#!/bin/bash
+STRAVA_USER="$STRAVA_USER" STRAVA_PASSWORD="$STRAVA_PASSWORD" STRAVA_ATHLETE_ID="$STRAVA_ATHLETE_ID" php ~/src/strava-dayone-sync/strava-dayone-sync.php
+EOT
+
+	chmod +x "$HOME/.bin/strava-dayone-sync.sh"
+fi
+
 # PHPCS
 mkdir -p "$HOME/.phpcs"
 

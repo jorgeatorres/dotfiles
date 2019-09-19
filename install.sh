@@ -150,8 +150,8 @@ if [[ ! -e "$HOME/.bin/strava-dayone-sync.sh" ]]; then
 	eval $(op signin my.1password.com j@jorgetorres.co)
 
 	STRAVA_CREDENTIALS=$(op get item bpjbuoxmt5fnhfl4vhio6aq3uu)
-	STRAVA_USER=$(echo "$STRAVA_CREDENTIALS" | jq '.details.fields[] | select(.designation=="password").value' | tr -d '"')
-	STRAVA_PASSWORD=$(echo "$STRAVA_CREDENTIALS" | jq '.details.fields[] | select(.designation=="username").value' | tr -d '"')t
+	STRAVA_USER=$(echo "$STRAVA_CREDENTIALS" | jq '.details.fields[] | select(.designation=="username").value' | tr -d '"')
+	STRAVA_PASSWORD=$(echo "$STRAVA_CREDENTIALS" | jq '.details.fields[] | select(.designation=="password").value' | tr -d '"')
 	STRAVA_ATHLETE_ID=$(echo "$STRAVA_CREDENTIALS" | jq '.details.sections[] | select(.title=="") | .fields[] | select(.t=="athlete id").v' | tr -d '"')
 
 	cat <<EOT > "$HOME/.bin/strava-dayone-sync.sh"

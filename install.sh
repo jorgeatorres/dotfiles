@@ -27,8 +27,7 @@ maybe_link() {
 }
 
 # bash
-maybe_link "$DOTFILESDIR/bash/bashrc" "$HOME/.bashrc"
-maybe_link "$DOTFILESDIR/bash/profile" "$HOME/.profile"
+maybe_link "$DOTFILESDIR/zsh/zshrc" "$HOME/.zshrc"
 
 # bin/
 mkdir -p "$HOME/.bin"

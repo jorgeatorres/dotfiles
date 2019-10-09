@@ -11,34 +11,23 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 alias g="git"
 alias ls="ls -G"
+alias dir="ls"
 alias django="python manage.py"
 alias latex="texdist pdflatex"
 alias ~="cd ~"
 alias ..="cd .."
 alias brupdate="brew update; brew upgrade; brew cleanup"
 
-# I hate that cat doesn't add a newline after its output... so let's rewrite it :-)
-cat(){ echo "`/bin/cat $@`";}
-
 export GREP_OPTIONS='--color=auto'
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
-function ps1_prompt_symbol_for_user {
-    if [ "$USER" = "root" ]; then
-        ps1_prompt_symbol_for_user="\[\033[38;5;198m\]>\[\033[0m\]"
-    else
-        ps1_prompt_symbol_for_user="\[\033[38;5;148m\]>\[\033[0m\]"
-    fi
-}
-
-function ps1_abbrev_path {
-	sed "s:\([^/]\)[^/]*/:\1/:g" <<<$(sed s:$HOME:\~:g <<<$PWD)
-}
 
 if [ "$TERM" = "dumb" ]; then
-    export PS1='$ '
+	PROMPT="%# "
 else
-    ps1_prompt_symbol_for_user;
-    export PS1='\[\e[38;5;248m\]`ps1_abbrev_path`'
-    export PS1="$PS1 $ps1_prompt_symbol_for_user\[\e[0m\] "
+	#PROMPT='%n@%m:%15<..<%~%<<%# '
+	local _path="%F{248}%(4~|%-1~/…/%2~|%3~)%f"
+	local _symbol="%(!.%F{198}#%f.%F{148}>%f)"
+
+	PROMPT="$_path%f $_symbol "
 fi

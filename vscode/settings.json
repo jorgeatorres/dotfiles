@@ -1,7 +1,7 @@
 {
     "workbench.statusBar.feedback.visible": false,
     "editor.find.globalFindClipboard": true,
-    "editor.fontFamily": "IBM Plex Mono, Input Mono Narrow, monospace",
+    "editor.fontFamily": "Input Mono Narrow, IBM Plex Mono, Operator Mono, monospace",
     "editor.minimap.enabled": false,
     "editor.selectionHighlight": true,
     "editor.rulers": [120],
@@ -40,6 +40,5 @@
     "editor.fontWeight": "400",
     "workbench.colorTheme": "Atom One Dark",
     "editor.cursorSurroundingLines": 4,
-    "search.location": "panel",
     "explorer.openEditors.visible": 0
 }

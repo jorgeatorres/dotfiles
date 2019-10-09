@@ -33,7 +33,7 @@ cask 'transmission-nightly'
 cask 'google-chrome'
 cask 'firefox'
 cask '1password-cli'
-cask 'vlc'
+cask 'iina'
 cask 'whatsapp'
 
 cask 'github'

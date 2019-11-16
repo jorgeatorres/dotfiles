@@ -4,7 +4,6 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
 
-#brew 'midnight-commander'
 brew 'sqlite'
 brew 'ssh-copy-id'
 brew 'wget'
@@ -19,15 +18,17 @@ brew 'the_silver_searcher'
 brew 'ripgrep'
 brew 'ctags'
 brew 'mplayer'
+brew 'ffmpeg'
 brew 'unrar'
 brew 'mas'
 brew 'curl'
-brew 'mailhog'
+#brew 'mailhog'
 brew 'jq'
 brew 'grunt-cli'
 
-brew 'php-code-sniffer'
+#brew 'php-code-sniffer'
 brew 'wp-cli'
+brew 'transmission-cli'
 
 cask 'transmission-nightly'
 cask 'google-chrome'
@@ -42,12 +43,14 @@ cask 'macvim'
 cask 'visual-studio-code'
 cask 'textmate'
 cask 'tower'
+cask 'insomnia'
 
+cask 'virtualbox'
 cask 'vagrant'
-#cask 'virtualbox'
 
 cask 'font-input'
 cask 'font-ibm-plex'
+cask 'font-source-code-pro'
 
 cask 'adobe-acrobat-reader'
 cask 'poedit'
@@ -57,26 +60,34 @@ cask 'steam'
 cask 'plex-media-server'
 cask 'sequel-pro-nightly'
 
-#cask 'keka'
 cask 'rar'
 cask 'transmit'
 cask 'subtitles'
 
 cask 'mactex'
 cask 'zoomus'
+cask 'numi'
+cask 'tomighty'
 
-mas "Xcode", id: 497799835
-#mas "Latexian", id: 413939335
-mas "Slack", id: 803453959
-mas "Tweetbot", id: 1384080005
+# Generate the following list with this command:
+# mas list | sort -b -f -k2 | awk '{printf "mas "}{printf "\""}{for (i=2; i<NF; i++) printf $i " "}{printf "\""}{print ", id: " $1}' | sed 's/ ",/",/g'
 mas "1Password 7", id: 1333542190
-mas "Kindle", id: 405399194
-mas "Reeder", id: 1449412482
+mas "Bear", id: 1091189122
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 924726344
-mas "Pages", id: 409201541
-mas "Numbers", id: 409203825
+mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
+mas "Kindle", id: 405399194
 mas "Microsoft Excel", id: 462058435
+mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
-mas "Microsoft Powerpoint", id: 462062816
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Patterns", id: 429449079
+mas "Pixelmator Pro", id: 1289583905
+mas "Reeder", id: 1449412482
+mas "Slack", id: 803453959
+mas "Tweetbot", id: 1384080005
+mas "Twitter", id: 1482454543
+mas "Unsplash Wallpapers", id: 1284863847
+mas "Xcode", id: 497799835

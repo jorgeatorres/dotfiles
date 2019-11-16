@@ -53,6 +53,7 @@ maybe_link "$DOTFILESDIR/vim/gvimrc" "$HOME/.gvimrc"
 # Homebrew
 if [[ ! -e "/usr/local/bin/brew" ]]; then /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; fi
 
+# Can't trust "brew bundle --check" because `mas` is not including all apps installed.
 DOTFILES_BREWFILE_HASH=$(md5 -q "$DOTFILESDIR/homebrew/Brewfile")
 if [[ -e "$HOME/.dotfiles-brewfile-hash" ]]; then INSTALLED_BREWFILE_HASH=$(cat "$HOME/.dotfiles-brewfile-hash"); else INSTALLED_BREWFILE_HASH=""; fi
 
@@ -117,16 +118,16 @@ if [[ ! -e "/usr/local/bin/valet" ]]; then
 fi
 
 # Configure Mailhog.
-if ! grep -Eq '^relayhost[ ]*=[ ]*\[localhost\]:1025' /etc/postfix/main.cf; then
-	sudo sed -i -e '$a\
-	relayhost = [localhost]:1025\
-	\
-	' /etc/postfix/main.cf
+# if ! grep -Eq '^relayhost[ ]*=[ ]*\[localhost\]:1025' /etc/postfix/main.cf; then
+# 	sudo sed -i -e '$a\
+# 	relayhost = [localhost]:1025\
+# 	\
+# 	' /etc/postfix/main.cf
 
-	brew services restart mailhog
-	sudo launchctl stop org.postfix.master
-	sudo launchctl start org.postfix.master
-fi
+# 	brew services restart mailhog
+# 	sudo launchctl stop org.postfix.master
+# 	sudo launchctl start org.postfix.master
+# fi
 
 # wpv
 if [[ ! -e "$HOME/.bin/wpv" ]]; then
@@ -162,15 +163,15 @@ EOT
 fi
 
 # PHPCS
-mkdir -p "$HOME/.phpcs"
+# mkdir -p "$HOME/.phpcs"
 
-if [[ ! -d "$HOME/.phpcs/wordpress" ]]; then git clone git@github.com:WordPress-Coding-Standards/WordPress-Coding-Standards.git "$HOME/.phpcs/wordpress"; fi
-if [[ ! -d "$HOME/.phpcs/prospress" ]]; then git clone git@github.com:Prospress/prospress-coding-standards.git "$HOME/.phpcs/prospress"; fi
+# if [[ ! -d "$HOME/.phpcs/wordpress" ]]; then git clone git@github.com:WordPress-Coding-Standards/WordPress-Coding-Standards.git "$HOME/.phpcs/wordpress"; fi
+# if [[ ! -d "$HOME/.phpcs/prospress" ]]; then git clone git@github.com:Prospress/prospress-coding-standards.git "$HOME/.phpcs/prospress"; fi
 
-PHPCS_INSTALLED_PATHS=$(phpcs --config-show | grep installed_paths)
-if [[ $PHPCS_INSTALLED_PATHS != *"wordpress"* || $PHPCS_INSTALLED_PATHS != *"prospress"* ]]; then
-	phpcs --config-set installed_paths "$HOME/.phpcs/wordpress,$HOME/.phpcs/prospress"
-fi
+# PHPCS_INSTALLED_PATHS=$(phpcs --config-show | grep installed_paths)
+# if [[ $PHPCS_INSTALLED_PATHS != *"wordpress"* || $PHPCS_INSTALLED_PATHS != *"prospress"* ]]; then
+# 	phpcs --config-set installed_paths "$HOME/.phpcs/wordpress-coding-standards,$HOME/.phpcs/prospress-coding-standards"
+# fi
 
 # phpunit 6.5
 if [[ ! -e "$HOME/.bin/phpunit" ]]; then

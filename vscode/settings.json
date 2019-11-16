@@ -1,7 +1,6 @@
 {
     "workbench.statusBar.feedback.visible": false,
     "editor.find.globalFindClipboard": true,
-    "editor.fontFamily": "Input Mono Narrow, IBM Plex Mono, Operator Mono, monospace",
     "editor.minimap.enabled": false,
     "editor.selectionHighlight": true,
     "editor.rulers": [120],
@@ -35,10 +34,13 @@
     "javascript.format.enable": false,
     "git.promptToSaveFilesBeforeCommit": true,
     "workbench.editor.enablePreview": true,
-    "workbench.sideBar.location": "right",
+    "workbench.sideBar.location": "left",
     "editor.insertSpaces": false,
-    "editor.fontWeight": "400",
-    "workbench.colorTheme": "Atom One Dark",
     "editor.cursorSurroundingLines": 4,
-    "explorer.openEditors.visible": 0
+    "explorer.openEditors.visible": 0,
+    "workbench.colorTheme": "Atom One Dark",
+    "editor.fontWeight": "400",
+    "editor.lineHeight": 18,
+    "editor.fontSize": 13, "editor.fontFamily": "Operator Mono, IBM Plex Mono, Input Mono Narrow, monospace"
+    // "editor.fontSize": 12, "editor.fontFamily": "IBM Plex Mono, Input Mono Narrow, monospace"
 }

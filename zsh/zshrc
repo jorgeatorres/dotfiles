@@ -16,7 +16,7 @@ alias django="python manage.py"
 alias latex="texdist pdflatex"
 alias ~="cd ~"
 alias ..="cd .."
-alias brupdate="brew update; brew upgrade; brew cleanup"
+alias brupdate="brew update; brew upgrade; brew cask upgrade; brew cleanup"
 
 export GREP_OPTIONS='--color=auto'
 export LSCOLORS=Exfxcxdxbxegedabagacad

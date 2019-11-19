@@ -48,7 +48,7 @@ cask 'insomnia'
 cask 'virtualbox'
 cask 'vagrant'
 
-cask 'font-input'
+#cask 'font-input'
 cask 'font-ibm-plex'
 cask 'font-source-code-pro'
 

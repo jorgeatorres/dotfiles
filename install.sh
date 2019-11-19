@@ -53,14 +53,17 @@ maybe_link "$DOTFILESDIR/vim/gvimrc" "$HOME/.gvimrc"
 # Homebrew
 if [[ ! -e "/usr/local/bin/brew" ]]; then /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; fi
 
-# Can't trust "brew bundle --check" because `mas` is not including all apps installed.
-DOTFILES_BREWFILE_HASH=$(md5 -q "$DOTFILESDIR/homebrew/Brewfile")
-if [[ -e "$HOME/.dotfiles-brewfile-hash" ]]; then INSTALLED_BREWFILE_HASH=$(cat "$HOME/.dotfiles-brewfile-hash"); else INSTALLED_BREWFILE_HASH=""; fi
+brew bundle check --file="$DOTFILESDIR/homebrew/Brewfile" >/dev/null 2>&1  || {
+    brew bundle --file="$DOTFILESDIR/homebrew/Brewfile"
+}
 
-if [[ $INSTALLED_BREWFILE_HASH != $DOTFILES_BREWFILE_HASH ]]; then
-	brew bundle --file="$DOTFILESDIR/homebrew/Brewfile" || true
-	echo "$DOTFILES_BREWFILE_HASH" > "$HOME/.dotfiles-brewfile-hash"
-fi
+#DOTFILES_BREWFILE_HASH=$(md5 -q "$DOTFILESDIR/homebrew/Brewfile")
+#if [[ -e "$HOME/.dotfiles-brewfile-hash" ]]; then INSTALLED_BREWFILE_HASH=$(cat "$HOME/.dotfiles-brewfile-hash"); else INSTALLED_BREWFILE_HASH=""; fi
+#
+#if [[ $INSTALLED_BREWFILE_HASH != $DOTFILES_BREWFILE_HASH ]]; then
+#	brew bundle --file="$DOTFILESDIR/homebrew/Brewfile" || true
+#	echo "$DOTFILES_BREWFILE_HASH" > "$HOME/.dotfiles-brewfile-hash"
+#fi
 
 # Day One CLI
 if [[ ! $(which dayone2) ]]; then sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh; fi

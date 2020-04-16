@@ -111,8 +111,8 @@ if has("gui_running")
   set guicursor=a:blinkon0
   set guioptions=ceig
 
-  " set guifont=Menlo:h12 linespace=3
-  set guifont=Input\ Mono\ Narrow:h12 linespace=2
+  set guifont=Menlo:h12 linespace=3
+  " set guifont=Input\ Mono\ Narrow:h12 linespace=2
 
   " Comments in italics.
   augroup on_change_colorschema

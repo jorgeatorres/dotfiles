@@ -30,11 +30,10 @@ maybe_link() {
 maybe_link "$DOTFILESDIR/zsh/zshrc" "$HOME/.zshrc"
 
 # bin/
-mkdir -p "$HOME/.bin"
-for i in "$DOTFILESDIR"/bin/*; do
-	scriptFilename="$(basename "$i")"
-	maybe_link "$DOTFILESDIR/bin/$scriptFilename" "$HOME/.bin/$scriptFilename"
-done
+rm -rf /tmp/bin.git
+git clone git@github.com:jorgeatorres/bin.git /tmp/bin.git --quiet --depth=1
+sh /tmp/bin.git/install.sh
+rm -rf /tmp/bin.git
 
 # editorconfig
 maybe_link "$DOTFILESDIR/editorconfig/editorconfig" "$HOME/.editorconfig"
@@ -131,37 +130,3 @@ if ! grep -Eq '^relayhost[ ]*=[ ]*\[localhost\]:1025' /etc/postfix/main.cf; then
 	sudo launchctl stop org.postfix.master
 	sudo launchctl start org.postfix.master
 fi
-
-# wpv
-if [[ ! -e "$HOME/.bin/wpv" ]]; then
-	curl https://raw.githubusercontent.com/smilingrobots/wpv/master/wpv.sh > "$HOME/.bin/wpv"
-	chmod +x "$HOME/.bin/wpv"
-fi
-
-# A8C (personal script for handling Automattic's proxy settings)
-if [[ ! -e "$HOME/.bin/a8c.sh" ]]; then
-	git clone git@github.com:jorgeatorres/a8c.sh.git /tmp/a8c.sh
-	mv /tmp/a8c.sh/a8c.sh "$HOME/.bin"
-	chmod +x "$HOME/.bin/a8c.sh"
-	rm -rf /tmp/a8c.sh
-fi
-
-# strava-dayone-sync (personal script for syncing Strava activities with Day One)
-if [[ ! -e "$HOME/.bin/strava-dayone-sync.sh" ]]; then
-	if [[ ! -e "$HOME/src/strava-dayone-sync" ]]; then mkdir -p "$HOME/src"; git clone git@github.com:jorgeatorres/strava-dayone-sync.git "$HOME/src/strava-dayone-sync"; fi
-
-	eval $(op signin my.1password.com j@jorgetorres.co)
-
-	STRAVA_CREDENTIALS=$(op get item bpjbuoxmt5fnhfl4vhio6aq3uu)
-	STRAVA_USER=$(echo "$STRAVA_CREDENTIALS" | jq '.details.fields[] | select(.designation=="username").value' | tr -d '"')
-	STRAVA_PASSWORD=$(echo "$STRAVA_CREDENTIALS" | jq '.details.fields[] | select(.designation=="password").value' | tr -d '"')
-	STRAVA_ATHLETE_ID=$(echo "$STRAVA_CREDENTIALS" | jq '.details.sections[] | select(.title=="") | .fields[] | select(.t=="athlete id").v' | tr -d '"')
-
-	cat <<EOT > "$HOME/.bin/strava-dayone-sync.sh"
-#!/bin/bash
-STRAVA_USER="$STRAVA_USER" STRAVA_PASSWORD="$STRAVA_PASSWORD" STRAVA_ATHLETE_ID="$STRAVA_ATHLETE_ID" php ~/src/strava-dayone-sync/strava-dayone-sync.php
-EOT
-
-	chmod +x "$HOME/.bin/strava-dayone-sync.sh"
-fi
-

@@ -28,9 +28,8 @@ brew 'jq'
 brew 'grunt-cli'
 brew 'dateutils'
 brew 'tldr'
+brew 'vim'
 
-#brew 'php-code-sniffer'
-brew 'wp-cli'
 brew 'transmission-cli'
 
 cask 'transmission-nightly'
@@ -44,7 +43,6 @@ cask 'whatsapp'
 cask 'tunnelbear'
 
 cask 'droplr'
-cask 'macvim'
 cask 'visual-studio-code'
 cask 'textmate'
 cask 'tower'
@@ -54,9 +52,10 @@ cask 'insomnia'
 cask 'virtualbox'
 cask 'vagrant'
 
-#cask 'font-input'
 cask 'font-ibm-plex'
 cask 'font-jetbrains-mono'
+cask 'font-mononoki'
+cask 'font-source-code-pro'
 
 cask 'adobe-acrobat-reader'
 cask 'poedit'
@@ -95,7 +94,6 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 1449412482
 mas "Slack", id: 803453959
 mas "Trello", id: 1278508951
-#mas "Tweetbot", id: 1384080005
 mas "Twitter", id: 1482454543
 mas "Unsplash Wallpapers", id: 1284863847
 mas "Xcode", id: 497799835

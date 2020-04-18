@@ -35,7 +35,6 @@
     "editor.cursorSurroundingLines": 4,
     "editor.fontWeight": "400",
     "editor.fontFamily": "Operator Mono, JetBrains Mono, mononoki, IBM Plex Mono, monospace",
-    "editor.fontSize": 13.0,
     "editor.lineHeight": 0,
     "workbench.activityBar.visible": true,
     "window.titleBarStyle": "native",
@@ -46,7 +45,6 @@
     "workbench.sideBar.location": "right",
     "workbench.editor.tabSizing": "shrink",
     "explorer.openEditors.visible": 0,
-    "workbench.colorTheme": "Dracula",
     "workbench.editor.tabCloseButton": "left",
     "window.title": "${activeEditorMedium}${separator}${rootName}",
     "solargraph.checkGemVersion": false,
@@ -68,4 +66,6 @@
     "gitlens.views.compare.location": "gitlens",
     "gitlens.views.search.location": "gitlens",
     "gitlens.views.lineHistory.enabled": false,
+    "editor.fontSize": 12.5,
+    "workbench.colorTheme": "Dracula",
 }

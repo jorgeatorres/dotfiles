@@ -29,9 +29,11 @@ brew 'grunt-cli'
 brew 'dateutils'
 brew 'tldr'
 brew 'vim'
+brew 'youtube-dl'
 
 brew 'transmission-cli'
 
+cask 'db-browser-for-sqlite'
 cask 'transmission-nightly'
 cask 'google-chrome'
 cask 'firefox'
@@ -74,6 +76,7 @@ cask 'zoomus'
 cask 'numi'
 cask 'tomighty'
 cask 'skype'
+cask 'microsoft-teams'
 
 # Generate the following list with this command:
 # mas list | sort -b -f -k2 | awk '{printf "mas "}{printf "\""}{for (i=2; i<NF; i++) printf $i " "}{printf "\""}{print ", id: " $1}' | sed 's/ ",/",/g'

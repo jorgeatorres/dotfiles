@@ -111,7 +111,7 @@ if has("gui_running")
   set guicursor=a:blinkon0
   set guioptions=ceig
 
-  set guifont=Menlo:h12 linespace=3
+  set guifont=Menlo:h13 linespace=3
   " set guifont=Input\ Mono\ Narrow:h12 linespace=2
 
   " Comments in italics.
@@ -249,6 +249,7 @@ let g:completor_complete_options = 'menu,menuone,noinsert'
 let g:completor_completion_delay = 500
 let g:completor_blacklist = ['tagbar', 'netrw', 'gitcommit', 'gitrebase']
 let g:completor_php_omni_trigger = '([$\w]+|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'
+let g:completor_python_binary = '/usr/local/bin/python3'
 
 " }
 

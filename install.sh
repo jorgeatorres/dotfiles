@@ -40,6 +40,7 @@ maybe_link "$DOTFILESDIR/editorconfig/editorconfig" "$HOME/.editorconfig"
 
 # git
 maybe_link "$DOTFILESDIR/git/gitconfig" "$HOME/.gitconfig"
+maybe_link "$DOTFILESDIR/git/gitconfig.work" "$HOME/.gitconfig.work"
 maybe_link "$DOTFILESDIR/git/gitignore" "$HOME/.gitignore"
 
 # nano

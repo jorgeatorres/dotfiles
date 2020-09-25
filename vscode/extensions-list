@@ -7,13 +7,14 @@ dracula-theme.theme-dracula
 eamodio.gitlens
 EditorConfig.EditorConfig
 formulahendry.code-runner
+GitHub.github-vscode-theme
 GitHub.vscode-pull-request-github
 ikappas.phpcs
+johnbillion.vscode-wordpress-hooks
 ms-python.python
 ms-vscode.Theme-TomorrowKit
 neilbrayfield.php-docblocker
 rebornix.ruby
-sallar.vscode-duotone-dark
 sdras.night-owl
 sianglim.slim
 wingrunr21.vscode-ruby

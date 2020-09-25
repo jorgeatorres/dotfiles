@@ -1,5 +1,9 @@
 " macOS-specific config. {
 
+" Navigate through buffers using Ctrl-Tab and Ctrl-Shift-Tab
+map <C-Tab> :bn<CR>
+map <C-S-Tab> :bp<CR>
+
 " Remove unwanted menus.
 aunmenu Syntax
 aunmenu Window

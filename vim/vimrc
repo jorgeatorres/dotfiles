@@ -160,9 +160,9 @@ vnoremap > >gv
 
 imap jj <Esc>
 
-" Navigate through buffers using Ctrl-Tab and Ctrl-Shift-Tab
-map <C-Tab> :bn<CR>
-map <C-S-Tab> :bp<CR>
+" Navigate through buffers using Leader + , and Leader + .
+map <Leader>, :bn<CR>
+map <Leader>. :bn<CR>
 
 " Ctrl + Space for omnifunc automcomplete.
 " imap <C-Space> <C-X><C-O>
@@ -212,10 +212,20 @@ let g:ctrlp_match_window = 'top,order:ttb,min:1,max:15'
 let g:ctrlp_show_hidden = 0
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_max_files = 0
-let g:ctrlp_map = '<Leader>o'
+"let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_open_multiple_files = 'ij'
 let g:ctrlp_working_path_mode = ''
+
+nmap <Leader>t :CtrlP<CR>
+nmap <Leader>T :CtrlPFunky<CR>
+nmap <Leader>r :CtrlPFunky<CR>
+nmap <Leader>e :CtrlPBuffer<CR>
+
+" imap <Leader><Leader>t <Esc><Leader>t
+" imap <Leader><Leader>r <Esc><Leader>r
+" imap <Leader><Leader>e <Esc><Leader>e
+
 
 " ctrlsf.
 let g:ctrlsf_auto_close = 0

@@ -20,3 +20,9 @@ vim/autoload/plug.vim*
 
 # Temp files.
 *.swp
+
+# bin.git/
+bin.git/
+
+# Brew lock
+homebrew/Brewfile.lock.json

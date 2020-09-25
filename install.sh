@@ -106,7 +106,7 @@ Host *
 EOT
 
 	cp "$DOTFILESDIR/ssh/id_rsa.pub" "$HOME/.ssh/"
-	eval $(op signin my.1password.com j@jorgetorres.co)
+	eval $(op signin my.1password.com jorge@0xbad.com)
 	op get document "7ukxxbzsincz3bqsx6p6iwl32e" > "$HOME/.ssh/id_rsa"
 	chmod 644 "$HOME/.ssh/id_rsa.pub"
 	chmod 600 "$HOME/.ssh/id_rsa"

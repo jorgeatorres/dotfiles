@@ -57,25 +57,8 @@ brew bundle check --file="$DOTFILESDIR/homebrew/Brewfile" >/dev/null 2>&1  || {
     brew bundle --file="$DOTFILESDIR/homebrew/Brewfile"
 }
 
-#DOTFILES_BREWFILE_HASH=$(md5 -q "$DOTFILESDIR/homebrew/Brewfile")
-#if [[ -e "$HOME/.dotfiles-brewfile-hash" ]]; then INSTALLED_BREWFILE_HASH=$(cat "$HOME/.dotfiles-brewfile-hash"); else INSTALLED_BREWFILE_HASH=""; fi
-#
-#if [[ $INSTALLED_BREWFILE_HASH != $DOTFILES_BREWFILE_HASH ]]; then
-#	brew bundle --file="$DOTFILESDIR/homebrew/Brewfile" || true
-#	echo "$DOTFILES_BREWFILE_HASH" > "$HOME/.dotfiles-brewfile-hash"
-#fi
-
 # Day One CLI
 if [[ ! $(which dayone2) ]]; then sudo bash /Applications/Day\ One.app/Contents/Resources/install_cli.sh; fi
-
-# Sublime Text Code
-# mkdir -p "$HOME/Library/Application Support/Sublime Text 3/Packages/User/"
-# maybe_link "$DOTFILESDIR/sublime-text/Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
-# if needs_update "$DOTFILESDIR/sublime-text/Sublime Text.icns" "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns"; then
-# 	cp "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns" "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns.backup"
-# 	rm "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns"
-# 	cp "$DOTFILESDIR/sublime-text/Sublime Text.icns" "/Applications/Sublime Text.app/Contents/Resources/Sublime Text.icns"
-# fi
 
 # Visual Studio Code
 mkdir -p "$HOME/Library/Application Support/Code/User"

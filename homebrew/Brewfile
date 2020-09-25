@@ -11,6 +11,8 @@ brew 'node'
 brew 'python'
 brew 'ruby'
 brew 'php'
+#brew 'php-code-sniffer'
+brew 'wp-cli'
 brew 'mysql@5.7'
 brew 'composer'
 brew 'ack'
@@ -28,27 +30,27 @@ brew 'jq'
 brew 'grunt-cli'
 brew 'dateutils'
 brew 'tldr'
-brew 'vim'
+#brew 'vim'
+#brew 'macvim'
 brew 'youtube-dl'
 
 brew 'transmission-cli'
 
-cask 'db-browser-for-sqlite'
 cask 'transmission-nightly'
 cask 'google-chrome'
 cask 'firefox'
 cask '1password-cli'
 cask 'iina'
-cask 'vlc'
+#cask 'vlc'
 cask 'whatsapp'
 
 cask 'tunnelbear'
+cask 'browserstacklocal'
 
 cask 'droplr'
 cask 'visual-studio-code'
 cask 'textmate'
 cask 'tower'
-cask 'github'
 cask 'insomnia'
 
 cask 'virtualbox'
@@ -64,7 +66,6 @@ cask 'poedit'
 cask 'dash'
 cask 'ngrok'
 cask 'steam'
-cask 'plex-media-server'
 cask 'sequel-pro-nightly'
 
 cask 'rar'
@@ -84,7 +85,7 @@ mas "1Password 7", id: 1333542190
 mas "Bear", id: 1091189122
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 924726344
-mas "iMovie", id: 408981434
+#mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Microsoft Excel", id: 462058435

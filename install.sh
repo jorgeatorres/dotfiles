@@ -29,11 +29,9 @@ maybe_link() {
 # bash
 maybe_link "$DOTFILESDIR/zsh/zshrc" "$HOME/.zshrc"
 
-# bin/
-rm -rf /tmp/bin.git
-git clone git@github.com:jorgeatorres/bin.git /tmp/bin.git --quiet --depth=1
-sh /tmp/bin.git/install.sh
-rm -rf /tmp/bin.git
+# scripts (bin/)
+if [[ ! -d "$DOTFILESDIR/bin.git" ]]; then git clone git@github.com:jorgeatorres/bin.git "$DOTFILESDIR/bin.git" --quiet; fi
+if [[ -e "$DOTFILESDIR/bin.git/install.sh" ]]; then sh "$DOTFILESDIR/bin.git/install.sh"; fi
 
 # editorconfig
 maybe_link "$DOTFILESDIR/editorconfig/editorconfig" "$HOME/.editorconfig"

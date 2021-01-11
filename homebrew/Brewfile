@@ -3,81 +3,81 @@ tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
+#tap 'shivammathur/php'
 
+brew 'ack'
+brew 'composer'
+brew 'ctags'
+brew 'curl'
+brew 'dateutils'
+brew 'ffmpeg'
+brew 'gnu-tar'
+brew 'grunt-cli'
+brew 'jq'
+brew 'macvim'
+brew 'mas'
+brew 'mplayer'
+brew 'node'
+brew 'php@7.4'
+brew 'php'
+brew 'python'
+brew 'ripgrep'
+brew 'ruby'
 brew 'sqlite'
 brew 'ssh-copy-id'
-brew 'wget'
-brew 'node'
-brew 'python'
-brew 'ruby'
-brew 'php'
-#brew 'php-code-sniffer'
-brew 'wp-cli'
-brew 'mysql@5.7'
-brew 'composer'
-brew 'ack'
 brew 'the_silver_searcher'
-brew 'ripgrep'
-brew 'ctags'
-brew 'mplayer'
-brew 'ffmpeg'
-brew 'unrar'
-brew 'gnu-tar'
-brew 'mas'
-brew 'curl'
-brew 'mailhog'
-brew 'jq'
-brew 'grunt-cli'
-brew 'dateutils'
 brew 'tldr'
-#brew 'vim'
-#brew 'macvim'
+brew 'unrar'
+brew 'wget'
 brew 'youtube-dl'
+brew 'svn'
 
-brew 'transmission-cli'
-
-cask 'transmission-nightly'
-cask 'google-chrome'
-cask 'firefox'
 cask '1password-cli'
-cask 'iina'
-#cask 'vlc'
-cask 'whatsapp'
-
-cask 'tunnelbear'
 cask 'browserstacklocal'
-
+cask 'dash'
 cask 'droplr'
-cask 'visual-studio-code'
-cask 'textmate'
-cask 'tower'
-cask 'insomnia'
-
-cask 'virtualbox'
-cask 'vagrant'
-
+cask 'firefox'
+cask 'font-cascadia-code'
 cask 'font-ibm-plex'
 cask 'font-jetbrains-mono'
 cask 'font-mononoki'
 cask 'font-source-code-pro'
-
-cask 'adobe-acrobat-reader'
-cask 'poedit'
-cask 'dash'
-cask 'ngrok'
-cask 'steam'
-cask 'sequel-pro-nightly'
-
-cask 'rar'
-cask 'transmit4' # Because I still own a license. Will have to upgrade to 5 at some point.
-cask 'subtitles'
-
+cask 'google-chrome'
+cask 'iina'
+cask 'insomnia'
 cask 'mactex'
-cask 'zoomus'
-cask 'numi'
-cask 'tomighty'
+cask 'ngrok'
+cask 'openemu'
+cask 'plex-media-server'
+cask 'poedit'
+cask 'rar'
+cask 'sequel-pro-nightly'
 cask 'skype'
-cask 'microsoft-teams'
+cask 'sdformatter'
+cask 'steam'
+cask 'subtitles'
+cask 'textmate'
+cask 'tomighty'
+cask 'tower'
+cask 'transmission-nightly'
+cask 'transmit4' # I still own a license. Will have to upgrade to 5 at some point.
+cask 'tunnelbear'
+cask 'vagrant'
+cask 'virtualbox'
+cask 'visual-studio-code'
+cask 'whatsapp'
+cask 'zoomus'
+
+#brew 'gh'
+brew 'mailhog'
+brew 'nginx'
+brew 'mysql@5.7'
+#brew 'transmission-cli'
+#brew 'vim'
+#cask 'numi'
+#cask 'adobe-acrobat-reader'
+#cask 'microsoft-teams'
+#cask 'vlc'
 
 # Generate the following list with this command:
 # mas list | sort -b -f -k2 | awk '{printf "mas "}{printf "\""}{for (i=2; i<NF; i++) printf $i " "}{printf "\""}{print ", id: " $1}' | sed 's/ ",/",/g'
@@ -85,7 +85,7 @@ mas "1Password 7", id: 1333542190
 mas "Bear", id: 1091189122
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 924726344
-#mas "iMovie", id: 408981434
+mas "Developer", id: 640199958
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Microsoft Excel", id: 462058435
@@ -93,10 +93,12 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Paprika Recipe Manager 3", id: 1303222628
 mas "Patterns", id: 429449079
 mas "Pixelmator Pro", id: 1289583905
-mas "Reeder", id: 1449412482
+mas "Reeder 5", id: 1529448980
 mas "Slack", id: 803453959
+mas "Streaks", id: 1493327990
 mas "Trello", id: 1278508951
 mas "Twitter", id: 1482454543
 mas "Unsplash Wallpapers", id: 1284863847

@@ -41,6 +41,7 @@ do_install _setup/ssh.sh
 do_install _setup/dayone.sh
 do_install _setup/vscode.sh
 
+do_install _setup/bin-private.sh
 do_install _setup/wp-cli.sh
 do_install _setup/mailhog.sh
 do_install _setup/phpunit.sh

@@ -5,7 +5,7 @@ if [[ ! $(which phpcs) ]]; then
 	mkdir -p "$HOME/.phpcs"
 	wget -O "$HOME/.phpcs/phpcs" https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
 	chmod +x "$HOME/.phpcs/phpcs"
-	ln -s $HOME/.phpcs/phpcs "$HOME/bin/"
+	ln -s $HOME/.phpcs/phpcs "$HOME/.bin/"
 fi
 
 mkdir -p $HOME/.phpcs/standards

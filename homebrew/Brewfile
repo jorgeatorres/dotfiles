@@ -93,8 +93,8 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Paprika Recipe Manager 3", id: 1303222628
-mas "Patterns", id: 429449079
+#mas "Paprika Recipe Manager 3", id: 1303222628
+#mas "Patterns", id: 429449079
 mas "Pixelmator Pro", id: 1289583905
 mas "Reeder 5", id: 1529448980
 mas "Slack", id: 803453959

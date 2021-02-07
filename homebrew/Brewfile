@@ -5,9 +5,9 @@ tap 'homebrew/bundle'
 tap 'homebrew/core'
 #tap 'shivammathur/php'
 
-brew 'ack'
-brew 'composer'
-brew 'ctags'
+#brew 'ack'
+#brew 'composer'
+#brew 'ctags'
 brew 'curl'
 brew 'dateutils'
 brew 'ffmpeg'
@@ -25,8 +25,8 @@ brew 'ripgrep'
 brew 'ruby'
 brew 'sqlite'
 brew 'ssh-copy-id'
-brew 'the_silver_searcher'
-brew 'tldr'
+#brew 'the_silver_searcher'
+#brew 'tldr'
 brew 'unrar'
 brew 'wget'
 brew 'youtube-dl'
@@ -99,7 +99,7 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Reeder 5", id: 1529448980
 mas "Slack", id: 803453959
 mas "Streaks", id: 1493327990
-mas "Trello", id: 1278508951
+#mas "Trello", id: 1278508951
 mas "Twitter", id: 1482454543
 mas "Unsplash Wallpapers", id: 1284863847
 mas "Xcode", id: 497799835

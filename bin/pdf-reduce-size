@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [[ -z "$1" || -z "$2" ]]; then
+	echo "Usage: $0 <filename> <output> [<compression level:1-5, default:4>]"
+	exit 1
+fi
+
+# * -dPDFSETTINGS=/screen lower quality, smaller size. (72 dpi)
+# * -dPDFSETTINGS=/ebook for better quality, but slightly larger pdfs. (150 dpi)
+# * -dPDFSETTINGS=/prepress output similar to Acrobat Distiller "Prepress Optimized" setting (300 dpi)
+# * -dPDFSETTINGS=/printer selects output similar to the Acrobat Distiller "Print Optimized" setting (300 dpi)
+# * -dPDFSETTINGS=/default selects output intended to be useful across a wide variety of uses, possibly at the expense of a larger output file
+case "$3" in
+1)
+	PDFSETTINGS="/default"
+	;;
+2)
+	PDFSETTINGS="/printer"
+	;;
+3)
+	PDFSETTINGS="/prepress"
+	;;
+5)
+	PDFSETTINGS="/screen"
+	;;
+*)
+	PDFSETTINGS="/ebook"
+	;;
+esac
+
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS="$PDFSETTINGS" -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$2" "$1"

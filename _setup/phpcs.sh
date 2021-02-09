@@ -1,48 +1,49 @@
-# TODO:
-# - Add PHPCompatibility to phpcs standards.
+PHPCS_DIR="$HOME/.phpcs"
+
+STANDARDS="
+https://github.com/WordPress/WordPress-Coding-Standards
+https://github.com/woocommerce/woocommerce-sniffs
+https://github.com/PHPCSStandards/PHPCSUtils
+https://github.com/PHPCompatibility/PHPCompatibility
+"
+
+
+mkdir -p "$PHPCS_DIR"
 
 if [[ ! $(which phpcs) ]]; then
-	mkdir -p "$HOME/.phpcs"
-	wget -O "$HOME/.phpcs/phpcs" https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
-	chmod +x "$HOME/.phpcs/phpcs"
-	ln -s $HOME/.phpcs/phpcs "$HOME/.bin/"
+	wget -O "$PHPCS_DIR/phpcs" https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+	chmod +x "$PHPCS_DIR/phpcs"
+	ln -s "$PHPCS_DIR/phpcs" "$HOME/.bin/"
 fi
 
-mkdir -p $HOME/.phpcs/standards
+mkdir -p "$PHPCS_DIR/standards"
 
-# WordPress.
-if [[ ! -e "$HOME/.phpcs/standards/wordpress" ]]; then
- 	git clone https://github.com/WordPress/WordPress-Coding-Standards.git "$HOME/.phpcs/standards/wordpress" --depth 1
-else
-	cd "$HOME/.phpcs/standards/wordpress"
-	git pull --rebase --quiet
+installed_paths=""
+for repo in $STANDARDS; do
+	standard=$(basename "$repo")
+	
+	if [[ ! -e "$PHPCS_DIR/standards/$standard" ]]; then
+		 git clone "$repo" "$PHPCS_DIR/standards/$standard" --depth 1
+	else
+		cd "$PHPCS_DIR/standards/$standard"
+		git pull --rebase --quiet
+	fi
+	
+	
+	standard_contents="$PHPCS_DIR/standards/$standard"
+	# woocommerce-sniffs is a special case.
+	if [[ "woocommerce-sniffs" = "$standard" ]]; then
+		standard_contents="$standard_contents/src"
+	fi
+	
+	installed_paths="$installed_paths,$standard_contents"
+done
+
+installed_paths=${installed_paths:1}
+
+if [[ ! $(phpcs --config-show | grep "$installed_paths") ]]; then
+	phpcs --config-set installed_paths "$installed_paths"
 fi
-
-# WooCommerce.
-if [[ ! -e "$HOME/.phpcs/standards/woocommerce" ]]; then
- 	git clone https://github.com/woocommerce/woocommerce-sniffs "$HOME/.phpcs/standards/woocommerce" --depth 1
-else
-	cd "$HOME/.phpcs/standards/woocommerce"
-	git pull --rebase --quiet
-fi
-
-# PHPCSUtils (required by PHPCompatibility).
-if [[ ! -e "$HOME/.phpcs/standards/phpcsutils" ]]; then
-	git clone https://github.com/PHPCSStandards/PHPCSUtils "$HOME/.phpcs/standards/phpcsutils" --depth 1
-else
-	cd "$HOME/.phpcs/standards/phpcsutils"
-	git pull --rebase --quiet
-fi
-
-# PHPCompatibility.
-if [[ ! -e "$HOME/.phpcs/standards/phpcompatibility" ]]; then
-	git clone https://github.com/PHPCompatibility/PHPCompatibility.git "$HOME/.phpcs/standards/phpcompatibility" --depth 1
-else
-	cd "$HOME/.phpcs/standards/phpcompatibility"
-	git pull --rebase --quiet
-fi
-
-phpcs --config-set installed_paths "$HOME/.phpcs/standards/wordpress,$HOME/.phpcs/standards/woocommerce/src,$HOME/.phpcs/standards/phpcsutils,$HOME/.phpcs/standards/phpcompatibility"
 
 
 

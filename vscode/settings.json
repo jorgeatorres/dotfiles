@@ -45,12 +45,11 @@
     "workbench.editor.tabCloseButton": "left",
     "window.title": "${activeEditorMedium}${separator}${rootName}",
     "solargraph.checkGemVersion": false,
-    "solargraph.commandPath": "/usr/local/lib/ruby/gems/2.7.0/bin/solargraph",
+    "solargraph.commandPath": "/usr/local/bin/solargraph",
     "code-runner.enableAppInsights": false,
     "code-runner.temporaryFileName": "",
     "oneDarkPro.editorTheme": "Onedark Pro",
     "code-runner.clearPreviousOutput": true,
-    "python.pythonPath": "python3",
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
@@ -71,5 +70,13 @@
     "python.showStartPage": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.quickOpen.closeOnFocusLost": false,
-    "workbench.colorTheme": "Dracula Soft"
+    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "phpcs.enable": false,
+    "python.defaultInterpreterPath": "python3",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
 }

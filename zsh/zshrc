@@ -12,9 +12,9 @@ fi
 # Aliases.
 alias ls="ls -G"
 alias ll="ls -lG"
-alias dir="ls"
 alias ~="cd ~"
 alias ..="cd .."
+alias brew_update="brew upgrade && brew update && brew update --cask && brew cleanup"
 
 export EDITOR="$(which vim)"
 export GREP_OPTIONS='--color=auto'

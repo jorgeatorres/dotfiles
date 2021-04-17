@@ -29,11 +29,17 @@ maybe_link() {
 
 do_install() {
 	shortname=$(basename "$1")
-	
+
 	echo "\033[1;32m=> \033[1;37mRunning \033[1;33m$shortname\033[1;37m...\033[0m"
 	cd "$DIR" > /dev/null
 	source "$1"
 }
+
+# Maybe run just one of the setup scripts (if passed as arg).
+if [[ -n "$1" ]]; then
+	do_install _setup/"$1.sh"
+	exit
+fi
 
 do_install _setup/dotfiles.sh
 do_install _setup/homebrew.sh

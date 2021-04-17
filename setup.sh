@@ -54,5 +54,6 @@ do_install _setup/private.sh
 do_install _setup/wp-cli.sh
 do_install _setup/mailhog.sh
 do_install _setup/phpunit.sh
+do_install _setup/composer.sh
 do_install _setup/phpcs.sh
 do_install _setup/valet.sh

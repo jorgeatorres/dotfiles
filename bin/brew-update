@@ -1,7 +1,0 @@
-#!/bin/sh
-set -e
-
-brew upgrade
-brew update
-brew update --cask
-brew cleanup

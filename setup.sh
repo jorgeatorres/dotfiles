@@ -50,7 +50,6 @@ do_install _setup/dayone.sh
 do_install _setup/vscode.sh
 
 do_install _setup/bin.sh
-do_install _setup/private.sh
 
 do_install _setup/wp-cli.sh
 do_install _setup/mailhog.sh
@@ -59,3 +58,5 @@ do_install _setup/phpunit.sh
 do_install _setup/composer.sh
 do_install _setup/phpcs.sh
 do_install _setup/valet.sh
+
+do_install _setup/private.sh

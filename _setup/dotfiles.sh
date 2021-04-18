@@ -14,6 +14,7 @@ maybe_link "$DIR/nano/nanorc" "$HOME/.nanorc"
 
 # vim
 maybe_link "$DIR/vim/vimrc" "$HOME/.vimrc"
-maybe_link "$DIR/vim/gvimrc" "$HOME/.gvimrc"
+mkdir -p "$HOME/.vim"
+maybe_link "$DIR/vim/gvimrc" "$HOME/.vim/gvimrc"
 
 source ~/.zshrc

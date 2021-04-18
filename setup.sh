@@ -44,6 +44,7 @@ fi
 do_install _setup/dotfiles.sh
 do_install _setup/homebrew.sh
 do_install _setup/ssh.sh
+do_install _setup/gpg.sh
 
 do_install _setup/dayone.sh
 do_install _setup/vscode.sh

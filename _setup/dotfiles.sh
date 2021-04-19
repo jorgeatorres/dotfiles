@@ -13,8 +13,12 @@ maybe_link "$DIR/git/gitignore" "$HOME/.gitignore"
 maybe_link "$DIR/nano/nanorc" "$HOME/.nanorc"
 
 # vim
-maybe_link "$DIR/vim/vimrc" "$HOME/.vimrc"
 mkdir -p "$HOME/.vim"
+maybe_link "$DIR/vim/vimrc" "$HOME/.vim/vimrc"
 maybe_link "$DIR/vim/gvimrc" "$HOME/.vim/gvimrc"
+
+for vimfile in "$DIR"/vim/*.vim; do
+	maybe_link "$vimfile" "$HOME/.vim/$(basename $vimfile)"
+done
 
 source ~/.zshrc

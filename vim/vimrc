@@ -1,41 +1,20 @@
 " vim:set ts=2 sts=2 sw=2 expandtab:
+
 set nocompatible
+
 filetype off
 
-" Plugins. {
+" -------
+" Plugins
+" -------
 
+" Install vim-plug if needed.
 if !filereadable(expand('~/.vim/autoload/plug.vim'))
   exec 'silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs '.
         \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
 call plug#begin('~/.vim/plugged')
-  "Plug 'tpope/vim-sensible'
-
-  Plug 'mileszs/ack.vim'              " 'Run your favorite search tool from Vim, with an enhanced results list'. Provides :Ack, :AckAdd, :LAck and :LAckAdd.
-  Plug 'dyng/ctrlsf.vim'              " 'An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2'.
-
-  Plug 'skwp/greplace.vim'            " 'Global search and replace for VI'. Provides :Gsearch and :Greplace.
-  Plug 'ctrlpvim/ctrlp.vim'           " 'Fuzzy file, buffer, mru, tag, etc finder'.
-  Plug 'FelikZ/ctrlp-py-matcher'      " Better matching for ctrlp.
-  Plug 'tacahiroy/ctrlp-funky'        " 'A super simple function navigator for ctrlp.vim'.
-
-  Plug 'tpope/vim-sleuth'             " Heuristically set buffer options (shiftwidth, expandtab, etc.).
-  Plug 'Raimondi/delimitMate'         " 'Provides insert mode auto-completion for quotes, parens, brackets, etc'
-  Plug 'tpope/vim-surround'           " 'surround.vim: quoting/parenthesizing made simple'. Provides ds, cs, yss and visual S.
-  Plug 'tomtom/tcomment_vim'          " 'tcomment provides easy to use, file-type sensible comments for Vim.' Provides gcc, gc{motion}.
-  Plug 'vim-scripts/matchit.zip'      " Extended % matching for HTML, LaTeX, and many other languages.
-  Plug 'maralla/completor.vim'        " 'Completor is an asynchronous code completion framework for vim8'.
-  Plug 'machakann/vim-swap'           " Reorder/swap delimited items. Adds g<, g>, gs.
-
-  Plug 'shawncplus/phpcomplete.vim'   " Improved PHP omnicompletion.
-  Plug 'groenewege/vim-less'          " Syntax support for LESS.
-  Plug 'ap/vim-css-color'             " Preview CSS colors in source code while editing
-
-  Plug 'majutsushi/tagbar'            " Vim plugin that displays tags in a window, ordered by scope. Use with :TagbarToggle.
-  Plug 'mbbill/undotree'              " Undo tree visualizer (:UndotreeToggle).
-  Plug 'ap/vim-buftabline'            " 'Forget Vim tabs – now you can have buffer tabs'.
-  Plug 'tpope/vim-fugitive'           " 'fugitive.vim: A Git wrapper so awesome, it should be illegal'.
   Plug 'pbrisbin/vim-mkdir'           " Automatically create non-existent directories when saving.
   Plug 'tpope/vim-repeat'             " 'repeat.vim: enable repeating supported plugin maps with .'.
   Plug 'thinca/vim-quickrun'          " '*quickrun* is Vim plugin to execute whole/part of editing file'. Provides :QuickRun.
@@ -43,35 +22,60 @@ call plug#begin('~/.vim/plugged')
   Plug 'moll/vim-bbye'                " 'Delete buffers and close files in Vim without closing your windows.' Use with :Bdelete and :Bwipeout.
   Plug 'ludovicchabant/vim-gutentags' " 'A Vim plugin that manages your tag files.'
   Plug 'tpope/vim-eunuch'             " 'Vim sugar for the UNIX shell commands that need it the most'. Provides :Delete, :Move, :Rename, :SudoWrite, etc.
-  Plug 'xolox/vim-session'            " Extended session management. Adds :{Open,Close,Delete}Session cmds.
-  Plug 'xolox/vim-misc'               " Required by xolox/vim-session.
-
-  Plug 'danielwe/base16-vim'
-  "Plug 'chriskempson/base16-vim'
+  Plug 'dyng/ctrlsf.vim'              " 'An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2'.
+  Plug 'ctrlpvim/ctrlp.vim'           " 'Fuzzy file, buffer, mru, tag, etc finder'.
+  Plug 'FelikZ/ctrlp-py-matcher'      " Better matching for ctrlp.
+  Plug 'tpope/vim-sleuth'             " Heuristically set buffer options (shiftwidth, expandtab, etc.).
+  Plug 'Raimondi/delimitMate'         " 'Provides insert mode auto-completion for quotes, parens, brackets, etc'
+  Plug 'tpope/vim-surround'           " 'surround.vim: quoting/parenthesizing made simple'. Provides ds, cs, yss and visual S.
+  Plug 'tomtom/tcomment_vim'          " 'tcomment provides easy to use, file-type sensible comments for Vim.' Provides gcc, gc{motion}.
+  Plug 'vim-scripts/matchit.zip'      " Extended % matching for HTML, LaTeX, and many other languages.
+  Plug 'machakann/vim-swap'           " Reorder/swap delimited items. Adds g<, g>, gs.
+  Plug 'shawncplus/phpcomplete.vim'   " Improved PHP omnicompletion.
+  Plug 'groenewege/vim-less'          " Syntax support for LESS.
+  Plug 'mtdl9/vim-log-highlighting'   " Provides syntax highlighting for generic log files.
+  Plug 'ap/vim-css-color'             " Preview CSS colors in source code while editing.
+  Plug 'ap/vim-buftabline'            " 'Forget Vim tabs – now you can have buffer tabs'.
+  Plug 'tpope/vim-fugitive'           " 'fugitive.vim: A Git wrapper so awesome, it should be illegal'.
+  Plug 'tpope/vim-rhubarb'            " 'If fugitive.vim is the Git, rhubarb.vim is the Hub'.
+  Plug 'chriskempson/base16-vim'
+  "Plug 'xolox/vim-session'            " Extended session management. Adds :{Open,Close,Delete}Session cmds.
+  "Plug 'xolox/vim-misc'               " Required by xolox/vim-session.
+  "Plug 'mileszs/ack.vim'              " 'Run your favorite search tool from Vim, with an enhanced results list'. Provides :Ack, :AckAdd, :LAck and :LAckAdd.
+  "Plug 'skwp/greplace.vim'            " 'Global search and replace for VI'. Provides :Gsearch and :Greplace.
+  "Plug 'neoclide/coc.nvim', {'branch': 'release'} " Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers.
+  "Plug 'tacahiroy/ctrlp-funky'        " 'A super simple function navigator for ctrlp.vim'.
+  "Plug 'maralla/completor.vim'        " 'Completor is an asynchronous code completion framework for vim8'.
+  "Plug 'majutsushi/tagbar'            " Vim plugin that displays tags in a window, ordered by scope. Use with :TagbarToggle.
+  "Plug 'mbbill/undotree'              " Undo tree visualizer (:UndotreeToggle).
+  "Plug 'airblade/vim-gitgutter'
 call plug#end()
 
-" }
 
+" ------
+" Basics
+" ------
 
-" General/editing config. {
+let mapleader = ","
 
 filetype plugin indent on
+
 syntax on
 
 set autoread hidden nobackup nowritebackup noswapfile modeline
 set fileformats=unix,dos,mac encoding=utf-8 fileencoding=utf-8
 set clipboard=unnamed
 set report=0
-set shortmess=aAI
+set shortmess=aAIc
 set incsearch
-set relativenumber number
+set number relativenumber
 set viminfo='100,<100,s10,h
 
-set noerrorbells vb t_vb=   " Use visual bells instead of sound.
-set whichwrap+=<,>,[,]      " Cursor keys move to prev/next lines too.
-set gdefault                " Default to replacing all ocurrences when searching & replacing.
-set ignorecase smartcase    " Ignore case when searching, except if not all pattern is lowercase.
-set showmatch               " Show matching brackets.
+set noerrorbells vb t_vb=             " Use visual bells instead of sound.
+set whichwrap+=<,>,[,]                " Cursor keys move to prev/next lines too.
+set gdefault                          " Default to replacing all ocurrences when searching & replacing.
+set incsearch ignorecase smartcase    " Incremental search. Ignore case when searching, except if not all pattern is lowercase.
+set showmatch                         " Show matching brackets.
 
 set cursorline              " Highlight current line.
 " set colorcolumn=+1
@@ -92,8 +96,8 @@ endif
 set nostartofline
 set nowrap textwidth=120
 
-set autoindent smartindent copyindent
-set tabstop=4 softtabstop=0 shiftwidth=4
+set autoindent copyindent
+set tabstop=4 softtabstop=4 shiftwidth=4
 set expandtab smarttab
 
 set formatoptions+=n " Recognize numbered lists.
@@ -107,166 +111,50 @@ set wildmenu wildmode=longest:full " Use wild menu for tab-completion.
 set wildmode=longest:full
 set wildignore+=.DS_Store,*/node_modules/*,*/vendors/*,*/.site/*,*.min.css,*.min.js,*.mo
 
-if has("gui_running")
-  set guicursor=a:blinkon0
-  set guioptions=ceig
-
-  set guifont=Menlo:h13 linespace=3
-  " set guifont=Input\ Mono\ Narrow:h12 linespace=2
-
-  " Comments in italics.
-  augroup on_change_colorschema
-   autocmd!
-   autocmd ColorScheme * call Base16hi("Comment", "", "", "", "", "italic", "")
-  augroup END
-
-  colo base16-onedark
-  " colo base16-one-light
-
-  " hi StatusLine   gui=bold guifg=#ffffff guibg=#000000
-  " hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0
-endif
-
-" }
-
-
-" Autocommands. {
-
-" When editing a file, always jump to the last cursor position.
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-au FileType php setl omnifunc=phpcomplete#CompletePHP makeprg=php\ %
-au FileType php setl makeprg=php\ %
-au FileType python setl omnifunc=pythoncomplete#Complete makeprg=python\ %
-au FileType ruby setl makeprg=ruby\ %
-
-" }
-
-
-" Key bindings. {
-
-let mapleader = ","
-noremap Q <nop>
-
-" More clever navigation.
-nnoremap 0 g0
-nnoremap $ g$
-nnoremap j gj
-nnoremap k gk
-
-" Visual shifting.
-vnoremap < <gv
-vnoremap > >gv
-
-imap jj <Esc>
-
-" Navigate through buffers using Leader + , and Leader + .
-map <Leader>, :bn<CR>
-map <Leader>. :bn<CR>
-
-" Ctrl + Space for omnifunc automcomplete.
-" imap <C-Space> <C-X><C-O>
-
-" Typing %% expands to the path of the current file.
-cmap %% <C-R>=expand("%:h") . "/" <CR>
-
-" gss -> Git status.
-nnoremap <silent> gss :Gstatus<CR>
-
-" Make Tab and Enter select inside the ins-menu.
-inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
-inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : "\<CR>"
-
-" }
-
-
-" Plugin-specific config. {
-
-let g:tcomment#filetype#guess_php=1
-let delimitMate_expand_space=1
-let g:gutentags_cache_dir = $HOME .'/.cache/vim-gutentags' " Store tags files outside of project directories.
-
 " Use treeview for NetRW by default.
 let g:netrw_liststyle=3
 
-" ,a is for Ack.
-nnoremap <Leader>a :Ack!<Space>''<Left>
-
-" ,A searches the word under the cursor inside the project.
-nnoremap <Leader>A :Ack! <cword><CR> 
-
-" Configure search/grep plugins depending on available system commands.
-if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-  let g:ackprg = 'rg --vimgrep --ignore-vcs --no-heading --smart-case --iglob !node_modules/ --iglob !.git/ --iglob !.DS_Store --iglob !vendor/ --iglob !tmp/ --iglob !tags --sort-files'
-  let g:ctrlp_use_caching = 0
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob "" --no-ignore-vcs --iglob !.git/ --iglob !node_modules/ --iglob !.DS_Store --iglob !vendor/ --iglob !tmp/'
-elseif executable('ag')
-  let g:ackprg = 'ag --vimgrep --skip-vcs-ignores --ignore node_modules/ --ignore .git --ignore .DS_Store --ignore vendor/ --ignore tmp/'
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --skip-vcs-ignores --ignore node_modules --ignore .git --ignore .DS_Store --ignore vendor/ --ignore tmp/ -g ""'
-  let g:ctrlp_use_caching = 0
-endif
-
-" ctrlp.vim.
-let g:ctrlp_match_window = 'top,order:ttb,min:1,max:15'
-let g:ctrlp_show_hidden = 0
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_max_files = 0
-"let g:ctrlp_map = '<Leader>t'
-let g:ctrlp_extensions = ['funky']
-let g:ctrlp_open_multiple_files = 'ij'
-let g:ctrlp_working_path_mode = ''
-
-nmap <Leader>t :CtrlP<CR>
-nmap <Leader>T :CtrlPFunky<CR>
-nmap <Leader>r :CtrlPFunky<CR>
-nmap <Leader>e :CtrlPBuffer<CR>
-
-" imap <Leader><Leader>t <Esc><Leader>t
-" imap <Leader><Leader>r <Esc><Leader>r
-" imap <Leader><Leader>e <Esc><Leader>e
+" Use rg.
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 
 
-" ctrlsf.
-let g:ctrlsf_auto_close = 0
-let g:ctrlsf_position = 'bottom'
-" let g:ctrlsf_winsize = '200'
+" --------
+" Commands
+" --------
 
-let g:phpcomplete_mappings = {
-   \ 'jump_to_def': '<C-]>',
-   \ 'jump_to_def_split': '',
-   \ 'jump_to_def_vsplit': '',
-   \ 'jump_to_def_tabnew': '',
-   \}
+augroup editing
+  " When editing a file, always jump to the last cursor position.
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup end
 
-" buftabline.
-let g:buftabline_show = 1
-let g:buftabline_separators = 1
-let g:buftabline_plug_max = 5
+augroup makeprg
+  au FileType php setl makeprg=php\ %
+  au FileType python setl makeprg=python\ %
+  au FileType ruby setl makeprg=ruby\ %
+augroup end
 
-" vim-session.
-let g:session_autoload = 'no'
-let g:session_autosave = 'yes'
-let g:session_autosave_silent = 1
-let g:session_directory = '~/.cache/vim-session/'
+augroup syntax
+" au FileType python setl omnifunc=pythoncomplete#Complete
+" au FileType php setl omnifunc=phpcomplete#CompletePHP makeprg=php\ %
+" au FileType ruby setl makeprg=ruby\ %
+augroup end
 
-" vim-rooter.
-let g:rooter_patterns = ['.project', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
-let g:rooter_silent_chdir = 1
-
-" completor.vim.
-let g:completor_complete_options = 'menu,menuone,noinsert'
-let g:completor_completion_delay = 500
-let g:completor_blacklist = ['tagbar', 'netrw', 'gitcommit', 'gitrebase']
-let g:completor_php_omni_trigger = '([$\w]+|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'
-let g:completor_python_binary = '/usr/local/bin/python3'
-
-" }
-
-
-" Misc. {
+augroup vimconf
+  au!
+  au BufWritePost vimrc so %
+augroup end
 
 " Command to remove trailing spaces.
 command! RemoveTrailingWhitespace :%s/\s\+$//e
 
-" }
+
+" -------------
+" Plugin config
+" -------------
+source ~/.vim/plugins.vim
+
+
+" --------
+" Mappings
+" --------
+source ~/.vim/map.vim

@@ -9,11 +9,13 @@ if [[ -n "$MAILHOG_PATH" ]]; then
 	for dir in $PHP_ETC/*; do
 	    dir=${dir%*/}
 
-		if [ ! -e "$dir/conf.d/mailhog.ini" ]; then
+		# if [ ! -e "$dir/conf.d/mailhog.ini" ]; then
 			cat <<- EOF > "$dir/conf.d/mailhog.ini"
 			[mail function]
 			sendmail_path = '$MAILHOG_PATH sendmail'
 			EOF
-		fi
+		# fi
 	done
+
+	brew services start mailhog
 fi

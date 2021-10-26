@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [ -z "$1" ]; then
-    echo "Usage: git-move-repo <new repo>"
-    exit 1
-fi;
-
-eval "git push --all $1"
-eval "git push --tags $1"

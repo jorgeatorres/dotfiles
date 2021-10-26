@@ -56,4 +56,7 @@ if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/node@16" ]]; then
 	alias npm@16='PATH="$HOMEBREW_PREFIX/opt/node@16/bin/:$PATH" npm'
 fi
 
+# php@7
+if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/php@7.4" ]]; then
+	alias php@7='PATH="$HOMEBREW_PREFIX/opt/php@7.4/bin/:$PATH" php'
 fi

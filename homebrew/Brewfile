@@ -8,6 +8,8 @@ brew 'curl'
 brew 'dateutils'
 brew 'ffmpeg'
 brew 'git'
+brew 'gh'
+brew 'go'
 brew 'gnu-tar'
 brew 'jq'
 brew 'mas'
@@ -16,6 +18,7 @@ brew 'ruby'
 brew 'sqlite'
 brew 'ssh-copy-id'
 brew 'svn'
+brew 'tldr'
 brew 'wget'
 brew 'youtube-dl'
 
@@ -27,7 +30,6 @@ brew 'ripgrep'
 #brew 'vim'
 
 cask '1password-cli'
-#cask 'browserstacklocal'
 cask 'dash'
 cask 'docker'
 cask 'droplr'
@@ -37,25 +39,24 @@ cask 'font-ibm-plex'
 cask 'font-jetbrains-mono'
 cask 'font-mononoki'
 cask 'font-source-code-pro'
-cask 'gas-mask'
+#cask 'gas-mask'
+cask 'github'
 cask 'google-chrome'
-#cask 'iina'
+cask 'iina'
 cask 'insomnia'
-cask 'krisp'
+cask 'numi'
 cask 'mactex'
 cask 'ngrok'
 cask 'openemu'
 cask 'plex-media-server'
 cask 'poedit'
 cask 'rar'
-cask 'sequel-pro-nightly'
 cask 'skype'
 cask 'steam'
 cask 'subtitles'
-cask 'textmate'
-cask 'tomighty'
+cask 'texmacs'
 cask 'tower'
-cask 'transmission-nightly'
+cask 'transmission'
 cask 'transmit4' # I still own a license. Will have to upgrade to 5 at some point.
 cask 'tunnelbear'
 cask 'visual-studio-code'
@@ -69,21 +70,23 @@ brew 'mysql@5.7'
 brew 'nginx'
 brew 'node'
 brew 'node@12'
+brew 'node@14'
+brew 'node@16'
 brew 'php'
 brew 'php@7.4'
 
-# These don't really work on Apple Silicon at the moment.
+# These don't work on Apple Silicon at the moment.
 #cask 'vagrant'
 #cask 'virtualbox'
 
 # Generate the following list with this command:
 # mas list | sort -b -f -k2 | awk '{printf "mas "}{printf "\""}{for (i=2; i<NF; i++) printf $i " "}{printf "\""}{print ", id: " $1}' | sed 's/ ",/",/g'
-mas "Amphetamine", id: 937984704
 mas "1Password 7", id: 1333542190
+mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 290986013
-# mas "Developer", id: 640199958
+mas "Developer", id: 640199958
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Microsoft Excel", id: 462058435
@@ -91,13 +94,12 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-#mas "Paprika Recipe Manager 3", id: 1303222628
-#mas "Patterns", id: 429449079
+mas "Patterns", id: 429449079
 mas "Pixelmator Pro", id: 1289583905
-mas "Reeder 5", id: 1529448980
+mas "Reeder", id: 1529448980
 mas "Slack", id: 803453959
 mas "Streaks", id: 1493327990
-#mas "Trello", id: 1278508951
 mas "Twitter", id: 1482454543
 mas "Unsplash Wallpapers", id: 1284863847
 mas "Xcode", id: 497799835
+

@@ -4,7 +4,10 @@
 [github]
     user = jorgeatorres
 [color]
-    ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+    ui = true
 [core]
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore
@@ -17,12 +20,19 @@
 [diff]
     compactionHeuristic = true
 [alias]
-    co = checkout
-    s = status
-    br = branch
-    c = commit
-    p = push
+	c = commit
+	d = diff
+	l = log --oneline
     a = add
+    p = push
+    s = status
+
+	ls = ls-files
+	pr = pull --rebase
+	uncommit = reset --soft HEAD^
+	unstage = reset HEAD
+    br = branch
+    co = checkout
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -30,3 +40,5 @@
 	required = true
 [includeIf "gitdir:**/*woocommerce*/**"]
 	path = .gitconfig.work
+[init]
+	defaultBranch = trunk

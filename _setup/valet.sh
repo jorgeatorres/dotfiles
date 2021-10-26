@@ -7,7 +7,6 @@ if [[ ! $(which mysql) ]]; then
 	brew link mysql@5.7
 fi
 
-
 if [[ ! $(valet links | grep 'phpmyadmin') ]]; then
 	brew install phpmyadmin
 
@@ -16,5 +15,4 @@ if [[ ! $(valet links | grep 'phpmyadmin') ]]; then
 
 	cd "${HOMEBREW_PREFIX}/share/phpmyadmin"
 	valet link
-	valet secure
 fi

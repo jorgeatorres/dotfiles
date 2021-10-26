@@ -41,17 +41,19 @@ if [[ $(which youtube-dl) ]]; then alias youtube="youtube-dl --format mp4"; fi #
 # node@12, npm@12
 if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/node@12" ]]; then
 	alias node@12='PATH="$HOMEBREW_PREFIX/opt/node@12/bin/:$PATH" node'
-	alias npm@12='PATH="/$HOMEBREW_PREFIX/opt/node@12/bin/:$PATH" npm'
+	alias npm@12='PATH="$HOMEBREW_PREFIX/opt/node@12/bin/:$PATH" npm'
 fi
 
 # node@14, npm@14
 if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/node@14" ]]; then
 	alias node@14='PATH="$HOMEBREW_PREFIX/opt/node@14/bin/:$PATH" node'
-	alias npm@14='PATH="/$HOMEBREW_PREFIX/opt/node@14/bin/:$PATH" npm'
+	alias npm@14='PATH="$HOMEBREW_PREFIX/opt/node@14/bin/:$PATH" npm'
 fi
 
 # node@16, npm@16
 if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/node@16" ]]; then
 	alias node@16='PATH="$HOMEBREW_PREFIX/opt/node@16/bin/:$PATH" node'
-	alias npm@16='PATH="/$HOMEBREW_PREFIX/opt/node@16/bin/:$PATH" npm'
+	alias npm@16='PATH="$HOMEBREW_PREFIX/opt/node@16/bin/:$PATH" npm'
+fi
+
 fi

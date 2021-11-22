@@ -9,11 +9,11 @@ fi
 if [[ ! $(which brew)  ]]; then
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	source ~/.zshrc
-	
+
 	# Homebrew requires Rosetta on Apple Silicon for some packages.
 	if [ "$(uname -m)" = "arm64" ]; then
 		sudo softwareupdate --install-rosetta
-	fi	
+	fi
 fi
 
 # Install packages.

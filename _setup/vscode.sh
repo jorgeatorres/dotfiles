@@ -1,3 +1,11 @@
+if [[ ! -e "$(gem env gemdir)/bin/solargraph" ]]; then
+	gem install solargraph
+fi
+
+if [[ ! -e "/usr/local/bin/solargraph" ]]; then
+	sudo ln -s $(gem env gemdir)/bin/solargraph /usr/local/bin
+fi
+
 # Visual Studio Code
 mkdir -p "$HOME/Library/Application Support/Code/User"
 maybe_link "$DIR/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"

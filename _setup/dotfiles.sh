@@ -21,4 +21,7 @@ for vimfile in "$DIR"/vim/*.vim; do
 	maybe_link "$vimfile" "$HOME/.vim/$(basename $vimfile)"
 done
 
+# go
+mkdir "$HOME/.go"
+
 source ~/.zshrc

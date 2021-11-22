@@ -6,6 +6,7 @@ fi
 
 if [[ ! $(which mysql) ]]; then
 	brew link mysql@5.7
+	brew services start mysql@5.7
 fi
 
 if [[ ! $(valet links | grep 'phpmyadmin') ]]; then

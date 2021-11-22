@@ -13,7 +13,6 @@
     "editor.renderWhitespace": "none",
     "editor.scrollBeyondLastLine": false,
     "editor.showUnused": true,
-    "editor.tabSize": 4,
     "editor.suggest.showStatusBar": true,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
@@ -39,7 +38,7 @@
     "window.newWindowDimensions": "maximized",
     "breadcrumbs.enabled": true,
     "editor.matchBrackets": "near",
-    "workbench.sideBar.location": "right",
+    "workbench.sideBar.location": "left",
     "workbench.editor.tabSizing": "shrink",
     "explorer.openEditors.visible": 0,
     "workbench.editor.tabCloseButton": "left",
@@ -70,13 +69,11 @@
     "python.showStartPage": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.quickOpen.closeOnFocusLost": false,
-    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "workbench.colorTheme": "Dracula Soft",
     "phpcs.enable": false,
     "python.defaultInterpreterPath": "python3",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ]
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "editor.fontSize": 13
 }

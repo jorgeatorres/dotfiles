@@ -1,18 +1,25 @@
-# Prompt.
-if [ "$TERM" = "dumb" ]; then
-	PROMPT="%# "
-else
-	#PROMPT='%n@%m:%15<..<%~%<<%# '
-	local _path="%F{248}%(4~|%-1~/…/%2~|%3~)%f"
-	local _symbol="%(!.%F{198}#%f.%F{148}>%f)"
+# ------
+# Prompt
+# ------
+set_prompt() {
+	if [ "$TERM" = "dumb" ]; then
+		export PROMPT="%# "
+	else
+		#PROMPT='%n@%m:%15<..<%~%<<%# '
+		local path="%F{248}%(4~|%-1~/…/%2~|%3~)%f"
+		local symbol="%(!.%F{198}#%f.%F{148}>%f)"
 
-	PROMPT="$_path%f $_symbol "
-fi
+		export PROMPT="$path%f $symbol "
+	fi
+}
+set_prompt
 
+# ------
+# Basics
+# ------
 export EDITOR="$(which vim)"
 export GREP_OPTIONS='--color=auto'
 export LSCOLORS=Exfxcxdxbxegedabagacad
-#export LANG=en_US.UTF-8
 
 # --------
 # Homebrew
@@ -23,10 +30,35 @@ if [[ -e "/opt/homebrew/bin/brew" ]]; then eval $(/opt/homebrew/bin/brew shellen
 # ----
 # PATH
 # ----
-if [[ -d "$HOME/.bin" ]]; then export PATH="$PATH:$HOME/.bin"; fi # ~/.bin
-if [[ -d "$HOME/.composer/vendor/bin" ]]; then export PATH="$PATH:$HOME/.composer/vendor/bin"; fi # Composer-installed binaries (Valet, etc.)
+if [[ -d "$HOME/.composer/vendor/bin" ]]; then export PATH="$HOME/.composer/vendor/bin:$PATH"; fi # Composer-installed binaries (Valet, etc.)
 if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/ruby/bin" ]]; then export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"; fi # Brew-installed Ruby.
-if [[ -d "$HOME/.go/" ]]; then export GOPATH="$HOME/.go/"; export PATH="$PATH:$HOME/.go/bin"; fi # GOPATH
+if [[ -d "$HOME/.go/" ]]; then export GOPATH="$HOME/.go/"; export PATH="$HOME/.go/bin:$PATH"; fi # GOPATH
+if [[ -d "$HOME/.bin" ]]; then export PATH="$HOME/.bin:$PATH"; fi # ~/.bin
+
+# ------------------------------------------------------
+# Temporarily switch between versions of PHP, Node, etc.
+# ------------------------------------------------------
+switch_version() {
+	case "$1" in
+		composer|phpunit)
+			if [[ -z "$2" ]]; then
+				ln -sf $(ls "$HOME/.bin/${1}"@* | sort -r | head -1) "$HOME/.bin/${1}"
+			elif [[ -e "$HOME/.bin/${1}@${2}" ]]; then
+				ln -sf "$HOME/.bin/${1}@${2}" "$HOME/.bin/${1}"
+			fi
+
+			;;
+		node|php)
+			# Remove current PATH override, if any.
+			export PATH=$(echo $(sed -E "s|:?${HOMEBREW_PREFIX}/opt/${1}@[0-9.]+/bin:?||g" <<< $PATH))
+
+			if [[ -n "$2" && -e "$HOMEBREW_PREFIX/opt/${1}@${2}" ]]; then
+				export PATH="$HOMEBREW_PREFIX/opt/${1}@${2}/bin:$PATH"
+			fi
+
+			;;
+	esac
+}
 
 # -------
 # Aliases
@@ -37,26 +69,3 @@ alias ~="cd ~"
 alias ..="cd .."
 if [[ $(which brew) ]]; then alias brew_update="brew upgrade && brew update && brew update --cask && brew cleanup"; fi # brew_upgrade
 if [[ $(which youtube-dl) ]]; then alias youtube="youtube-dl --format mp4"; fi # youtube <url>
-
-# node@12, npm@12
-if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/node@12" ]]; then
-	alias node@12='PATH="$HOMEBREW_PREFIX/opt/node@12/bin/:$PATH" node'
-	alias npm@12='PATH="$HOMEBREW_PREFIX/opt/node@12/bin/:$PATH" npm'
-fi
-
-# node@14, npm@14
-if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/node@14" ]]; then
-	alias node@14='PATH="$HOMEBREW_PREFIX/opt/node@14/bin/:$PATH" node'
-	alias npm@14='PATH="$HOMEBREW_PREFIX/opt/node@14/bin/:$PATH" npm'
-fi
-
-# node@16, npm@16
-if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/node@16" ]]; then
-	alias node@16='PATH="$HOMEBREW_PREFIX/opt/node@16/bin/:$PATH" node'
-	alias npm@16='PATH="$HOMEBREW_PREFIX/opt/node@16/bin/:$PATH" npm'
-fi
-
-# php@7
-if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/php@7.4" ]]; then
-	alias php@7='PATH="$HOMEBREW_PREFIX/opt/php@7.4/bin/:$PATH" php'
-fi

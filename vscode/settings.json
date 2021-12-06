@@ -31,7 +31,7 @@
     "editor.insertSpaces": false,
     "editor.cursorSurroundingLines": 4,
     "editor.fontWeight": "400",
-    "editor.fontFamily": "MonoLisa, JetBrains Mono, Operator Mono, Menlo",
+    "editor.fontFamily": "Operator Mono, MonoLisa, JetBrains Mono, Menlo",
     "workbench.activityBar.visible": true,
     "window.titleBarStyle": "native",
     "window.nativeTabs": true,
@@ -75,5 +75,5 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
-    "editor.fontSize": 13
+    "editor.fontSize": 12.5
 }

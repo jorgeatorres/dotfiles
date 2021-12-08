@@ -22,6 +22,6 @@ for vimfile in "$DIR"/vim/*.vim; do
 done
 
 # go
-mkdir "$HOME/.go"
+mkdir -p "$HOME/.go"
 
 source ~/.zshrc

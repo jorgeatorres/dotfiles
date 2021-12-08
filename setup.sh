@@ -35,15 +35,51 @@ do_install() {
 	source "$1"
 }
 
+require_1password() {
+	if [[ ! $(which op) ]]; then
+		echo "! Please install 1Password before continuing."
+		exit 1
+	fi
+
+	local token="$OP_SESSION_my"
+
+	if [[ -z "$token" ]]; then
+		# Do we need to sign in for the first time?
+		if [[ ! $(op signin -l | grep my) ]]; then
+			require_email_address
+			token=$(op signin my "$EMAIL_ADDRESS" -r)
+		else
+			echo "Signing in again..."
+			token=$(op signin my -r)
+		fi
+
+		if [[ -z "$token" ]]; then
+			echo "! Error signing in to 1Password"
+			exit 1
+		fi
+
+		eval $(op signin --session "$token")
+	fi
+}
+
+require_email_address() {
+	if [[ -z "$EMAIL_ADDRESS" ]]; then
+		local email_apple_id=$(defaults read MobileMeAccounts Accounts | grep AccountID | cut -d \" -f2)
+		read -p "Please enter your e-mail address (default: '$email_apple_id'): " -r EMAIL_ADDRESS
+		EMAIL_ADDRESS=${EMAIL_ADDRESS:-"$email_apple_id"}
+	fi
+}
+
 # Maybe run just one of the setup scripts (if passed as arg).
 if [[ -n "$1" ]]; then
 	do_install _setup/"$1.sh"
 	exit
 fi
 
-do_install _setup/dotfiles.sh
 do_install _setup/homebrew.sh
 do_install _setup/ssh.sh
+
+do_install _setup/dotfiles.sh
 do_install _setup/gpg.sh
 
 do_install _setup/dayone.sh

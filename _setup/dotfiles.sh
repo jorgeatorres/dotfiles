@@ -27,9 +27,6 @@ EOF
 
 fi
 
-# nano
-maybe_link "$DIR/nano/nanorc" "$HOME/.nanorc"
-
 # vim
 mkdir -p "$HOME/.vim"
 maybe_link "$DIR/vim/vimrc" "$HOME/.vim/vimrc"

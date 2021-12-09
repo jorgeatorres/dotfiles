@@ -49,7 +49,6 @@ require_1password() {
 			require_email_address
 			token=$(op signin my "$EMAIL_ADDRESS" -r)
 		else
-			echo "Signing in again..."
 			token=$(op signin my -r)
 		fi
 

@@ -1,8 +1,3 @@
-[user]
-	name = Jorge A. Torres
-	email = jorge@0xbad.com
-[github]
-    user = jorgeatorres
 [color]
 	diff = auto
 	status = auto
@@ -38,7 +33,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[includeIf "gitdir:**/*woocommerce*/**"]
-	path = .gitconfig.work
 [init]
 	defaultBranch = trunk
+[include]
+	path = .user.gitconfig
+	path = .work.gitconfig

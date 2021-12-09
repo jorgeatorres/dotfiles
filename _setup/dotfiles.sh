@@ -4,10 +4,28 @@ maybe_link "$DIR/zsh/zshrc" "$HOME/.zshrc"
 # editorconfig
 maybe_link "$DIR/editorconfig/editorconfig" "$HOME/.editorconfig"
 
-# git
+# ---
+# Git
+# ---
 maybe_link "$DIR/git/gitconfig" "$HOME/.gitconfig"
-maybe_link "$DIR/git/gitconfig.work" "$HOME/.gitconfig.work"
 maybe_link "$DIR/git/gitignore" "$HOME/.gitignore"
+
+if [[ ! -e "$HOME/.user.gitconfig" ]]; then
+	require_1password
+	require_email_address
+
+	GIT_FULL_NAME=$(id -F)
+	GITHUB_USER=$(op get item "GitHub" --fields "username")
+
+	cat <<EOF > "$HOME/.user.gitconfig"
+[user]
+	name = $GIT_FULL_NAME
+	email = $EMAIL_ADDRESS
+[github]
+	user = $GITHUB_USER
+EOF
+
+fi
 
 # nano
 maybe_link "$DIR/nano/nanorc" "$HOME/.nanorc"

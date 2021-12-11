@@ -1,37 +1,9 @@
-set guioptions=ceig
-set guifont=MonoLisa:h12 linespace=0
-
-"colo base16-one-light
-colo base16-onedark
-
-"hi StatusLine   gui=bold guifg=#ffffff guibg=#000000
-"hi StatusLineNC gui=bold guifg=#999999 guibg=#d0d0d0
-
-augroup on_change_colorschema
-  autocmd!
-
-  " Comments in italics.
-  autocmd ColorScheme * call Base16hi("Comment", "", "", "", "", "italic", "")
-augroup END
-
-
-" Navigate through buffers using Ctrl-Tab and Ctrl-Shift-Tab
-map <C-Tab> :bn<CR>
-map <C-S-Tab> :bp<CR>
-
-" Remove unwanted menus.
+" Remove unwanted Mac menus.
 aunmenu Syntax
 
 " Free up some standard keybindings.
 macmenu File.Print key=<nop>
 macmenu File.New\ Tab key=<nop>
-macmenu File.Open\.\.\. key=<nop>
 macmenu File.Open\ Tab\.\.\. key=<nop>
 macmenu File.Close key=<nop>
-
-" Change buffers with Cmd-1, ..., Cmd-5.
-nmap <D-1> <Plug>BufTabLine.Go(1)
-nmap <D-2> <Plug>BufTabLine.Go(2)
-nmap <D-3> <Plug>BufTabLine.Go(3)
-nmap <D-4> <Plug>BufTabLine.Go(4)
-nmap <D-5> <Plug>BufTabLine.Go(5)
+"macmenu File.Open\.\.\. key=<nop>

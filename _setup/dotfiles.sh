@@ -30,13 +30,14 @@ EOF
 
 fi
 
-# vim
+# VIM
 mkdir -p "$HOME/.vim"
-maybe_link "$DIR/vim/vimrc" "$HOME/.vim/vimrc"
-maybe_link "$DIR/vim/gvimrc" "$HOME/.vim/gvimrc"
+ln -sfv "$DIR/vim/vimrc" "$HOME/.vim/vimrc"
+ln -sfv "$DIR/vim/gvimrc" "$HOME/.vim/gvimrc"
 
-for vimfile in "$DIR"/vim/*.vim; do
-	maybe_link "$vimfile" "$HOME/.vim/$(basename $vimfile)"
+for vimfile in ${DIR}/vim/*.vim; do
+	[[ -f "$vimfile" ]] || continue
+	ln -sfv "$vimfile" "$HOME/.vim/$(basename $vimfile)"
 done
 
 # go

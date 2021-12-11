@@ -1,5 +1,5 @@
 # SSH key setup
-if needs_update "$DIR/ssh/id_rsa.pub" "$HOME/.ssh/id_rsa.pub"; then
+if ! cmp --silent "$DIR/ssh/id_rsa.pub" "$HOME/.ssh/id_rsa.pub"; then
 	mkdir -p "$HOME/.ssh"
 	rm -rfv "$HOME/.ssh/{id_rsa,id_rsa.pub}"
 

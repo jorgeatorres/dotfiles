@@ -31,7 +31,7 @@
     "editor.insertSpaces": false,
     "editor.cursorSurroundingLines": 4,
     "editor.fontWeight": "400",
-    "editor.fontFamily": "Operator Mono, MonoLisa, JetBrains Mono, Menlo",
+    "editor.fontFamily": "MonoLisa, Operator Mono, JetBrains Mono, Menlo",
     "workbench.activityBar.visible": true,
     "window.titleBarStyle": "native",
     "window.nativeTabs": true,
@@ -69,11 +69,12 @@
     "python.showStartPage": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.quickOpen.closeOnFocusLost": false,
-    "workbench.colorTheme": "Dracula Soft",
+    "workbench.colorTheme": "Dracula",
     "phpcs.enable": false,
     "python.defaultInterpreterPath": "python3",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
-    "editor.fontSize": 12.5
+    "redhat.telemetry.enabled": false,
+    "editor.fontSize": 11.5
 }

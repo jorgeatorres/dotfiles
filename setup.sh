@@ -89,4 +89,5 @@ do_install _setup/composer.sh
 do_install _setup/phpcs.sh
 do_install _setup/valet.sh
 
+do_install _setup/macos.sh
 do_install _setup/private.sh

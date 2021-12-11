@@ -1,10 +1,8 @@
 #!/bin/sh
 set -e
 
-DOTFILESDIRREL=$(dirname $0)
-cd $DOTFILESDIRREL/
-DOTFILESDIR=$(pwd -P)
-DIR="$DOTFILESDIR"
+cd $(dirname $0)
+DIR=$(pwd -P)
 
 needs_update() {
 	if [[ ! -e "$2" ]]; then

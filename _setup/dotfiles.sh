@@ -6,16 +6,14 @@ ln -sfv "$DIR/bin/pdf-reduce-size" "$HOME/.bin/pdf-reduce-size"
 mkdir -p "$HOME/.go"
 
 # zshrc
-maybe_link "$DIR/zsh/zshrc" "$HOME/.zshrc"
+ln -sfv "$DIR/zsh/zshrc" "$HOME/.zshrc"
 
 # editorconfig
-maybe_link "$DIR/editorconfig/editorconfig" "$HOME/.editorconfig"
+ln -sfv "$DIR/editorconfig/editorconfig" "$HOME/.editorconfig"
 
-# ---
 # Git
-# ---
-maybe_link "$DIR/git/gitconfig" "$HOME/.gitconfig"
-maybe_link "$DIR/git/gitignore" "$HOME/.gitignore"
+ln -sfv "$DIR/git/gitconfig" "$HOME/.gitconfig"
+ln -sfv "$DIR/git/gitignore" "$HOME/.gitignore"
 
 if [[ ! -e "$HOME/.user.gitconfig" ]]; then
 	require_1password

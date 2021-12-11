@@ -1,6 +1,10 @@
 # ~/.bin
 mkdir -p "$HOME/.bin"
 ln -sfv "$DIR/bin/pdf-reduce-size" "$HOME/.bin/pdf-reduce-size"
+
+# Go
+mkdir -p "$HOME/.go"
+
 # zshrc
 maybe_link "$DIR/zsh/zshrc" "$HOME/.zshrc"
 
@@ -39,8 +43,5 @@ for vimfile in ${DIR}/vim/*.vim; do
 	[[ -f "$vimfile" ]] || continue
 	ln -sfv "$vimfile" "$HOME/.vim/$(basename $vimfile)"
 done
-
-# go
-mkdir -p "$HOME/.go"
 
 source ~/.zshrc

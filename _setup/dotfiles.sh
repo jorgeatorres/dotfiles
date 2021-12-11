@@ -1,3 +1,6 @@
+# ~/.bin
+mkdir -p "$HOME/.bin"
+ln -sfv "$DIR/bin/pdf-reduce-size" "$HOME/.bin/pdf-reduce-size"
 # zshrc
 maybe_link "$DIR/zsh/zshrc" "$HOME/.zshrc"
 

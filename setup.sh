@@ -83,9 +83,6 @@ do_install _setup/gpg.sh
 
 do_install _setup/dayone.sh
 do_install _setup/vscode.sh
-
-do_install _setup/bin.sh
-
 do_install _setup/wp-cli.sh
 do_install _setup/mailhog.sh
 do_install _setup/ngrok.sh

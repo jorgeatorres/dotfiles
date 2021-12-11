@@ -1,7 +1,8 @@
 
 if ! $(composer global show laravel/valet > /dev/null 2>&1); then
 	composer global require laravel/valet
-	source ~/.zshrc
+
+	export PATH="$HOME/.composer/vendor/bin:$PATH"
 fi
 
 if [[ ! $(which mysql) ]]; then

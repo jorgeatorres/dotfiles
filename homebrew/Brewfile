@@ -88,6 +88,7 @@ brew 'php@7.4'
 mas "1Password 7", id: 1333542190
 mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122
+mas "Broadcasts", id: 1469995354
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 290986013
 mas "Developer", id: 640199958

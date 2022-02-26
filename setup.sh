@@ -103,6 +103,7 @@ do_install _setup/ngrok.sh
 do_install _setup/phpunit.sh
 do_install _setup/composer.sh
 do_install _setup/phpcs.sh
+do_install _setup/nvm.sh
 do_install _setup/valet.sh
 
 do_install _setup/macos.sh

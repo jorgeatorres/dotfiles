@@ -48,7 +48,7 @@ switch_version() {
 			fi
 
 			;;
-		node|php)
+		php)
 			# Remove current PATH override, if any.
 			export PATH=$(echo $(sed -E "s|:?${HOMEBREW_PREFIX}/opt/${1}@[0-9.]+/bin:?||g" <<< $PATH))
 
@@ -69,3 +69,7 @@ alias ~="cd ~"
 alias ..="cd .."
 if [[ $(which brew) ]]; then alias brew_update="brew upgrade && brew update && brew update --cask && brew cleanup"; fi # brew_upgrade
 if [[ $(which youtube-dl) ]]; then alias youtube="youtube-dl --format mp4"; fi # youtube <url>
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -70,6 +70,11 @@ require_email_address() {
 do_install() {
 	shortname=$(basename "$1")
 
+	if [[ ! -e "$1" ]]; then
+		echo "! $1 not found."
+		exit 1
+	fi
+
 	echo "\033[1;32m=> \033[1;37mRunning \033[1;33m$shortname\033[1;37m...\033[0m"
 	cd "$DIR" > /dev/null
 	source "$1"
@@ -82,8 +87,8 @@ do_install() {
 
 check_dotfiles_location
 
-if [[ -n "$1" && -e "_setup/$1.sh" ]]; then
-	do_install _setup/"$1.sh"
+if [[ -n "$1" ]]; then
+	do_install "_setup/$1.sh"
 	exit
 fi
 

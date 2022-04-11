@@ -17,7 +17,6 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "workbench.startupEditor": "newUntitledFile",
-    "window.zoomLevel": 0,
     "git.autofetch": true,
     "workbench.editor.revealIfOpen": true,
     "files.insertFinalNewline": true,
@@ -38,6 +37,8 @@
     "window.newWindowDimensions": "maximized",
     "breadcrumbs.enabled": true,
     "editor.matchBrackets": "near",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "workbench.sideBar.location": "left",
     "workbench.editor.tabSizing": "shrink",
     "explorer.openEditors.visible": 0,
@@ -69,12 +70,14 @@
     "python.showStartPage": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.quickOpen.closeOnFocusLost": false,
-    "workbench.colorTheme": "Dracula",
     "phpcs.enable": false,
     "python.defaultInterpreterPath": "python3",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
     "redhat.telemetry.enabled": false,
+    "omnisharp.useGlobalMono": "always",
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "workbench.colorTheme": "Dracula Soft",
     "editor.fontSize": 11.5
 }

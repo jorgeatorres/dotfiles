@@ -261,7 +261,8 @@ if has("gui_running")
 
 	" Appearance.
 	colo dracula
-	set guifont=Operator\ Mono\ Book:h14 linespace=1
+	" set guifont=Operator\ Mono\ Book:h14 linespace=1
+	set guifont=Monaco:h13 linespace=1
 	" set guifont=MonoLisa:h11 linespace=1
 	"colo base16-one-light
 	"colo base16-onedark

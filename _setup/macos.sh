@@ -13,7 +13,7 @@ fi
 # Dock
 # ----
 defaults write com.apple.dock autohide -bool false # Auto-hide.
-defaults write com.apple.dock autohide-time-modifier -float 0.5 # Auto-hide.
+defaults write com.apple.dock autohide-time-modifier -float 0.3 # Auto-hide.
 defaults write com.apple.dock tilesize -int 36 # Dock size.
 defaults delete com.apple.dock persistent-apps # Clear out of persistent apps.
 defaults write com.apple.dock show-recents -bool false # Don't show recent apps.

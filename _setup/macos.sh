@@ -8,6 +8,13 @@ auth sufficient pam_tid.so
 ' /etc/pam.d/sudo
 fi
 
+# -----
+# Dates
+# -----
+# Dict keys/use: 1- short, 2- medium, 3- long, 4- full date (source: https://www.caseyliss.com/2022/11/14/ventura-date-formats)
+defaults write -g AppleICUDateFormatStrings -dict-add 1 "y-MM-dd"
+defaults write -g AppleICUDateFormatStrings -dict-add 2 "y-MM-dd"
+
 
 # ----
 # Dock

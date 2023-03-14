@@ -7,66 +7,67 @@ tap 'homebrew/core'
 brew 'curl'
 brew 'dateutils'
 brew 'ffmpeg'
-brew 'git'
-brew 'gpg'
 brew 'gh'
-brew 'go'
+brew 'git'
 brew 'gnu-tar'
+brew 'go'
+brew 'gpg'
 brew 'jq'
+brew 'macvim'
 brew 'mas'
+brew 'neovim'
 brew 'python'
+brew 'ripgrep'
 brew 'ruby'
 brew 'sqlite'
 brew 'ssh-copy-id'
 brew 'svn'
 brew 'tldr'
 brew 'wget'
-brew 'macvim'
 brew 'yt-dlp'
-brew 'neovim'
-brew 'ripgrep'
-brew 'ctags'
-#brew 'ack'
-#brew 'the_silver_searcher'
-#brew 'vim'
 
 cask '1password-cli'
+cask '1password'
+cask 'arq'
+cask 'cyberduck'
 cask 'dash'
+cask 'devutils'
 cask 'docker'
 cask 'droplr'
 cask 'firefox'
+cask 'godot-mono'
 cask 'google-chrome'
 cask 'iina'
+cask 'ioquake3'
 cask 'licecap'
-cask 'numi'
 cask 'mactex'
 cask 'ngrok'
+cask 'nova'
+cask 'numi'
 cask 'openemu'
-cask 'plex-media-server'
 cask 'paw'
+cask 'plex-media-server'
 cask 'poedit'
 cask 'querious'
 cask 'rar'
 cask 'skype'
 cask 'steam'
 cask 'subtitles'
-#cask 'textmate'
 cask 'texmacs'
+cask 'the-unarchiver'
 cask 'tower'
 cask 'transmission'
 cask 'transmit4' # I still own a license. Will have to upgrade to 5 at some point.
 cask 'tunnelbear'
 cask 'visual-studio-code'
+cask 'visual-studio'
 cask 'whatsapp'
 cask 'zoom'
 
-cask 'font-cascadia-code'
-cask 'font-camingocode'
 cask 'font-cousine'
 cask 'font-fira-code'
 cask 'font-ibm-plex-mono'
 cask 'font-input'
-cask 'font-jetbrains-mono'
 cask 'font-mononoki'
 cask 'font-roboto-mono'
 cask 'font-source-code-pro'
@@ -75,23 +76,22 @@ brew 'mailhog'
 brew 'mysql@5.7'
 brew 'nginx'
 brew 'node'
-brew 'pnpm'
 brew 'php'
 brew 'php@7.4'
+brew 'pnpm'
 
-# These don't work on Apple Silicon at the moment.
-#cask 'vagrant'
-#cask 'virtualbox'
+cask 'vagrant'
+cask 'virtualbox'
 
 # Generate the following list with this command:
 # mas list | sort -b -f -k2 | awk '{printf "mas "}{printf "\""}{for (i=2; i<NF; i++) printf $i " "}{printf "\""}{print ", id: " $1}' | sed 's/ ",/",/g'
-mas "1Password 7", id: 1333542190
 mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122
 mas "Broadcasts", id: 1469995354
 mas "Day One", id: 1055511498
 mas "Deliveries", id: 290986013
 mas "Developer", id: 640199958
+mas "GoodLinks", id: 1474335294
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Microsoft Excel", id: 462058435
@@ -99,12 +99,19 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Patterns", id: 429449079
+#mas "Patterns", id: 429449079
 mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 1529448980
 mas "Slack", id: 803453959
 mas "Streaks", id: 963034692
+mas "Tot", id: 1491071483
 mas "Twitter", id: 1482454543
 mas "Unsplash Wallpapers", id: 1284863847
+mas "Velja", id: 1607635845
 mas "Xcode", id: 497799835
 
+# Safari extensions
+mas "1Password for Safari", id: 1569813296
+#mas "Adblock Plus", id: 1432731683
+#mas "Keyword Search", id: 1558453954
+mas "Tampermonkey", id: 1482490089

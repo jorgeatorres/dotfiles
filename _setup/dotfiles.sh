@@ -1,19 +1,22 @@
 # ~/.bin
 mkdir -p "$HOME/.bin"
-ln -sfv "$DIR/bin/pdf-reduce-size" "$HOME/.bin/pdf-reduce-size"
+for binfile in ${DIR}/bin/*; do
+	[[ -L "${HOME}/.bin/$(basename $binfile)" ]] && continue
+	ln -sfv "$binfile" "$HOME/.bin"
+done
 
 # Go
 mkdir -p "$HOME/.go"
 
 # zshrc
-ln -sfv "$DIR/zsh/zshrc" "$HOME/.zshrc"
+[[ -L "${HOME}/.zshrc" ]] || ln -sfv "$DIR/zsh/zshrc" "$HOME/.zshrc"
 
 # editorconfig
-ln -sfv "$DIR/editorconfig/editorconfig" "$HOME/.editorconfig"
+[[ -L "${HOME}/.editorconfig" ]] || ln -sfv "$DIR/editorconfig/editorconfig" "$HOME/.editorconfig"
 
 # Git
-ln -sfv "$DIR/git/gitconfig" "$HOME/.gitconfig"
-ln -sfv "$DIR/git/gitignore" "$HOME/.gitignore"
+[[ -L "${HOME}/.gitconfig" ]] || ln -sfv "$DIR/git/gitconfig" "$HOME/.gitconfig"
+[[ -L "${HOME}/.gitignore" ]] || ln -sfv "$DIR/git/gitignore" "$HOME/.gitignore"
 
 if [[ ! -e "$HOME/.user.gitconfig" ]]; then
 	require_1password

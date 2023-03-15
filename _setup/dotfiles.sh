@@ -32,17 +32,20 @@ if [[ ! -e "$HOME/.user.gitconfig" ]]; then
 [github]
 	user = $GITHUB_USER
 EOF
-
 fi
 
-# VIM
-mkdir -p "$HOME/.vim"
-ln -sfv "$DIR/vim/vimrc" "$HOME/.vim/vimrc"
-ln -sfv "$DIR/vim/gvimrc" "$HOME/.vim/gvimrc"
+# neovim/vim
+VIM_DEST_DIR="${HOME}/.config/nvim"
+VIM_SRC_DIR="${DIR}/vim"
 
-for vimfile in ${DIR}/vim/*.vim; do
-	[[ -f "$vimfile" ]] || continue
-	ln -sfv "$vimfile" "$HOME/.vim/$(basename $vimfile)"
+mkdir -p "${VIM_DEST_DIR}"
+
+for vimfile in ${VIM_SRC_DIR}/*; do
+	[[ -L "${VIM_DEST_DIR}/$(basename $vimfile)" ]] && continue
+	ln -sfv "$vimfile" "$VIM_DEST_DIR"
 done
+
+# Link ~/.vim to nvim's dir.
+[[ -L "${HOME}/.vim" ]] || ln -sfv "${VIM_DEST_DIR}" "${HOME}/.vim"
 
 source ~/.zshrc

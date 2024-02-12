@@ -1,12 +1,20 @@
-#!/bin/sh
 # Sets various macOS config settings.
 
-# Use Touch ID for sudo.
-if ! $(grep 'pam_tid.so' /etc/pam.d/sudo > /dev/null 2>&1); then
-	sudo sed -i '' '2i\
-auth sufficient pam_tid.so
-' /etc/pam.d/sudo
+# --------------
+# TouchID + sudo
+# --------------
+[[ -e /etc/pam.d/sudo_local ]] ||  sudo touch /etc/pam.d/sudo_local
+
+if ! grep -qE '^[^#]*auth\s+sufficient\s+pam_tid.so' /etc/pam.d/sudo_local; then
+	sudo echo "auth       sufficient     pam_tid.so" >> /etc/pam.d/sudo_local
 fi
+
+# -----
+# Fonts
+# -----
+cp ~/Downloads/Fonts/MonoLisa/otf/*.otf ~/Library/Fonts/
+cp ~/Downloads/Fonts/Operator\ Mono/otf/*.otf ~/Library/Fonts/
+
 
 # -----
 # Dates
@@ -14,6 +22,11 @@ fi
 # Dict keys/use: 1- short, 2- medium, 3- long, 4- full date (source: https://www.caseyliss.com/2022/11/14/ventura-date-formats)
 defaults write -g AppleICUDateFormatStrings -dict-add 1 "y-MM-dd"
 defaults write -g AppleICUDateFormatStrings -dict-add 2 "y-MM-dd"
+defaults write -g AppleICUForce24HourTime -bool true
+plutil -replace AppleFirstWeekday -xml "<dict><key>gregorian</key><integer>2</integer></dict>" ~/Library/Preferences/.GlobalPreferences.plist # Monday as first day of the week.
+killall -SIGHUP SystemUIServer
+
+defaults write -g AppleICUNumberSymbols -dict 0 '.' 1 ',' 10 '.' 17 ','
 
 
 # ----
@@ -21,7 +34,7 @@ defaults write -g AppleICUDateFormatStrings -dict-add 2 "y-MM-dd"
 # ----
 defaults write com.apple.dock autohide -bool false # Auto-hide.
 defaults write com.apple.dock autohide-time-modifier -float 0.3 # Auto-hide.
-defaults write com.apple.dock tilesize -int 36 # Dock size.
+defaults write com.apple.dock tilesize -int 32 # Dock size.
 defaults delete com.apple.dock persistent-apps # Clear out of persistent apps.
 defaults write com.apple.dock show-recents -bool false # Don't show recent apps.
 defaults write com.apple.dock show-process-indicators -bool false # Don't show open app indicators.

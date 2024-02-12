@@ -1,3 +1,3 @@
 PRIVDIR="$DIR/dotfiles.private"
 
-source "$PRIVDIR/setup.sh"
+[[ -e "$PRIVDIR/setup.sh" ]] && source "$PRIVDIR/setup.sh"

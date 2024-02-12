@@ -10,12 +10,14 @@ if [[ ! $(which mysql) ]]; then
 	brew services start mysql@5.7
 fi
 
+valet install
+
+# phpMyAdmin.
 if [[ ! $(valet links | grep 'phpmyadmin') ]]; then
 	brew install phpmyadmin
 	cd "${HOMEBREW_PREFIX}/share/phpmyadmin"
 	valet link
 fi
 
-# Config.
 sed -i '' "s/\['auth_type'\] = 'cookie'/\['auth_type'\] = 'config'/" "${HOMEBREW_PREFIX}/etc/phpmyadmin.config.inc.php"
 sed -i '' "s/\['AllowNoPassword'\] = false/\['AllowNoPassword'\] = true/" "${HOMEBREW_PREFIX}/etc/phpmyadmin.config.inc.php"

@@ -95,28 +95,26 @@ fi
 
 # <scripts>
 do_install _setup/homebrew.sh
-do_install _setup/ssh.sh
 
+do_install _setup/ssh.sh
 do_install _setup/dotfiles.sh
 do_install _setup/gpg.sh
 
-do_install _setup/dayone.sh
-do_install _setup/vscode.sh
-do_install _setup/wp-cli.sh
 do_install _setup/mailhog.sh
-do_install _setup/ngrok.sh
 do_install _setup/phpunit.sh
 do_install _setup/composer.sh
-do_install _setup/nvm.sh
-# do_install _setup/phpcs.sh
+do_install _setup/ngrok.sh
 do_install _setup/valet.sh
+do_install _setup/wp-cli.sh
+# do_install _setup/phpcs.sh
+do_install _setup/nvm.sh
 
-do_install _setup/macos.sh
+do_install _setup/dayone.sh
+do_install _setup/vscode.sh
 do_install _setup/instaloader.sh
 
 do_install _setup/private.sh
 do_install _setup/macos.sh
 # </scripts>
-
 
 maybe_clone_repo

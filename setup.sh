@@ -112,6 +112,7 @@ do_install _setup/nvm.sh
 do_install _setup/valet.sh
 
 do_install _setup/macos.sh
+do_install _setup/instaloader.sh
 
 do_install _setup/private.sh
 # </scripts>

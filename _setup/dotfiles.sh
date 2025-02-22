@@ -20,6 +20,7 @@ mkdir -p "$HOME/.go"
 # Git
 [[ -L "${HOME}/.gitconfig" ]] || ln -sfv "$DIR/git/gitconfig" "$HOME/.gitconfig"
 [[ -L "${HOME}/.gitignore" ]] || ln -sfv "$DIR/git/gitignore" "$HOME/.gitignore"
+[[ -e "${HOME}/.work.config" ]] || touch "${HOME}/.work.config"
 
 if [[ ! -e "$HOME/.user.gitconfig" ]]; then
 	require_1password

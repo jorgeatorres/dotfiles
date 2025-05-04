@@ -106,6 +106,7 @@ do_install _setup/composer.sh
 do_install _setup/ngrok.sh
 do_install _setup/valet.sh
 do_install _setup/wp-cli.sh
+do_install _setup/xdebug.sh
 # do_install _setup/phpcs.sh
 do_install _setup/nvm.sh
 

@@ -38,18 +38,14 @@ if [[ ! -e "$HOME/.user.gitconfig" ]]; then
 EOF
 fi
 
-# neovim/vim
-VIM_DEST_DIR="${HOME}/.config/nvim"
-VIM_SRC_DIR="${DIR}/vim"
-
-mkdir -p "${VIM_DEST_DIR}"
-
-for vimfile in ${VIM_SRC_DIR}/*; do
-	[[ -L "${VIM_DEST_DIR}/$(basename $vimfile)" ]] && continue
-	ln -sfv "$vimfile" "$VIM_DEST_DIR"
+# VIM
+mkdir -p ~/.config/vim/
+for vimfile in ${DIR}/vim/*; do
+	[[ -L "${HOME}/.config/vim/$(basename $vimfile)" ]] || ln -sfv "$vimfile" ~/.config/vim/
 done
 
-# Link ~/.vim to nvim's dir.
-[[ -L "${HOME}/.vim" ]] || ln -sfv "${VIM_DEST_DIR}" "${HOME}/.vim"
+# NVIM
+[[ -d ~/.config/nvim ]] || mkdir -p ~/.config/nvim
+[[ -L ~/.config/nvim/init.vim ]] || ln -sfv "$DIR/nvim/init.vim" ~/.config/nvim/
 
 source ~/.zshrc

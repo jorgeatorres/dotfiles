@@ -3,17 +3,38 @@
 	status = auto
 	branch = auto
     ui = true
+[column]
+	ui = auto
 [core]
     editor = /usr/bin/vim
-    excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 [credential]
     helper = osxkeychain
 [push]
     default = current
-[pull]
-    default = current
+	#default = nothing
+	autoSetupRemote = true
+[fetch]
+	prune = true
+	#pruneTags = true
+[commit]
+	verbose = true
 [diff]
+	algorithm = histogram
     compactionHeuristic = true
+	colorMoved = zebra
+	mnemonicPrefix = true
+	renames = true
+[branch]
+	sort = -committerdate
+# [rerere]
+#	enabled = true
+#	autoupdate = true
+[rebase]
+	autoStash = true
+	autoSquash = true
+[tag]
+	sort = v:refname
 [alias]
 	c = commit
 	d = diff
@@ -21,15 +42,12 @@
     a = add
     p = push
     s = status
-
 	ls = ls-files
 	pr = pull --rebase
 	uncommit = reset --soft HEAD^
 	unstage = reset HEAD
     br = branch
     co = checkout
-
-	rb = branch --sort=-committerdate
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -37,6 +55,8 @@
 	required = true
 [init]
 	defaultBranch = trunk
+[merge]
+	conflictStyle = zdiff3
 [include]
 	path = .user.gitconfig
 	path = .work.gitconfig

@@ -1,5 +1,20 @@
 # Sets various macOS config settings.
 
+# ------------
+# Useful utils
+# ------------
+
+# https://github.com/alexwlchan/safari-webarchiver.
+wget -O /tmp/save-safari-webarchive.zip https://github.com/alexwlchan/safari-webarchiver/releases/download/v1.0.1/save_safari_webarchive.aarch64-apple-darwin.zip
+unzip /tmp/save-safari-webarchive.zip -d /tmp/save-safari-webarchive
+mv /tmp/save-safari-webarchive/save_safari_webarchive ${HOME}/.bin/save-safari-webarchive
+rm -rf /tmp/save-safari-webarchive{,.zip}
+
+# https://gist.github.com/mdbraber/bf37df37967903ad0b0e4a6285533983.
+wget -O /tmp/save-safari-pdf.swift https://gist.githubusercontent.com/mdbraber/bf37df37967903ad0b0e4a6285533983/raw/71ced2cb4757f8661da14e579e44879ede80f73d/save-safari-pdf.swift
+swiftc /tmp/save-safari-pdf.swift -o ${HOME}/.bin/save-safari-pdf
+rm -rf /tmp/save-safari-pdf.swift
+
 # --------------
 # TouchID + sudo
 # --------------

@@ -111,7 +111,6 @@ do_install _setup/nvm.sh
 
 do_install _setup/dayone.sh
 do_install _setup/vscode.sh
-do_install _setup/instaloader.sh
 
 do_install _setup/private.sh
 do_install _setup/macos.sh

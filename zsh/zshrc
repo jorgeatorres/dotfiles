@@ -69,6 +69,7 @@ alias ~="cd ~"
 alias ..="cd .."
 if [[ $(which brew) ]]; then alias brew_update="brew upgrade && brew update && brew update --cask && brew cleanup"; fi # brew_upgrade
 if [[ $(which yt-dlp) ]]; then alias youtube="yt-dlp --format mp4"; fi # youtube <url>
+if [[ $(which instaloader) ]]; then alias instagram="instaloader --no-iphone --no-metadata-json --no-compress-json --no-captions --no-video-thumbnails --dirname-pattern . -b safari"; fi # instagram <...>
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

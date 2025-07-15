@@ -22,8 +22,7 @@ check_dotfiles_location() {
 
 # Sanity check: if not running from a clone of the repo and SSH keys are configured, clone Git repo to the folder.
 maybe_clone_repo() {
-	if [[ ! -e "$DIR/.git" && -e "$HOME/.ssh/id_rsa" ]]; then
-		REPO_CLONE_DIR=`mktemp -d`
+	if [[ ! -e "$DIR/.git" && -e "$HOME/.ssh/id_ed25519" ]]; then
 		git clone git@github.com:jorgeatorres/dotfiles.git ${REPO_CLONE_DIR} --quiet
 		mv ${REPO_CLONE_DIR}/.git ${DIR}/.git
 		rm -rf ${REPO_CLONE_DIR}

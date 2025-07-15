@@ -1,13 +1,10 @@
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-    ui = true
+    ui = auto
 [column]
 	ui = auto
 [core]
     editor = /usr/bin/vim
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
 [credential]
     helper = osxkeychain
 [push]

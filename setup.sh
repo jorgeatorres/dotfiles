@@ -103,7 +103,6 @@ do_install _setup/gpg.sh
 do_install _setup/mailhog.sh
 do_install _setup/phpunit.sh
 do_install _setup/composer.sh
-do_install _setup/ngrok.sh
 do_install _setup/valet.sh
 do_install _setup/wp-cli.sh
 do_install _setup/xdebug.sh

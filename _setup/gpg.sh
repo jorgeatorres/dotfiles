@@ -3,16 +3,12 @@ if [[ ! $(which gpg) ]]; then
 	exit 1
 fi
 
-if ! $(gpg --list-keys DD7BA8B00EC20D8C20D55473A5EAF0750A6BCAE9 > /dev/null 2>&1); then
+if ! $(gpg --list-keys 3DC414829569195D1DC48ABE3DBE8B97E5EE00A9 > /dev/null 2>&1); then
 	require_1password
 
-	op get document "ef6vthpsuffirnh5hqhg67acoq" > /tmp/mykey.key
-	gpg --import /tmp/mykey.key
+	op read "op://Private/GPG Key/public key" | gpg --import
 
-	op get document "gy3pkac4hbdz7ocrpxaprmtxxm" > /tmp/mykey.key
-	op get item "gy3pkac4hbdz7ocrpxaprmtxxm" --fields "passphrase" > /tmp/mykey.pass
-	gpg --batch --passphrase-file /tmp/mykey.pass --import /tmp/mykey.key
-
-	rm /tmp/mykey.key
+	op read "op://Private/GPG Key/passphrase" > /tmp/mykey.pass
+	op read "op://Private/GPG Key/private.asc" | gpg --batch --passphrase-file /tmp/mykey.pass --import
 	rm /tmp/mykey.pass
 fi

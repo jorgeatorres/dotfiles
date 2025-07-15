@@ -41,11 +41,11 @@ require_1password() {
 
 	if [[ -z "$token" ]]; then
 		# Do we need to sign in for the first time?
-		if [[ ! $(op signin -l | grep my) ]]; then
+		if ! $(op account list | grep my > /dev/null); then
 			require_email_address
-			token=$(op signin my "$EMAIL_ADDRESS" -r)
+			token=$(op account add --address my.1password.com --email "$EMAIL_ADDRESS" --signin --raw)
 		else
-			token=$(op signin my -r)
+			token=$(op signin --account my --raw)
 		fi
 
 		if [[ -z "$token" ]]; then

@@ -8,20 +8,13 @@ if [[ ! -e "$HOME/.ssh/config"  ]]; then
 EOT
 fi
 
+mkdir -p ${HOME}/.ssh
+
 require_1password
 
-op get document "yi3j4cs6ojawzlwp4e763hrwxq" --output /tmp/ssh.pub
-op get document "7ukxxbzsincz3bqsx6p6iwl32e" --output /tmp/ssh.priv
+op read "op://Private/SSH Key/public key" > ${HOME}/.ssh/id_ed25519.pub
+op read "op://Private/SSH Key/id_ed25519" > ${HOME}/.ssh/id_ed25519
 
-if ! cmp --silent "/tmp/ssh.pub" "$HOME/.ssh/id_ed25519.pub"; then
-	mv /tmp/ssh.pub "$HOME/.ssh/id_ed25519.pub"
-	chmod 644 "$HOME/.ssh/id_ed25519.pub"
-fi
+chmod 600 ${HOME}/.ssh/id_ed25519{,.pub}
 
-if ! cmp --silent "/tmp/ssh.priv" "$HOME/.ssh/id_ed25519"; then
-	mv /tmp/ssh.pub "$HOME/.ssh/id_ed25519"
-	chmod 644 "$HOME/.ssh/id_ed25519"
-fi
-
-rm -rf /tmp/ssh.{pub,priv}
-ssh-add -K
+APPLE_SSH_ADD_BEHAVIOR=macos ssh-add -K

@@ -29,7 +29,7 @@ brew 'tldr'
 brew 'wget'
 brew 'yt-dlp'
 
-cask '1password-cli@1'
+cask '1password-cli'
 cask '1password'
 cask 'adobe-acrobat-reader'
 cask 'arq'

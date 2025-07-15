@@ -27,7 +27,7 @@ if [[ ! -e "$HOME/.user.gitconfig" ]]; then
 	require_email_address
 
 	GIT_FULL_NAME=$(id -F)
-	GITHUB_USER=$(op get item "GitHub" --fields "username")
+	GITHUB_USER=$(op read "op://Private/h4o7gzk4lbdmlikj56ivaf7y3a/Username")
 
 	cat <<EOF > "$HOME/.user.gitconfig"
 [user]

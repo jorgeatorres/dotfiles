@@ -1,12 +1,11 @@
-tap 'homebrew/cask-fonts'
-tap 'homebrew/cask-versions'
-tap 'homebrew/bundle'
+tap 'shivammathur/php'
 
 brew 'curl'
 brew 'dateutils'
 brew 'ffmpeg'
 brew 'gh'
 brew 'git'
+brew 'gnu-sed'
 brew 'gnu-tar'
 brew 'go'
 brew 'gpg'
@@ -29,35 +28,44 @@ brew 'tldr'
 brew 'wget'
 brew 'yt-dlp'
 
-cask '1password-cli'
 cask '1password'
+cask '1password-cli'
 cask 'adobe-acrobat-reader'
 cask 'arq'
+cask 'chatgpt'
 cask 'crossover'
+cask 'cursor'
 cask 'dash'
 cask 'devutils'
-cask 'docker'
+#cask 'docker'
 cask 'firefox'
+cask 'font-courier-prime'
+cask 'font-cousine'
+cask 'font-departure-mono'
+cask 'font-ibm-plex-mono'
+cask 'font-input'
+cask 'font-source-code-pro'
 cask 'ghostty'
 cask 'godot-mono'
 cask 'google-chrome'
-cask 'httpie'
+cask 'httpie-desktop'
 cask 'iina'
 cask 'ioquake3'
-cask 'linear-linear'
 cask 'licecap'
+cask 'linear-linear'
 cask 'mactex'
+#cask 'macvim-app'
+cask 'microsoft-teams'
 cask 'netnewswire'
 cask 'ngrok'
-#cask 'nova'
 cask 'numi'
 cask 'openemu'
+cask 'playdate-simulator'
 cask 'plex-media-server'
 cask 'poedit'
 cask 'querious'
 cask 'rapidapi'
 cask 'rar'
-cask 'skype'
 cask 'slack'
 cask 'steam'
 cask 'texmacs'
@@ -67,24 +75,20 @@ cask 'tower'
 cask 'transmission'
 cask 'tunnelbear'
 cask 'unity'
-cask 'vimr'
-cask 'vmware-fusion'
+cask 'unity-hub'
+cask 'utm'
+#cask 'vimr'
 cask 'visual-studio-code'
+#cask 'vmware-fusion'
 cask 'whatsapp'
 cask 'zoom'
 
-cask 'font-cousine'
-cask 'font-courier-prime'
-cask 'font-departure-mono'
-cask 'font-ibm-plex-mono'
-cask 'font-input'
-cask 'font-source-code-pro'
-
 brew 'mailhog'
-brew 'mysql@8.4'
+brew 'mysql'
 brew 'nginx'
 brew 'node'
 brew 'php'
+brew 'php@7.4'
 brew 'php@8.0'
 brew 'pnpm'
 
@@ -99,7 +103,6 @@ mas "Developer", id: 640199958
 mas "GoodLinks", id: 1474335294
 mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
-mas "LookUp", id: 872564448
 # mas "Microsoft Excel", id: 462058435
 # mas "Microsoft PowerPoint", id: 462062816
 # mas "Microsoft Word", id: 462054704
@@ -107,11 +110,9 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 # mas "Patterns", id: 429449079
 mas "Pixelmator Pro", id: 1289583905
-#mas "Reeder", id: 1529448980
 mas "Streaks", id: 963034692
 mas "TestFlight", id: 899247664
-#mas "Tot", id: 1491071483
-#mas "Twitter", id: 1482454543
+# mas "Tot", id: 1491071483
 mas "Unsplash Wallpapers", id: 1284863847
 mas "Velja", id: 1607635845
 mas "Xcode", id: 497799835
@@ -119,5 +120,5 @@ mas "Xcode", id: 497799835
 # Safari extensions.
 mas "1Password for Safari", id: 1569813296
 #mas "Adblock Plus", id: 1432731683
-#mas "Keyword Search", id: 1558453954
+mas "Keyword Search", id: 1558453954
 #mas "Tampermonkey", id: 1482490089

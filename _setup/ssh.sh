@@ -1,4 +1,6 @@
 # SSH key setup
+mkdir -p ${HOME}/.ssh
+
 if [[ ! -e "$HOME/.ssh/config"  ]]; then
 	cat <<EOT > "$HOME/.ssh/config"
 	Host *
@@ -8,7 +10,6 @@ if [[ ! -e "$HOME/.ssh/config"  ]]; then
 EOT
 fi
 
-mkdir -p ${HOME}/.ssh
 
 require_1password
 

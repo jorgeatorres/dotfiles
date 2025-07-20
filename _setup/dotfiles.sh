@@ -25,7 +25,8 @@ mkdir -p ${HOME}/.config/git
 
 if [[ ! -e "$HOME/.config/git/config-personal" ]]; then
 	require_1password
-	require_email_address
+
+	EMAIL_ADDRESS=$(get_email_address)
 
 	GIT_FULL_NAME=$(id -F)
 	GITHUB_USER=$(op read "op://Private/h4o7gzk4lbdmlikj56ivaf7y3a/Username")

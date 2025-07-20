@@ -2,7 +2,7 @@
 # Prompt
 # ------
 set_prompt() {
-	if [ "$TERM" = "dumb" ]; then
+	if [[ "$TERM" = "dumb" ]]; then
 		export PROMPT="%# "
 	else
 		#PROMPT='%n@%m:%15<..<%~%<<%# '

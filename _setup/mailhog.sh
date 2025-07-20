@@ -1,6 +1,6 @@
 MAILHOG_PATH=`which MailHog`
 if [[ -n "$MAILHOG_PATH" ]]; then
-	if [ "$(uname -m)" = "arm64" ]; then
+	if [[ "$(uname -m)" = "arm64" ]]; then
 		PHP_ETC="/opt/homebrew/etc/php"
 	else
 		PHP_ETC="/usr/local/etc/php"

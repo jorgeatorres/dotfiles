@@ -28,6 +28,8 @@ do_install _setup/ssh.sh
 do_install _setup/dotfiles.sh
 do_install _setup/gpg.sh
 
+do_install _setup/dotfiles-repo.sh
+
 do_install _setup/mailhog.sh
 do_install _setup/phpunit.sh
 do_install _setup/composer.sh

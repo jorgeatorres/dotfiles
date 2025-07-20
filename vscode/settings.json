@@ -28,7 +28,7 @@
     "editor.insertSpaces": false,
     "editor.cursorSurroundingLines": 4,
     "editor.fontWeight": "400",
-    "editor.fontFamily": "MonoLisa, Operator Mono, Menlo",
+    "editor.fontFamily": "MonoLisa, Input Mono Narrow, Operator Mono, IBM Plex Mono, Menlo",
     "window.titleBarStyle": "native",
     "window.nativeTabs": true,
     "window.newWindowDimensions": "maximized",
@@ -63,18 +63,32 @@
     "python.showStartPage": false,
     "workbench.quickOpen.closeOnFocusLost": false,
     "phpcs.enable": false,
-    "python.defaultInterpreterPath": "python3",
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
     "redhat.telemetry.enabled": false,
     "omnisharp.useGlobalMono": "always",
     "editor.unicodeHighlight.invisibleCharacters": false,
-    "workbench.colorTheme": "Dracula Soft",
+    "workbench.colorTheme": "One Dark Pro Night Flat",
     "editor.guides.indentation": true,
     "workbench.editor.splitInGroupLayout": "vertical",
     "gitlens.currentLine.enabled": false,
     "omnisharp.useModernNet": false,
     "workbench.editor.enablePreviewFromCodeNavigation": true,
-    "editor.fontSize": 10.5
+    "workbench.sideBar.location": "right",
+    "workbench.editor.tabActionLocation": "left",
+    "window.customTitleBarVisibility": "never",
+    "editor.accessibilitySupport": "off",
+    "php.debug.executablePath": "",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "github.copilot.chat.edits.codesearch.enabled": true,
+    "editor.fontSize": 11,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "git.blame.editorDecoration.enabled": false
 }

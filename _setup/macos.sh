@@ -5,15 +5,19 @@
 # ------------
 
 # https://github.com/alexwlchan/safari-webarchiver.
-wget -O /tmp/save-safari-webarchive.zip https://github.com/alexwlchan/safari-webarchiver/releases/download/v1.0.1/save_safari_webarchive.aarch64-apple-darwin.zip
-unzip /tmp/save-safari-webarchive.zip -d /tmp/save-safari-webarchive
-mv /tmp/save-safari-webarchive/save_safari_webarchive ${HOME}/.bin/save-safari-webarchive
-rm -rf /tmp/save-safari-webarchive{,.zip}
+if [[ ! -e ${HOME}/.bin/save-safari-webarchive ]]; then
+	wget -q -O /tmp/save-safari-webarchive.zip https://github.com/alexwlchan/safari-webarchiver/releases/download/v1.0.1/save_safari_webarchive.aarch64-apple-darwin.zip
+	unzip -qq /tmp/save-safari-webarchive.zip -d /tmp/save-safari-webarchive
+	mv /tmp/save-safari-webarchive/save_safari_webarchive ${HOME}/.bin/save-safari-webarchive
+	rm -rf /tmp/save-safari-webarchive{,.zip}
+fi
 
 # https://gist.github.com/mdbraber/bf37df37967903ad0b0e4a6285533983.
-wget -O /tmp/save-safari-pdf.swift https://gist.githubusercontent.com/mdbraber/bf37df37967903ad0b0e4a6285533983/raw/71ced2cb4757f8661da14e579e44879ede80f73d/save-safari-pdf.swift
-swiftc /tmp/save-safari-pdf.swift -o ${HOME}/.bin/save-safari-pdf
-rm -rf /tmp/save-safari-pdf.swift
+if [[ !-e ${HOME}/.bin/save-safari-pdf ]]; then
+	wget -q O /tmp/save-safari-pdf.swift https://gist.githubusercontent.com/mdbraber/bf37df37967903ad0b0e4a6285533983/raw/71ced2cb4757f8661da14e579e44879ede80f73d/save-safari-pdf.swift
+	swiftc /tmp/save-safari-pdf.swift -o ${HOME}/.bin/save-safari-pdf
+	rm -rf /tmp/save-safari-pdf.swift
+end
 
 # --------------
 # TouchID + sudo
@@ -27,8 +31,8 @@ fi
 # -----
 # Fonts
 # -----
-cp ~/Downloads/Fonts/MonoLisa/otf/*.otf ~/Library/Fonts/
-cp ~/Downloads/Fonts/Operator\ Mono/otf/*.otf ~/Library/Fonts/
+[[ -e ${HOME}/Downloads/Fonts/MonoLisa ]] && cp ${HOME}/Downloads/Fonts/MonoLisa/otf/*.otf ${HOME}/Library/Fonts/
+[[ -e ${HOME}/Downloads/Fonts/Operator\ Mono]] && cp ${HOME}/Downloads/Fonts/Operator\ Mono/otf/*.otf ${HOME}/Library/Fonts/
 
 
 # -----
@@ -91,7 +95,7 @@ plutil -replace StandardViewSettings.ListViewSettings.useRelativeDates -bool tru
 plutil -replace StandardViewSettings.ExtendedListViewSettingsV2.sortColumn -string kind ${HOME}/Library/Preferences/com.apple.finder.plist
 plutil -replace StandardViewSettings.ListViewSettings.sortColumn -string kind ${HOME}/Library/Preferences/com.apple.finder.plist
 
-find ${HOME} -name .DS_Store -delete
+find ${HOME} -name .DS_Store -exec rm {} \;
 killall Finder
 
 # --------
@@ -126,9 +130,9 @@ defaults write com.apple.Safari AutoFillCreditCardData -bool false
 defaults write com.apple.Safari AutoFillFromAddressBook -bool false
 defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
 defaults write com.apple.Safari AutoFillPasswords -bool false
-defaults write com.apple.Safari NewTabBehavior -int 1 # 4 = Start Page, 0 = Homepage, 1 = Empty Page, 2 = Same Page.
-defaults write com.apple.Safari NewWindowBehavior -int 1 # Same as above.
-defaults write com.apple.Safari ShowStandaloneTabBar -bool false # false = Compact mode, true = Separate.
+defaults write com.apple.Safari NewTabBehavior -int 4 # 4 = Start Page, 0 = Homepage, 1 = Empty Page, 2 = Same Page.
+defaults write com.apple.Safari NewWindowBehavior -int 4 # Same as above.
+defaults write com.apple.Safari ShowStandaloneTabBar -bool true # false = Compact mode, true = Separate.
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 defaults write com.apple.Safari ShowOverlayStatusBar -bool true
 defaults write com.apple.Safari IncludeDevelopMenu -bool true

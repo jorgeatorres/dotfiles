@@ -4,7 +4,7 @@
 	ui = auto
 [core]
     editor = /usr/bin/vim
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.config/git/gitignore
 [credential]
     helper = osxkeychain
 [push]
@@ -55,5 +55,5 @@
 [merge]
 	conflictStyle = zdiff3
 [include]
-	path = .user.gitconfig
-	path = .work.gitconfig
+	path = config-personal
+	path = config-work

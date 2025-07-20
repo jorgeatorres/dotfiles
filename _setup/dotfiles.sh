@@ -18,18 +18,19 @@ mkdir -p "$HOME/.go"
 [[ -L "${HOME}/.editorconfig" ]] || ln -sfv "$DIR/editorconfig/editorconfig" "$HOME/.editorconfig"
 
 # Git
-[[ -L "${HOME}/.gitconfig" ]] || ln -sfv "$DIR/git/gitconfig" "$HOME/.gitconfig"
-[[ -L "${HOME}/.gitignore" ]] || ln -sfv "$DIR/git/gitignore" "$HOME/.gitignore"
-[[ -e "${HOME}/.work.config" ]] || touch "${HOME}/.work.config"
+mkdir -p ${HOME}/.config/git
+[[ -L "${HOME}/.config/git/config" ]] || ln -sfv "$DIR/git/gitconfig" "$HOME/.config/git/config"
+[[ -L "${HOME}/.config/git/gitignore" ]] || ln -sfv "$DIR/git/gitignore" "$HOME/.config/git/gitignore"
+[[ -e "${HOME}/.config/git/config-work" ]] || touch "${HOME}/.config/git/config-work"
 
-if [[ ! -e "$HOME/.user.gitconfig" ]]; then
+if [[ ! -e "$HOME/.config/git/config-personal" ]]; then
 	require_1password
 	require_email_address
 
 	GIT_FULL_NAME=$(id -F)
 	GITHUB_USER=$(op read "op://Private/h4o7gzk4lbdmlikj56ivaf7y3a/Username")
 
-	cat <<EOF > "$HOME/.user.gitconfig"
+	cat <<EOF > "$HOME/.config/git/config-user"
 [user]
 	name = $GIT_FULL_NAME
 	email = $EMAIL_ADDRESS

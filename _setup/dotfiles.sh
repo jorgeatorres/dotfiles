@@ -6,6 +6,7 @@ for binfile in ${DIR}/bin/*; do
 done
 
 # Ghostty
+mkdir -p "${HOME}/Library/Application Support/com.mitchellh.ghostty/"
 [[ -L "${HOME}/Library/Application Support/com.mitchellh.ghostty/config" ]] || ln -sfv "$DIR/ghostty/config" "${HOME}/Library/Application Support/com.mitchellh.ghostty/config"
 
 # Go

@@ -32,7 +32,7 @@ if [[ ! -e "$HOME/.config/git/config-personal" ]]; then
 	GIT_FULL_NAME=$(id -F)
 	GITHUB_USER=$(op read "op://Private/h4o7gzk4lbdmlikj56ivaf7y3a/Username")
 
-	cat <<EOF > "$HOME/.config/git/config-user"
+	cat <<EOF > "$HOME/.config/git/config-personal"
 [user]
 	name = $GIT_FULL_NAME
 	email = $EMAIL_ADDRESS

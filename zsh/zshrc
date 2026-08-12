@@ -68,8 +68,6 @@ alias ll="ls -lG"
 alias ~="cd ~"
 alias ..="cd .."
 
-if [[ $(which yt-dlp) ]]; then alias youtube="yt-dlp --format mp4 --paths ~/Downloads --cookies-from-browser safari"; fi # youtube <url>
-if [[ $(which instaloader) ]]; then alias instagram="instaloader --no-iphone --no-metadata-json --no-compress-json --no-captions --no-video-thumbnails --dirname-pattern . --filename-pattern '{profile}-{date_utc}' -b safari --"; fi # instagram <...>
 
 # NVM.
 export NVM_DIR="$HOME/.nvm"

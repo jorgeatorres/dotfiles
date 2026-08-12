@@ -1,0 +1,115 @@
+#!/bin/bash
+
+# TODO: check weasyprint (brew) for a browser-free -p/PDF output: single-file -> html -> weasyprint -> pdf.
+
+DIR="$HOME/Downloads"
+COOKIES=""
+while true; do
+	if [[ "$1" == "-d" && -n "$2" ]]; then
+		DIR="$2"
+		shift 2
+	elif [[ "$1" == "-d" ]]; then
+		DIR=""
+		break
+	elif [[ "$1" == "-c" ]]; then
+		COOKIES=1
+		shift
+	else
+		break
+	fi
+done
+
+if [[ -z "$DIR" || -z "$1" ]]; then
+	echo "Usage: $(basename "$0") [-d <dir>] [-c] <url> [<url> ...]"
+	exit 1
+fi
+
+require() {
+	if ! command -v "$1" > /dev/null 2>&1; then
+		echo "$(basename "$0"): $1 not found (brew install $1)" >&2
+		exit 1
+	fi
+	if [[ "$1" == "instaloader" ]]; then
+		maybe_patch_instaloader
+	fi
+}
+
+# Instagram regularly breaks instaloader releases by changing their private API.
+# Upstream PRs with the fix, keyed by the exact instaloader version they apply
+# to, get downloaded and patched into the installed sources before running it.
+maybe_patch_instaloader() {
+	[[ -n "$INSTALOADER_PATCHED" ]] && return
+	INSTALOADER_PATCHED=1
+
+	local version patches python lib patch_url marker
+	version=$(instaloader --version)
+	case "$version" in
+	4.15.2) patches="https://github.com/instaloader/instaloader/pull/2706.diff" ;;
+	esac
+	[[ -z "$patches" ]] && return
+
+	python=$(sed -n '1s/^#!//p' "$(command -v instaloader)")
+	lib=$("$python" -c 'import os, instaloader; print(os.path.dirname(os.path.dirname(instaloader.__file__)))' 2>/dev/null)
+	if [[ -z "$lib" ]]; then
+		echo "$(basename "$0"): could not locate instaloader sources to patch" >&2
+		exit 1
+	fi
+
+	for patch_url in $patches; do
+		marker="$lib/instaloader/.patched-pr-$(basename "$patch_url" .diff)"
+		[[ -e "$marker" ]] && continue
+		echo "$(basename "$0"): applying $patch_url to instaloader $version" >&2
+		if curl -fsSL "$patch_url" | patch -d "$lib" -p1 -sf; then
+			touch "$marker"
+		else
+			echo "$(basename "$0"): applying $patch_url failed" >&2
+			exit 1
+		fi
+	done
+}
+
+# Export Safari's cookies (via yt-dlp) so single-file can capture logged-in pages.
+export_safari_cookies() {
+	[[ -n "$COOKIE_JAR" ]] && return
+	require yt-dlp
+	COOKIE_JAR=$(mktemp)
+	trap 'rm -f "$COOKIE_JAR"' EXIT
+	yt-dlp --cookies-from-browser safari --cookies "$COOKIE_JAR" > /dev/null 2>&1
+	if [[ ! -s "$COOKIE_JAR" ]]; then
+		echo "$(basename "$0"): exporting Safari cookies failed (does your terminal have Full Disk Access?)" >&2
+		exit 1
+	fi
+}
+
+for url in "$@"; do
+	bare="${url%%\?*}"
+	if [[ "$bare" =~ ^https?://((www|m|music)\.)?youtube\.com/ || "$bare" =~ ^https?://youtu\.be/ ]]; then
+		require yt-dlp
+		yt-dlp --preset-alias mp4 --paths "$DIR" --cookies-from-browser safari "$url"
+	elif [[ "$bare" =~ ^https?://(www\.)?instagram\.com/(.*)$ ]]; then
+		path="${BASH_REMATCH[2]}"
+		if [[ "$path" =~ ^(p|reels?|tv)/([A-Za-z0-9_-]+) ]]; then
+			target="-${BASH_REMATCH[2]}"
+		elif [[ "$path" =~ ^([A-Za-z0-9._]+)/?$ ]]; then
+			target="${BASH_REMATCH[1]}"
+		else
+			echo "$(basename "$0"): unsupported URL: $url" >&2
+			continue
+		fi
+		require instaloader
+		instaloader --no-iphone --no-metadata-json --no-compress-json --no-captions --no-video-thumbnails --dirname-pattern "$DIR" --filename-pattern '{profile}-{date_utc}' -b safari -- "$target"
+	elif [[ "$bare" =~ ^https?:// ]]; then
+		if ! command -v single-file > /dev/null 2>&1; then
+			echo "$(basename "$0"): single-file not found (run ./setup.sh macos)" >&2
+			exit 1
+		fi
+		sfargs=()
+		if [[ -n "$COOKIES" ]]; then
+			export_safari_cookies
+			sfargs=(--browser-cookies-file "$COOKIE_JAR")
+		fi
+		single-file "${sfargs[@]}" --output-directory "$DIR" --filename-template '%if-empty<{page-title}|{url-last-segment}> ({date-iso}).{filename-extension}' "$url"
+	else
+		echo "$(basename "$0"): unsupported URL: $url" >&2
+	fi
+done

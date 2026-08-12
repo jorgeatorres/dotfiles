@@ -1,5 +1,6 @@
-#!/bin/sh
-set -e
+#!/bin/zsh
+
+setopt null_glob
 
 cd $(dirname $0)
 DIR=$(pwd -P)
@@ -7,7 +8,7 @@ DIR=$(pwd -P)
 
 # Because dotfiles are symlinked, ensure we're running from the expected location.
 if [[ "${DIR}" != "${HOME}/src/dotfiles" ]] && [[ ! -d "${HOME}/src/dotfiles" ]]; then
-	read -p "Would you like to move this folder to ~/src/dotfiles? (default: Y) [Yn]: " -n 1 -r; echo;
+	read -k 1 -r "REPLY?Would you like to move this folder to ~/src/dotfiles? (default: Y) [Yn]: "; echo;
 	if [[ ! $REPLY =~ ^[Nn]$ ]]; then
 		mkdir -p ${HOME}/src; mv ${DIR} ${HOME}/src/dotfiles; ${HOME}/src/dotfiles/setup.sh $1; exit;
 	fi

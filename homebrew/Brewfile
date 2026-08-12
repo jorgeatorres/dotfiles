@@ -83,7 +83,6 @@ cask 'visual-studio-code'
 cask 'whatsapp'
 cask 'zoom'
 
-brew 'mailhog'
 brew 'mysql'
 brew 'nginx'
 brew 'node'

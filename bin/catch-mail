@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p "$HOME/.catch-mail"
+cat > "$HOME/.catch-mail/$(date +%Y%m%d-%H%M%S)-$$.eml"

@@ -30,7 +30,7 @@ do_install _setup/gpg.sh
 
 do_install _setup/dotfiles-repo.sh
 
-do_install _setup/mailhog.sh
+do_install _setup/catch-mail.sh
 do_install _setup/phpunit.sh
 do_install _setup/composer.sh
 do_install _setup/valet.sh

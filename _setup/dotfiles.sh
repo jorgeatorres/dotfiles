@@ -49,12 +49,14 @@ fi
 
 # VIM
 mkdir -p ~/.config/vim/
-for vimfile in ${DIR}/vim/*; do
-	[[ -L "${HOME}/.config/vim/$(basename $vimfile)" ]] || ln -sfv "$vimfile" ~/.config/vim/
-done
+[[ -L "${HOME}/.config/vim/vimrc" ]] || ln -sfv "$DIR/vim/vimrc" ~/.config/vim/
+[[ -L "${HOME}/.config/vim/gvimrc" ]] || ln -sfv "$DIR/vim/gvimrc" ~/.config/vim/
 
 # NVIM
 [[ -d ~/.config/nvim ]] || mkdir -p ~/.config/nvim
-[[ -L ~/.config/nvim/init.vim ]] || ln -sfv "$DIR/nvim/init.vim" ~/.config/nvim/
+
+for nvimfile in ${DIR}/nvim/*.vim; do
+	[[ -L "${HOME}/.config/nvim/$(basename $nvimfile)" ]] || ln -sfv "$nvimfile" ~/.config/nvim/
+done
 
 source ~/.zshrc

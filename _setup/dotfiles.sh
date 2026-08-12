@@ -1,5 +1,11 @@
 # ~/.bin
 mkdir -p "$HOME/.bin"
+
+# Remove stale links pointing to repo scripts that no longer exist.
+for binlink in ${HOME}/.bin/*; do
+	[[ -L "$binlink" && "$(readlink "$binlink")" == ${DIR}/bin/* && ! -e "$binlink" ]] && rm -v "$binlink"
+done
+
 for binfile in ${DIR}/bin/*; do
 	[[ -L "${HOME}/.bin/$(basename $binfile)" ]] && continue
 	ln -sfv "$binfile" "$HOME/.bin"

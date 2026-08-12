@@ -17,8 +17,7 @@ set_prompt
 # ------
 # Basics
 # ------
-export EDITOR="$(which vim)"
-export GREP_OPTIONS='--color=auto'
+export EDITOR="vim"
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
 # --------
@@ -65,13 +64,22 @@ switch_version() {
 # -------
 alias ls="ls -G"
 alias ll="ls -lG"
+alias grep="grep --color=auto"
 alias ~="cd ~"
 alias ..="cd .."
+alias cd-icloud='cd "$HOME/Library/Mobile Documents/com~apple~CloudDocs"'
 
+# Integrate fzf with terminal.
+# Provides fuzzy search for history (Ctrl-R), files (Ctrl-T) and cd'ing into subdirs (Esc-C).
+if [[ $(which fzf) ]]; then; source <(fzf --zsh); fi
 
 # NVM.
 export NVM_DIR="$HOME/.nvm"
 [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
 [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 
-if [[ -e "$HOME/.zshrc.work" ]]; then source "$HOME/.zshrc.work"; fi
+# Docker completions.
+if [[ -d "$HOME/.docker/completions" ]]; then fpath=("$HOME/.docker/completions" $fpath); fi
+
+autoload -Uz compinit
+compinit

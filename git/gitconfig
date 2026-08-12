@@ -3,14 +3,12 @@
 [column]
 	ui = auto
 [core]
-    editor = /usr/bin/vim
+    editor = vim
     excludesfile = ~/.config/git/gitignore
 [credential]
     helper = osxkeychain
 [push]
-    default = current
-	#default = nothing
-	autoSetupRemote = true
+	default = nothing
 [fetch]
 	prune = true
 	#pruneTags = true
@@ -24,9 +22,9 @@
 	renames = true
 [branch]
 	sort = -committerdate
-# [rerere]
-#	enabled = true
-#	autoupdate = true
+[rerere]
+	enabled = true
+	autoupdate = true
 [rebase]
 	autoStash = true
 	autoSquash = true
@@ -38,7 +36,8 @@
 	l = log --oneline
     a = add
     p = push
-    s = status
+	s = status
+	w = worktree
 	ls = ls-files
 	pr = pull --rebase
 	uncommit = reset --soft HEAD^

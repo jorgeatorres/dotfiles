@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+if ! command -v brew > /dev/null 2>&1; then
+	echo "$(basename "$0"): brew not found (https://brew.sh)" >&2
+	exit 1
+fi
+
+brew update
+brew upgrade --yes
+brew upgrade --yes --cask
+brew cleanup

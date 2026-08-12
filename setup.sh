@@ -36,7 +36,6 @@ do_install _setup/composer.sh
 do_install _setup/valet.sh
 do_install _setup/wp-cli.sh
 do_install _setup/xdebug.sh
-do_install _setup/nvm.sh
 
 do_install _setup/dayone.sh
 do_install _setup/vscode.sh

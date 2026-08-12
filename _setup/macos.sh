@@ -1,23 +1,20 @@
 # Sets various macOS config settings.
 
+if ! plutil -lint /Library/Preferences/com.apple.TimeMachine.plist > /dev/null 2>&1; then
+	echo "! This step needs Full Disk Access."
+	open "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles"
+	exit 1
+fi
+
 # ------------
 # Useful utils
 # ------------
 
-# https://github.com/alexwlchan/safari-webarchiver.
-if [[ ! -e ${HOME}/.bin/save-safari-webarchive ]]; then
-	wget -q -O /tmp/save-safari-webarchive.zip https://github.com/alexwlchan/safari-webarchiver/releases/download/v1.0.1/save_safari_webarchive.aarch64-apple-darwin.zip
-	unzip -qq /tmp/save-safari-webarchive.zip -d /tmp/save-safari-webarchive
-	mv /tmp/save-safari-webarchive/save_safari_webarchive ${HOME}/.bin/save-safari-webarchive
-	rm -rf /tmp/save-safari-webarchive{,.zip}
+# https://github.com/gildas-lormeau/single-file-cli. Save web pages as self-contained HTML; drives Chrome.
+if [[ ! -e ${HOME}/.bin/single-file ]]; then
+	wget -q -O ${HOME}/.bin/single-file https://github.com/gildas-lormeau/single-file-cli/releases/download/v2.0.83/single-file-aarch64-apple-darwin
+	chmod +x ${HOME}/.bin/single-file
 fi
-
-# https://gist.github.com/mdbraber/bf37df37967903ad0b0e4a6285533983.
-if [[ !-e ${HOME}/.bin/save-safari-pdf ]]; then
-	wget -q O /tmp/save-safari-pdf.swift https://gist.githubusercontent.com/mdbraber/bf37df37967903ad0b0e4a6285533983/raw/71ced2cb4757f8661da14e579e44879ede80f73d/save-safari-pdf.swift
-	swiftc /tmp/save-safari-pdf.swift -o ${HOME}/.bin/save-safari-pdf
-	rm -rf /tmp/save-safari-pdf.swift
-end
 
 # --------------
 # TouchID + sudo
@@ -25,14 +22,14 @@ end
 [[ -e /etc/pam.d/sudo_local ]] ||  sudo touch /etc/pam.d/sudo_local
 
 if ! grep -qE '^[^#]*auth\s+sufficient\s+pam_tid.so' /etc/pam.d/sudo_local; then
-	sudo echo "auth       sufficient     pam_tid.so" >> /etc/pam.d/sudo_local
+	echo "auth       sufficient     pam_tid.so" | sudo tee -a /etc/pam.d/sudo_local > /dev/null
 fi
 
 # -----
 # Fonts
 # -----
 [[ -e ${HOME}/Downloads/Fonts/MonoLisa ]] && cp ${HOME}/Downloads/Fonts/MonoLisa/otf/*.otf ${HOME}/Library/Fonts/
-[[ -e ${HOME}/Downloads/Fonts/Operator\ Mono]] && cp ${HOME}/Downloads/Fonts/Operator\ Mono/otf/*.otf ${HOME}/Library/Fonts/
+[[ -e ${HOME}/Downloads/Fonts/Operator\ Mono ]] && cp ${HOME}/Downloads/Fonts/Operator\ Mono/otf/*.otf ${HOME}/Library/Fonts/
 
 
 # -----
@@ -51,10 +48,10 @@ defaults write -g AppleICUNumberSymbols -dict 0 '.' 1 ',' 10 '.' 17 ','
 # ----
 # Dock
 # ----
-defaults write com.apple.dock autohide -bool false # Auto-hide.
-defaults write com.apple.dock autohide-time-modifier -float 0.3 # Auto-hide.
+defaults write com.apple.dock autohide -bool false # Don't auto-hide.
+defaults write com.apple.dock autohide-time-modifier -float 0.3 # Auto-hide animation speed (if ever enabled).
 defaults write com.apple.dock tilesize -int 32 # Dock size.
-defaults delete com.apple.dock persistent-apps # Clear out of persistent apps.
+defaults delete com.apple.dock persistent-apps 2> /dev/null || true # Clear out persistent apps (may already be absent).
 defaults write com.apple.dock show-recents -bool false # Don't show recent apps.
 defaults write com.apple.dock show-process-indicators -bool false # Don't show open app indicators.
 defaults write com.apple.dock magnification -int 0 # Disable magnification.
@@ -75,7 +72,7 @@ killall Dock
 defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0 # Document proxy icon delay.
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1 # Sidebar icon size
 
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv" # Column view.
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv" # List view.
 defaults write com.apple.finder NewWindowTarget -string "PfHm" # New finder windows open home folder.
 defaults write com.apple.finder NewWindowTargetPath -string "file:///${HOME}/" # New window target path.
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf" # Search defaults to current dir.
@@ -95,7 +92,10 @@ plutil -replace StandardViewSettings.ListViewSettings.useRelativeDates -bool tru
 plutil -replace StandardViewSettings.ExtendedListViewSettingsV2.sortColumn -string kind ${HOME}/Library/Preferences/com.apple.finder.plist
 plutil -replace StandardViewSettings.ListViewSettings.sortColumn -string kind ${HOME}/Library/Preferences/com.apple.finder.plist
 
-find ${HOME} -name .DS_Store -exec rm {} \;
+find -x ${HOME} -name .DS_Store -delete 2> /dev/null || true
+
+# Make cfprefsd re-read the plists edited directly via plutil, so cached copies don't clobber them.
+killall cfprefsd
 killall Finder
 
 # --------
@@ -121,6 +121,7 @@ plutil -replace Window\ Settings.Pro.rowCount -integer 40 ${HOME}/Library/Prefer
 plutil -replace Window\ Settings.Pro.Font -data "YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGkCwwVFlUkbnVsbNQNDg8QERITFFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNAKAAAAAAAABAQgAKAA15TRk1vbm8tUmVndWxhctIXGBkaWiRjbGFzc25hbWVYJGNsYXNzZXNWTlNGb250ohkbWE5TT2JqZWN0CBEaJCkyN0lMUVNYXmdud36FjpCSlKOos7zDxgAAAAAAAAEBAAAAAAAAABwAAAAAAAAAAAAAAAAAAADP" ${HOME}/Library/Preferences/com.apple.Terminal.plist # Font.
 plutil -replace Window\ Settings.Pro.BackgroundColor -data "YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGjCwwTVSRudWxs0w0ODxAREldOU1doaXRlXE5TQ29sb3JTcGFjZVYkY2xhc3NPEA8wIDAuODk4NTQyODU3MQAQA4AC0hQVFhdaJGNsYXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRseYCSlJabpq+3ugAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAADD" ${HOME}/Library/Preferences/com.apple.Terminal.plist # Background color.
 plutil -replace Window\ Settings.Pro.CursorBlink -bool true ${HOME}/Library/Preferences/com.apple.Terminal.plist # Blink cursor.
+killall cfprefsd
 
 # ------
 # Safari

@@ -1,4 +1,4 @@
-// Place your key bindings in this file to override the defaultsauto[]
+// Place your key bindings in this file to override the defaults
 [
     {
         "key": "ctrl+alt+cmd+up",
@@ -52,26 +52,6 @@
     {
         "key": "shift+cmd+o",
         "command": "workbench.action.showAllEditors"
-    },
-    {
-        "key": "alt+cmd+tab",
-        "command": "-workbench.action.showAllEditors"
-    },
-    {
-        "key": "alt+cmd+tab",
-        "command": "-workbench.action.showAllEditors"
-    },
-    {
-        "key": "alt+cmd+tab",
-        "command": "-workbench.action.showAllEditors"
-    },
-    {
-        "key": "alt+cmd+tab",
-        "command": "-workbench.action.showAllEditors"
-    },
-    {
-        "key": "alt+cmd+tab",
-        "command": "-workbench.action.showAllEditors"
     },
     {
         "key": "alt+cmd+tab",

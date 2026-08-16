@@ -12,12 +12,13 @@ fi
 
 valet install
 
-# phpMyAdmin.
-if [[ ! $(valet links | grep 'phpmyadmin') ]]; then
-	brew install phpmyadmin
+# Set up phpMyAdmin.
+if [[ -d "${HOMEBREW_PREFIX}/share/phpmyadmin" && ! $(valet links | grep 'phpmyadmin') ]]; then
 	cd "${HOMEBREW_PREFIX}/share/phpmyadmin"
 	valet link
 fi
 
-sed -i '' "s/\['auth_type'\] = 'cookie'/\['auth_type'\] = 'config'/" "${HOMEBREW_PREFIX}/etc/phpmyadmin.config.inc.php"
-sed -i '' "s/\['AllowNoPassword'\] = false/\['AllowNoPassword'\] = true/" "${HOMEBREW_PREFIX}/etc/phpmyadmin.config.inc.php"
+if [[ -e "${HOMEBREW_PREFIX}/etc/phpmyadmin.config.inc.php" ]]; then
+	sed -i '' "s/\['auth_type'\] = 'cookie'/\['auth_type'\] = 'config'/" "${HOMEBREW_PREFIX}/etc/phpmyadmin.config.inc.php"
+	sed -i '' "s/\['AllowNoPassword'\] = false/\['AllowNoPassword'\] = true/" "${HOMEBREW_PREFIX}/etc/phpmyadmin.config.inc.php"
+fi

@@ -90,6 +90,7 @@ brew 'nvm'
 brew 'php'
 brew 'php@7.4'
 brew 'php@8.0'
+brew 'phpmyadmin'
 brew 'pnpm'
 
 # Generate the following list with this command:

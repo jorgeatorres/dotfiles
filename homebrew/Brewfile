@@ -130,3 +130,11 @@ mas "1Password for Safari", id: 1569813296
 mas "Keyword Search", id: 1558453954
 #mas "Tampermonkey", id: 1482490089
 mas "Wipr", id: 1662217862
+
+# TODO: Homebrew will drop these packages after 2026-09-01. Force no quarantine for now.
+at_exit do
+  %w[TomatoBar OpenEmu love].each do |app|
+    path = "/Applications/#{app}.app"
+    system "xattr -dr com.apple.quarantine '#{path}' 2> /dev/null" if File.exist?(path)
+  end
+end

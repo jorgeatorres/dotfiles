@@ -18,6 +18,9 @@ if [[ ! $(which brew)  ]]; then
 	if [[ -e "/opt/homebrew/bin/brew" ]]; then eval $(/opt/homebrew/bin/brew shellenv); fi # Homebrew (Apple Silicon)
 fi
 
+# Trust third-party taps used by the Brewfile.
+brew trust --tap shivammathur/php > /dev/null
+
 # Install packages.
 brew bundle check --file="$DIR/homebrew/Brewfile" >/dev/null 2>&1  || {
     brew bundle --file="$DIR/homebrew/Brewfile" --verbose
